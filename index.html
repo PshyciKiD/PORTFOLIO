@@ -3,23 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akbar M A | Cybersecurity Professional</title>
+    <title>Akbar M A | Security Operations Center</title>
+    <!-- SOC Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230D1117'/><text x='50%' y='50%' font-family='monospace' font-weight='800' font-size='60' fill='%2300FF41' dominant-baseline='central' text-anchor='middle'>A></text></svg>">
+    
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Matrix/SOC Typography: JetBrains Mono for Headers & Logs, Inter for Body Text -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Devicon for Technology Stack Logos -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
 </head>
 <body>
-    <nav class="corporate-nav">
+    <nav class="soc-nav">
         <div class="nav-container">
-            <div class="logo">Akbar<span class="accent-text">MA</span></div>
+            <div class="soc-logo">Akbar<span class="soc-accent">MA</span> <span class="blink">_</span></div>
             <ul class="nav-links">
-                <li><a href="#home" class="active">Home</a></li>
-                <li><a href="#about">Profile</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#certifications">Certifications</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#home" class="active">/home</a></li>
+                <li><a href="#about">/profile</a></li>
+                <li><a href="#projects">/projects</a></li>
+                <li><a href="#experience">/experience</a></li>
+                <li><a href="#certifications">/certifications</a></li>
+                <li><a href="#contact">/contact</a></li>
             </ul>
         </div>
     </nav>
@@ -28,131 +37,216 @@
         <section id="home" class="hero">
             <div class="hero-container">
                 <div class="hero-content fade-in-up">
-                    <span class="subtitle">Cybersecurity Professional</span>
+                    <span class="soc-subtitle">[ SYS_STATUS: ONLINE ]</span>
                     <h1>Akbar M A</h1>
-                    <p class="hero-desc">Dedicated Cybersecurity Professional with an Advanced Diploma in Cyber Defense and hands-on experience in vulnerability assessment, penetration testing, and network security.</p>
-                    <div class="cta-group">
-                        <a href="#experience" class="btn btn-primary">View Experience</a>
-                        <a href="#contact" class="btn btn-outline">Contact Me</a>
+                    <p class="hero-desc soc-desc">Security Researcher & Cyber Defense Specialist. Executing vulnerability assessments, penetration testing, and advanced threat monitoring for enterprise architectures.</p>
+                    <div class="soc-cta-group">
+                        <a href="assets/resume.pdf" class="soc-btn primary-btn" download><i class="fa-solid fa-file-pdf"></i> [Download Resume/CV]</a>
+                        <a href="#certifications" class="soc-btn outline-btn"><i class="fa-solid fa-certificate"></i> [View Certifications]</a>
                     </div>
                 </div>
                 <div class="hero-image-wrapper fade-in-up" style="transition-delay: 0.2s">
-                    <div class="profile-frame">
-                        <img src="assets/profile.jpg" alt="Akbar M A" id="profile-pic" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'300\' fill=\'%230f172a\'><rect width=\'300\' height=\'300\' fill=\'%231e293b\'/><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%2394a3b8\' font-family=\'sans-serif\' font-size=\'14\'>profile.jpg</text></svg>'">
+                    <div class="radar-pulse">
+                        <img src="assets/profile.jpg" alt="Akbar M A" id="profile-pic" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'300\' fill=\'%230d1117\'><rect width=\'300\' height=\'300\' fill=\'%23161b22\'/><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%238b949e\' font-family=\'monospace\' font-size=\'14\'>profile.jpg</text></svg>'">
                     </div>
                 </div>
             </div>
         </section>
 
         <section id="about" class="about">
-            <div class="section-title fade-in-up">
-                <h2>Professional Profile</h2>
-                <div class="title-underline"></div>
+            <div class="soc-section-title fade-in-up">
+                <h2>> EXE: Professional_Profile</h2>
             </div>
-            <div class="about-grid">
-                <div class="about-text corporate-card fade-in-up">
-                    <h3>Executive Summary</h3>
+            <div class="soc-grid">
+                <div class="soc-card fade-in-up">
+                    <h3 class="soc-mono-title">Executive Summary</h3>
                     <p>Dedicated Cybersecurity Professional with a proven track record of identifying system vulnerabilities and deploying robust mitigation strategies to safeguard critical assets. Adept at leveraging OSINT, advanced reconnaissance techniques, and industry-standard frameworks (OWASP) to enhance organizational security postures. Strong analytical problem-solver equipped to handle high-pressure environments, conduct thorough risk analyses, and bridge the gap between technical execution and operational efficiency.</p>
                 </div>
                 
-                <div class="skills-container corporate-card fade-in-up" style="transition-delay: 0.1s">
-                    <h3>Core Competencies</h3>
-                    <div class="skills">
-                        <span class="skill-pill">Web App Penetration Testing</span>
-                        <span class="skill-pill">Network Testing</span>
-                        <span class="skill-pill">Vulnerability Analysis</span>
-                        <span class="skill-pill">OSINT & OWASP Top 10</span>
-                        <span class="skill-pill">Social Engineering Mitigation</span>
-                        <span class="skill-pill">Network Traffic Analysis</span>
-                        <span class="skill-pill">Firewall Configuration</span>
-                        <span class="skill-pill">Linux & Windows Server</span>
-                        <span class="skill-pill">Python, C++, Java, PHP</span>
+                <div class="soc-card fade-in-up" style="transition-delay: 0.1s">
+                    <h3 class="soc-mono-title">Core Competencies</h3>
+                    <div class="soc-badge-list">
+                        <div class="soc-badge"><i class="fa-solid fa-shield-halved"></i> Web App Pen Testing</div>
+                        <div class="soc-badge"><i class="fa-solid fa-bug"></i> Vulnerability Analysis (OWASP)</div>
+                        <div class="soc-badge"><i class="fa-solid fa-magnifying-glass"></i> OSINT & Google Dorking</div>
+                        <div class="soc-badge"><i class="fa-solid fa-network-wired"></i> Network Traffic Analysis</div>
+                        <div class="soc-badge"><i class="fa-solid fa-server"></i> Firewall Configuration</div>
+                        <div class="soc-badge"><i class="devicon-linux-plain"></i> Linux Administration</div>
+                        <div class="soc-badge"><i class="devicon-windows8-original"></i> Windows Environments</div>
+                        <div class="soc-badge"><i class="devicon-python-plain"></i> Python Automation</div>
+                        <div class="soc-badge"><i class="devicon-cplusplus-plain"></i> C++</div>
+                        <div class="soc-badge"><i class="devicon-java-plain"></i> Java</div>
+                        <div class="soc-badge"><i class="devicon-php-plain"></i> PHP</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="experience" class="experience">
-            <div class="section-title fade-in-up">
-                <h2>Professional Experience</h2>
-                <div class="title-underline"></div>
+        <!-- Proof of Work Terminal -->
+        <section id="projects" class="projects">
+            <div class="soc-section-title fade-in-up">
+                <h2>> LS: Security_Projects</h2>
             </div>
-            <div class="timeline">
+            
+            <div class="terminal-window fade-in-up">
+                <div class="terminal-header">
+                    <div class="mac-dots">
+                        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                    </div>
+                    <div class="terminal-title">akbar@soc-hub: ~/projects/write-ups</div>
+                </div>
+                <div class="terminal-body">
+                    <p class="term-line"><span class="prompt">akbar@soc-hub:~/projects/write-ups$</span> ls -la</p>
+                    <ul class="term-list">
+                        <li>
+                            <i class="fa-solid fa-file-pdf file-icon"></i> 
+                            <a href="#" class="term-link">vulnerability-assessment-report.pdf</a> 
+                            <span class="term-comment"># Detailed WAF bypass methodology in a lab environment targeting OWASP vulnerabilities.</span>
+                        </li>
+                        <li>
+                            <i class="devicon-python-plain file-icon"></i> 
+                            <a href="#" class="term-link">automated-osint-framework.py</a> 
+                            <span class="term-comment"># Custom script automating intelligence gathering across public APIs for rapid footprint verification.</span>
+                        </li>
+                        <li>
+                            <i class="devicon-bash-plain file-icon"></i> 
+                            <a href="#" class="term-link">firewall_audit_log_analyzer.sh</a> 
+                            <span class="term-comment"># Shell script for parsing and identifying anomalous perimeter traffic patterns.</span>
+                        </li>
+                        <li>
+                            <i class="fa-brands fa-github file-icon"></i> 
+                            <a href="https://github.com/akbarma" target="_blank" class="term-link">View_All_Repositories</a>
+                        </li>
+                    </ul>
+                    <p class="term-line" style="margin-top: 20px;"><span class="prompt">akbar@soc-hub:~/projects/write-ups$</span> <span class="blink">_</span></p>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="experience">
+            <div class="soc-section-title fade-in-up">
+                <h2>> CAT: Professional_Experience.log</h2>
+            </div>
+            <div class="soc-timeline">
+                
                 <!-- Role 0: Current -->
-                <div class="timeline-item fade-in-up">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content corporate-card">
-                        <div class="timeline-header">
-                            <h3>IT / Cybersecurity Professional</h3>
-                            <span class="timeline-date">Current</span>
+                <div class="timeline-node fade-in-up">
+                    <div class="timeline-marker"></div>
+                    <div class="soc-card experience-card">
+                        <div class="card-header">
+                            <div>
+                                <h3 class="role-title">IT / Cybersecurity Professional</h3>
+                                <h4 class="company">BSBG - Brewer Smith Brewer Group | Dubai, UAE</h4>
+                            </div>
+                            <div class="role-meta">
+                                <span class="date-badge">Current</span>
+                                <span class="soc-tag core-security">[Core Security & Operations]</span>
+                            </div>
                         </div>
-                        <h4 class="company">BSBG - Brewer Smith Brewer Group | Dubai, UAE</h4>
-                        <ul class="professional-list">
+                        <ul class="soc-list">
                             <li>Overseeing IT operations and ensuring seamless, secure technical performance within a high-level corporate architecture environment.</li>
                         </ul>
+                        <div class="tech-stack-row">
+                            <span class="tech-pill"><i class="devicon-windows8-original"></i> Windows Server</span>
+                            <span class="tech-pill"><i class="fa-solid fa-server"></i> Enterprise Arch</span>
+                            <span class="tech-pill"><i class="fa-solid fa-network-wired"></i> Network Sec</span>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Role 1 -->
-                <div class="timeline-item fade-in-up">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content corporate-card">
-                        <div class="timeline-header">
-                            <h3>Cyber Security Researcher</h3>
-                            <span class="timeline-date">03/2023 - 06/2024</span>
+                <div class="timeline-node fade-in-up">
+                    <div class="timeline-marker"></div>
+                    <div class="soc-card experience-card">
+                        <div class="card-header">
+                            <div>
+                                <h3 class="role-title">Cyber Security Researcher</h3>
+                                <h4 class="company">Offenso Hackers' Academy | Cochin, India</h4>
+                            </div>
+                            <div class="role-meta">
+                                <span class="date-badge">03/2023 - 06/2024</span>
+                                <span class="soc-tag core-security">[Core Security]</span>
+                            </div>
                         </div>
-                        <h4 class="company">Offenso Hackers' Academy | Cochin, India</h4>
-                        <ul class="professional-list">
-                            <li>Spearheaded comprehensive vulnerability assessments and risk analyses, effectively enhancing overall organizational cybersecurity measures by 20%.</li>
+                        <ul class="soc-list">
+                            <li class="highlight-line">Conducted 50+ manual penetration tests on web applications, identifying critical OWASP Top 10 vulnerabilities before deployment.</li>
                             <li>Executed advanced network analysis, firewall configuration, and manual penetration testing to identify and remediate critical system flaws.</li>
                             <li>Strengthened network infrastructure by conducting continuous vulnerability scans and deploying recommended security patches.</li>
                             <li>Utilized Google Dorking and advanced reconnaissance techniques to proactively identify external attack vectors and potential data leaks.</li>
                         </ul>
+                        <div class="tech-stack-row">
+                            <span class="tech-pill"><i class="devicon-kali-plain"></i> Kali Linux</span>
+                            <span class="tech-pill"><i class="fa-solid fa-bug"></i> Burp Suite</span>
+                            <span class="tech-pill"><i class="fa-solid fa-globe"></i> Nmap/OSINT</span>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Role 2 -->
-                <div class="timeline-item fade-in-up">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content corporate-card">
-                        <div class="timeline-header">
-                            <h3>Cyber Security Volunteer</h3>
-                            <span class="timeline-date">01/2023 - 06/2023</span>
+                <div class="timeline-node fade-in-up">
+                    <div class="timeline-marker"></div>
+                    <div class="soc-card experience-card">
+                        <div class="card-header">
+                            <div>
+                                <h3 class="role-title">Cyber Security Volunteer</h3>
+                                <h4 class="company">Kerala Police Cyber Dome | Remote</h4>
+                            </div>
+                            <div class="role-meta">
+                                <span class="date-badge">01/2023 - 06/2023</span>
+                                <span class="soc-tag core-security">[Core Security]</span>
+                            </div>
                         </div>
-                        <h4 class="company">Kerala Police Cyber Dome | Remote</h4>
-                        <ul class="professional-list">
+                        <ul class="soc-list">
                             <li>Collaborated with law enforcement cyber divisions to provide critical cybersecurity intelligence and technical assistance.</li>
                             <li>Assisted in digital footprint analysis, OSINT gathering, and specialized security initiatives to support cybercrime investigations.</li>
                         </ul>
+                        <div class="tech-stack-row">
+                            <span class="tech-pill"><i class="devicon-python-plain"></i> Python</span>
+                            <span class="tech-pill"><i class="fa-solid fa-magnifying-glass"></i> OSINT Forensics</span>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Role 3 -->
-                <div class="timeline-item fade-in-up">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content corporate-card">
-                        <div class="timeline-header">
-                            <h3>Hardware/Software Technician</h3>
-                            <span class="timeline-date">12/2020 - 12/2022</span>
+                <div class="timeline-node fade-in-up">
+                    <div class="timeline-marker"></div>
+                    <div class="soc-card experience-card">
+                        <div class="card-header">
+                            <div>
+                                <h3 class="role-title">Hardware/Software Technician</h3>
+                                <h4 class="company">I Mate Solutions | Kothamangalam, Kerala</h4>
+                            </div>
+                            <div class="role-meta">
+                                <span class="date-badge">12/2020 - 12/2022</span>
+                                <span class="soc-tag it-ops">[IT Support]</span>
+                            </div>
                         </div>
-                        <h4 class="company">I Mate Solutions | Kothamangalam, Kerala</h4>
-                        <ul class="professional-list">
+                        <ul class="soc-list">
                             <li>Diagnosed and resolved complex hardware, software, and network issues for desktop and mobile devices, significantly reducing downtime.</li>
                             <li>Managed system assemblies, software deployments, and comprehensive repairs, contributing to a 25% increase in departmental revenue.</li>
                         </ul>
+                        <div class="tech-stack-row">
+                            <span class="tech-pill"><i class="fa-solid fa-microchip"></i> Hardware</span>
+                            <span class="tech-pill"><i class="fa-solid fa-compact-disc"></i> O/S Deployments</span>
+                        </div>
                     </div>
                 </div>
                 
                 <!-- Role 4 -->
-                <div class="timeline-item fade-in-up">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content corporate-card">
-                        <div class="timeline-header">
-                            <h3>Relationship Manager / IT Operations</h3>
-                            <span class="timeline-date">01/2022 - 12/2022</span>
+                <div class="timeline-node fade-in-up">
+                    <div class="timeline-marker"></div>
+                    <div class="soc-card experience-card">
+                        <div class="card-header">
+                            <div>
+                                <h3 class="role-title">Relationship Manager / IT Operations</h3>
+                                <h4 class="company">Indus Nexa Pvt Ltd. | Cochin, India</h4>
+                            </div>
+                            <div class="role-meta">
+                                <span class="date-badge">01/2022 - 12/2022</span>
+                                <span class="soc-tag it-ops">[IT Operations]</span>
+                            </div>
                         </div>
-                        <h4 class="company">Indus Nexa Pvt Ltd. | Cochin, India</h4>
-                        <ul class="professional-list">
+                        <ul class="soc-list">
                             <li>Directed daily office operations and client relations, ensuring high levels of customer satisfaction and streamlined administrative workflows.</li>
                             <li>Served as the primary IT point of contact, autonomously troubleshooting and resolving office computer systems and network issues.</li>
                         </ul>
@@ -161,115 +255,91 @@
             </div>
         </section>
 
+        <!-- Bento Box Certifications -->
         <section id="certifications" class="certifications">
-            <div class="section-title fade-in-up">
-                <h2>Education & Certifications</h2>
-                <div class="title-underline"></div>
+            <div class="soc-section-title fade-in-up">
+                <h2>> FIND: Credentials_&_Skill_Levels</h2>
             </div>
             
-            <div class="about-grid">
-                <!-- Education -->
-                <div class="corporate-card fade-in-up">
-                    <div class="cert-icon"><i class="fa-solid fa-graduation-cap"></i></div>
-                    <h3>Academic Qualification</h3>
-                    <div class="cert-item" style="margin-top: 15px;">
-                        <h4 style="font-size: 1.1rem; color: var(--text-main);">Advanced Diploma In Cyber Defence</h4>
-                        <p style="color: var(--accent); font-weight: 500; font-size: 0.9rem;">RedTeam Hacker Academy</p>
-                        <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 5px;">Comprehensive training in ethical hacking, incident response, and cybersecurity fundamentals.</p>
+            <div class="bento-grid">
+                <!-- Large Tile 1: CEH -->
+                <div class="bento-card bento-large fade-in-up ceh-cell">
+                    <div class="bento-icon"><i class="fa-solid fa-user-secret"></i></div>
+                    <h3>Certified Ethical Hacker</h3>
+                    <p class="bento-authority">EC-Council</p>
+                    <a href="https://aspen.eccouncil.org/Certificate/Certificate?a=eof6foV0K5/d/w5hmSyIRQ==" target="_blank" class="bento-link">Verify Credentials <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+
+                <!-- Large Tile 2: TryHackMe -->
+                <div class="bento-card bento-large fade-in-up thm-cell">
+                    <div class="bento-icon"><i class="fa-solid fa-terminal"></i></div>
+                    <h3>TryHackMe Rank</h3>
+                    <p class="bento-authority">Level: <span class="soc-accent">[0x5][VISIONARY]</span></p>
+                    <div class="thm-stats">
+                        <span><i class="fa-solid fa-chart-line"></i> Top 30% Global</span>
+                        <span><i class="fa-solid fa-check-double"></i> 3 Rooms</span>
+                    </div>
+                    <a href="https://tryhackme.com/p/cicatrize.o" target="_blank" class="bento-link">View THM Profile <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+
+                <!-- Large Tile 3: Advanced Diploma -->
+                <div class="bento-card bento-wide fade-in-up diploma-cell">
+                    <div class="bento-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                    <div>
+                        <h3>Advanced Diploma In Cyber Defence</h3>
+                        <p class="bento-authority">RedTeam Hacker Academy</p>
+                        <p class="bento-desc">Comprehensive training in ethical hacking, incident response, and cybersecurity fundamentals.</p>
                     </div>
                 </div>
 
-                <!-- Certifications Grid -->
-                <div class="corporate-card fade-in-up" style="transition-delay: 0.1s">
-                    <div class="cert-icon"><i class="fa-solid fa-award"></i></div>
-                    <h3>Industry Licenses</h3>
-                    
-                    <div class="cert-list">
-                        <div class="cert-row">
-                            <i class="fa-solid fa-check-circle" style="color: var(--accent);"></i>
-                            <div>
-                                <h4><a href="https://aspen.eccouncil.org/Certificate/Certificate?a=eof6foV0K5/d/w5hmSyIRQ==" target="_blank" style="text-decoration: underline; color: inherit; transition: color 0.3s;" onmouseover="this.style.color='#60A5FA'" onmouseout="this.style.color='inherit'">Certified Ethical Hacker (CEH)</a></h4>
-                                <span>EC-Council</span>
-                            </div>
-                        </div>
-                        <div class="cert-row">
-                            <i class="fa-solid fa-check-circle" style="color: var(--accent);"></i>
-                            <div>
-                                <h4>Foundation Level Threat Intelligence Analyst</h4>
-                                <span>arcX</span>
-                            </div>
-                        </div>
-                        <div class="cert-row">
-                            <i class="fa-solid fa-check-circle" style="color: var(--accent);"></i>
-                            <div>
-                                <h4>Offenso Certified Security Expert</h4>
-                                <span>Offenso Hackers Academy</span>
-                            </div>
-                        </div>
-                        <div class="cert-row">
-                            <i class="fa-solid fa-check-circle" style="color: var(--accent);"></i>
-                            <div>
-                                <h4>Cybersecurity Foundations: GRC</h4>
-                                <span>LinkedIn Learning</span>
-                            </div>
-                        </div>
-                    </div>
+                <!-- Small Tiles: Support Skills -->
+                <div class="bento-card bento-small fade-in-up">
+                    <h3>Threat Intelligence</h3>
+                    <p class="bento-authority">arcX Foundation Level</p>
                 </div>
-            </div>
+                
+                <div class="bento-card bento-small fade-in-up" style="transition-delay: 0.1s">
+                    <h3>Security Expert</h3>
+                    <p class="bento-authority">Offenso Academy</p>
+                </div>
 
-            <!-- Active Platforms & Achievements -->
-            <div class="about-grid" style="margin-top: 30px;">
-                <div class="corporate-card fade-in-up">
-                    <div class="cert-icon"><i class="fa-solid fa-network-wired"></i></div>
-                    <h3>Active Platforms & Achievements</h3>
-                    <div class="cert-list">
-                        <div class="cert-row">
-                            <i class="fa-solid fa-terminal" style="color: var(--accent);"></i>
-                            <div>
-                                <h4><a href="https://tryhackme.com/p/cicatrize.o" target="_blank" style="color: inherit; transition: color 0.3s;" onmouseover="this.style.color='#60A5FA'" onmouseout="this.style.color='inherit'">TryHackMe: Level [0x5][VISIONARY]</a></h4>
-                                <span>Top 30% Rank - Active Profile</span>
-                            </div>
-                        </div>
-                        <div class="cert-row">
-                            <i class="fa-solid fa-medal" style="color: var(--accent);"></i>
-                            <div>
-                                <h4><a href="https://sites.google.com/view/badassminton2025/home" target="_blank" style="color: inherit; transition: color 0.3s;" onmouseover="this.style.color='#60A5FA'" onmouseout="this.style.color='inherit'">Badassminton 2026 Champion</a></h4>
-                                <span>Recent Community Sports Victory</span>
-                            </div>
-                        </div>
-                        <div class="cert-row">
-                            <i class="fa-solid fa-cube" style="color: var(--accent);"></i>
-                            <div>
-                                <h4><a href="https://app.hackthebox.com/home" target="_blank" style="color: inherit; transition: color 0.3s;" onmouseover="this.style.color='#60A5FA'" onmouseout="this.style.color='inherit'">HackTheBox Profile</a></h4>
-                                <span>Continuous Skill Development</span>
-                            </div>
-                        </div>
-                    </div>
+                <div class="bento-card bento-small fade-in-up" style="transition-delay: 0.2s">
+                    <h3>GRC Foundations</h3>
+                    <p class="bento-authority">LinkedIn Learning</p>
+                </div>
+
+                <div class="bento-card bento-small fade-in-up" style="transition-delay: 0.3s">
+                    <i class="fa-solid fa-cube thm-cube"></i>
+                    <h3>HackTheBox</h3>
+                    <a href="https://app.hackthebox.com/home" target="_blank" class="bento-link">Active Profile <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                 </div>
             </div>
         </section>
 
+        <!-- Contact UI -->
         <section id="contact" class="contact">
-            <div class="section-title fade-in-up">
-                <h2>Contact Information</h2>
-                <div class="title-underline"></div>
+            <div class="soc-section-title fade-in-up">
+                <h2>> INIT: Secure_Comms</h2>
             </div>
-            <div class="contact-card corporate-card fade-in-up">
-                <p class="contact-desc">Located in Dubai, UAE.<br>I am highly organized, dedicated, and strictly seek opportunities to analyze and resolve high-pressure technical issues. My communication channels are open.</p>
+            <div class="soc-card contact-card fade-in-up">
+                <p class="contact-desc">Operating from Dubai, UAE. <br>Standing by for high-pressure technical analysis, continuous architectural defense, and vulnerability resolution.</p>
                 
                 <div class="contact-details">
                     <div class="contact-item">
                         <i class="fa-solid fa-envelope"></i>
-                        <a href="mailto:akbarmayakkat11@gmail.com">akbarmayakkat11@gmail.com</a>
+                        <span id="email-text">akbarmayakkat11@gmail.com</span>
+                        <button class="copy-btn" onclick="copyToClipboard('akbarmayakkat11@gmail.com', this)" title="Copy Email"><i class="fa-regular fa-copy"></i></button>
                     </div>
-                    <div class="contact-item">
+                    <div class="contact-item" style="margin-left: 15px;">
                         <i class="fa-solid fa-phone"></i>
-                        <a href="tel:+971506167230">+971-506167230</a>
+                        <span id="phone-text">+971-506167230</span>
+                        <button class="copy-btn" onclick="copyToClipboard('+971506167230', this)" title="Copy Phone"><i class="fa-regular fa-copy"></i></button>
                     </div>
                 </div>
 
-                <div class="social-links">
+                <div class="social-links" style="margin-top: 35px;">
                     <a href="https://linkedin.com/in/akbarma/" target="_blank" class="social-btn" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="https://github.com/akbarma" target="_blank" class="social-btn" title="GitHub"><i class="fa-brands fa-github"></i></a>
                     <a href="https://www.instagram.com/_akb_a_r/" target="_blank" class="social-btn" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
                     <a href="https://tryhackme.com/p/cicatrize.o" target="_blank" class="social-btn" title="TryHackMe"><i class="fa-solid fa-terminal"></i></a>
                     <a href="https://app.hackthebox.com/home" target="_blank" class="social-btn" title="HackTheBox"><i class="fa-solid fa-cube"></i></a>
@@ -279,8 +349,8 @@
         </section>
     </main>
 
-    <footer class="corporate-footer">
-        <p>&copy; 2026 Akbar M A. All Rights Reserved.</p>
+    <footer class="soc-footer">
+        <p>EOF. &copy; 2026 Akbar M A. Built for the Red Team.</p>
     </footer>
 
     <script src="script.js"></script>
