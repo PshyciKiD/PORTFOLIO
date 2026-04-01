@@ -5,7 +5,21 @@ console.log("%c [!] Intrusion Detected... Just kidding, welcome to my portfolio!
 if ('scrollRestoration' in history) {
     history.scrollRestoration = 'manual';
 }
+
+// Immediate scroll to top
 window.scrollTo(0, 0);
+
+// Double-down on window load to override browser hash jumping
+window.addEventListener('load', () => {
+    // Aggressive timeout to ensure the browser's native restoration completes first
+    setTimeout(() => {
+        window.scrollTo(0, 0);
+        // Optional: Clear hash to prevent accidental jumps on back-navigation
+        if (window.location.hash) {
+            history.replaceState('', document.title, window.location.pathname + window.location.search);
+        }
+    }, 100);
+});
 
 // Navigation active state on scroll
 const sections = document.querySelectorAll('section');
@@ -500,3 +514,312 @@ clientTriggers.forEach(trigger => {
     }
 });
 
+// === AEGIS // SOC Bot Implementation ===
+const botTerminal = document.getElementById('bot-terminal');
+const botHeader = document.getElementById('bot-header');
+const botOutput = document.getElementById('bot-output');
+const botInput = document.getElementById('bot-input');
+const botMin = document.querySelector('.bot-min');
+
+// AEGIS Conversation State Machine
+let aegisFlow = {
+    active: false,
+    currentStep: 'INIT',
+    userData: { name: '', email: '', phone: '', purpose: '' }
+};
+
+const sanitizeInput = (input) => {
+    const maliciousPatterns = [
+        /<script.*?>/gi,
+        /javascript:/gi,
+        /onload=/gi,
+        /onerror=/gi,
+        /SELECT\s+\*\s+FROM/gi,
+        /DROP\s+TABLE/gi,
+        /OR\s+1=1/gi,
+        /--/g
+    ];
+    return maliciousPatterns.some(pattern => pattern.test(input));
+};
+
+const validateEmail = (email) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+};
+
+if (botTerminal && botHeader && typeof gsap !== 'undefined') {
+    // Initialize Draggable
+    if (typeof Draggable !== 'undefined') {
+        Draggable.create(botTerminal, {
+            handle: botHeader,
+            bounds: window,
+            inertia: true
+        });
+    }
+
+    // Minimize Toggle
+    botMin.addEventListener('click', () => {
+        botTerminal.classList.toggle('minimized');
+        botMin.innerText = botTerminal.classList.contains('minimized') ? '+' : '-';
+    });
+
+    // Mechanical Typing Utility
+    async function printToBot(text, type = 'INFO', isHTML = false) {
+        const line = document.createElement('div');
+        line.className = 'bot-line';
+        const prefix = `<span class="soc-accent">[${type}]</span> `;
+        line.innerHTML = prefix;
+        botOutput.appendChild(line);
+
+        // Auto-scroll bot body
+        const botBody = document.querySelector('.bot-body');
+        
+        let i = 0;
+        return new Promise((resolve) => {
+            if (isHTML) {
+                line.innerHTML = prefix + text;
+                botBody.scrollTop = botBody.scrollHeight;
+                resolve();
+                return;
+            }
+
+            function typeChar() {
+                if (i < text.length) {
+                    line.innerHTML = prefix + text.substring(0, i + 1);
+                    i++;
+                    botBody.scrollTop = botBody.scrollHeight;
+                    const delay = Math.random() * 30 + 15;
+                    setTimeout(typeChar, delay);
+                } else {
+                    resolve();
+                }
+            }
+            typeChar();
+        });
+    }
+
+    // AEGIS Interaction Engine
+    const advanceAegisFlow = async (input = '') => {
+        if (input && sanitizeInput(input)) {
+            await printToBot('WARNING: Sanitization failure. Malicious payload detected. Input rejected. Try again, human.', '!');
+            return;
+        }
+
+        switch(aegisFlow.currentStep) {
+            case 'INIT':
+                aegisFlow.active = true;
+                aegisFlow.currentStep = 'NAME';
+                await printToBot('[!] SECURE_UPLINK_ESTABLISHED. Initializing Identity Verification Protocol...', 'SYS');
+                await printToBot('Declare your identity (Full Name/Organization):', 'INPUT');
+                break;
+
+            case 'NAME':
+                aegisFlow.userData.name = input;
+                aegisFlow.currentStep = 'EMAIL';
+                await printToBot(`Identity Confirmed: ${input}`, 'LOG');
+                await printToBot('Provide a secure comms channel (Email):', 'INPUT');
+                break;
+
+            case 'EMAIL':
+                if (!validateEmail(input)) {
+                    await printToBot('ERROR: Invalid data format. Provide a valid email address.', 'ERR');
+                    return;
+                }
+                aegisFlow.userData.email = input;
+                aegisFlow.currentStep = 'PHONE';
+                await printToBot(`Comms established: ${input}`, 'LOG');
+                await printToBot('Direct line (Phone Number) [Optional - Type "SKIP"]:', 'INPUT');
+                break;
+
+            case 'PHONE':
+                aegisFlow.userData.phone = input;
+                aegisFlow.currentStep = 'PURPOSE';
+                await printToBot(`Contact logged.`, 'LOG');
+                await printToBot('Define Mission Objective (Purpose of Visit):', 'SELECT');
+                
+                // Inject Buttons
+                const btnContainer = document.createElement('div');
+                btnContainer.className = 'bot-btn-container';
+                const missions = [
+                    { id: 'OP_RECRUIT', label: '[OP_RECRUIT]' },
+                    { id: 'OP_FREELANCE', label: '[OP_FREELANCE]' },
+                    { id: 'OP_NETWORKING', label: '[OP_NETWORKING]' },
+                    { id: 'OP_OTHER', label: '[OP_OTHER]' }
+                ];
+                
+                missions.forEach(m => {
+                    const btn = document.createElement('button');
+                    btn.className = 'bot-btn';
+                    btn.innerText = m.label;
+                    btn.onclick = () => {
+                        aegisFlow.userData.purpose = m.id;
+                        finalizeAegisFlow();
+                    };
+                    btnContainer.appendChild(btn);
+                });
+                botOutput.appendChild(btnContainer);
+                document.querySelector('.bot-body').scrollTop = document.querySelector('.bot-body').scrollHeight;
+                break;
+        }
+    };
+
+    const finalizeAegisFlow = async () => {
+        aegisFlow.currentStep = 'COMPLETE';
+        botInput.disabled = true;
+        botInput.placeholder = "Session Terminating...";
+        
+        await printToBot(`Mission Code Locked: ${aegisFlow.userData.purpose}`, 'SYS');
+        await printToBot('ENCRYPTING DATA_PACKET...', 'LOG');
+        await printToBot('TRANSMITTING TO AKBAR_MA... SUCCESS.', 'LOG');
+        await printToBot('[SUCCESS] Secure session terminated. Standby for follow-up.', 'INFO');
+        
+        // Reset after delay
+        setTimeout(() => {
+            aegisFlow.active = false;
+            aegisFlow.currentStep = 'INIT';
+            aegisFlow.userData = { name: '', email: '', phone: '', purpose: '' };
+            botInput.disabled = false;
+            botOutput.innerHTML = '';
+            botInput.placeholder = "Type command...";
+            printToBot('AEGIS // SOC_ASSISTANT: System Ready. Type "hire" to start onboarding.', 'INFO');
+        }, 5000);
+    };
+
+    // Passive Mode: Scroll Tracking
+    let lastSection = '';
+    const sectionLogs = {
+        'home': 'System standby. Monitoring initial handshake...',
+        'about': 'Verifying professional identity signatures...',
+        'projects': 'Accessing secure project_metadata repository...',
+        'experience': 'Scanning professional_history.log for metrics...',
+        'freelance': 'Analyzing freelance_ops and service_tiers...',
+        'certifications': 'Validating EC-Council credentials... [MATCH FOUND]',
+        'contact': 'Initializing secure_comms channel 80/443...'
+    };
+
+    // Throttled Scroll Listener for Bot Logs
+    let scrollTimeout;
+    window.addEventListener('scroll', () => {
+        if (aegisFlow.active) return; // Don't interrupt the flow
+        if (scrollTimeout) return;
+        
+        scrollTimeout = setTimeout(() => {
+            scrollTimeout = null;
+            let current = '';
+            const scrollPos = window.scrollY;
+            document.querySelectorAll('section').forEach(section => {
+                const top = section.offsetTop - 300;
+                const bottom = top + section.offsetHeight;
+                if (scrollPos >= top && scrollPos < bottom) {
+                    current = section.id;
+                }
+            });
+
+            if (current && current !== lastSection && sectionLogs[current]) {
+                lastSection = current;
+                printToBot(sectionLogs[current], 'LOG');
+            }
+        }, 500);
+    });
+
+    // Active Mode: Interaction Handler
+    botInput.addEventListener('keypress', async (e) => {
+        if (e.key === 'Enter' && botInput.value.trim() !== '') {
+            const cmd = botInput.value.trim();
+            botInput.value = '';
+            
+            // Print user input in flow style
+            const userLine = document.createElement('div');
+            userLine.className = 'bot-line';
+            userLine.innerHTML = `<span style="color: #8b949e;">> ${cmd}</span>`;
+            botOutput.appendChild(userLine);
+
+            if (aegisFlow.active) {
+                advanceAegisFlow(cmd);
+                return;
+            }
+
+            const cleanCmd = cmd.toLowerCase();
+            // Logic Switch: Easter Egg vs Assistant
+            if (cleanCmd === 'sudo access' || cleanCmd === 'nmap localhost' || cleanCmd === 'system breach') {
+                await printToBot('UNAUTHORIZED ACCESS ATTEMPT DETECTED.', 'WARNING');
+                await printToBot('Input bypass key [0xAkbar] to continue.', 'SYS');
+            } else if (cleanCmd.includes('service') || cleanCmd.includes('freelance') || cleanCmd.includes('hire') || cleanCmd.includes('contact')) {
+                advanceAegisFlow();
+            } else if (cleanCmd.includes('tech') || cleanCmd.includes('stack') || cleanCmd.includes('tool')) {
+                await printToBot('Primary Stack: Next.js, Node.js, Python, Burp Suite, and Kali Linux. Built for production-ready security.', 'AI');
+            } else if (cleanCmd === 'help') {
+                await printToBot('Available: [status], [hire], [portfolio_summary], [clear].', 'SYS');
+            } else if (cleanCmd === 'clear') {
+                botOutput.innerHTML = '';
+                await printToBot('Terminal cleared. System standing by.', 'INFO');
+            } else {
+                await printToBot("Processing query... I am Akbar's SOC Assistant. Would you like to view his [services] or [certifications]? Type 'hire' to connect.", 'AI');
+            }
+        }
+    });
+
+    // === Cyber-Ops Visual Interactions ===
+const dossier = document.getElementById('dossier-preview');
+const profilePic = document.getElementById('profile-pic');
+
+// Dossier Hover Logic (Event Delegation)
+if (termOutput && dossier) {
+    termOutput.addEventListener('mouseover', (e) => {
+        if (e.target.classList.contains('term-link') || 
+            e.target.parentElement.classList.contains('term-link') || 
+            (e.target.tagName === 'SPAN' && e.target.style.textDecoration === 'underline')) {
+            dossier.style.display = 'block';
+        }
+    });
+
+    termOutput.addEventListener('mousemove', (e) => {
+        if (dossier.style.display === 'block') {
+            dossier.style.left = (e.clientX + 20) + 'px';
+            dossier.style.top = (e.clientY + 20) + 'px';
+        }
+    });
+
+    termOutput.addEventListener('mouseout', (e) => {
+        if (e.target.classList.contains('term-link') || 
+            e.target.parentElement.classList.contains('term-link') || 
+            (e.target.tagName === 'SPAN' && e.target.style.textDecoration === 'underline')) {
+            dossier.style.display = 'none';
+        }
+    });
+}
+
+// Hero Profile Glitch Animation
+if (profilePic && typeof gsap !== 'undefined') {
+    const glitchTimeline = gsap.timeline({ repeat: -1, repeatDelay: 5 });
+    
+    glitchTimeline
+        .to(profilePic, { duration: 0.1, skewX: 20, ease: "power4.inOut" })
+        .to(profilePic, { duration: 0.1, skewX: 0, ease: "power4.inOut" })
+        .to(profilePic, { duration: 0.1, opacity: 0.5, x: 10 })
+        .to(profilePic, { duration: 0.1, opacity: 1, x: 0 })
+        .to(profilePic, { duration: 0.1, filter: "hue-rotate(90deg) brightness(1.5)" })
+        .to(profilePic, { duration: 0.1, filter: "none" });
+
+    // Initial load flicker
+    gsap.fromTo(profilePic, { opacity: 0 }, { opacity: 1, duration: 1, delay: 0.5, ease: "steps(5)" });
+}
+
+    // Initial Greeting
+    setTimeout(() => {
+        printToBot('AEGIS // SOC_ASSISTANT: Connection Established. Welcome, Visitor.', 'INFO');
+    }, 2000);
+
+    // Auto-Expand at Page Bottom
+    let hasExpandedAtBottom = false;
+    window.addEventListener('scroll', () => {
+        if (!hasExpandedAtBottom && (window.innerHeight + window.scrollY) >= document.body.offsetHeight - 10) {
+            hasExpandedAtBottom = true;
+            if (botTerminal.classList.contains('minimized')) {
+                botTerminal.classList.remove('minimized');
+                botMin.innerText = '-';
+                printToBot('COMPLETE_SCAN: Visitor read entire profile. AEGIS monitoring engaged.', 'LOG');
+            }
+        }
+    });
+}
+// End of Bot Logic

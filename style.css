@@ -1105,6 +1105,286 @@ section {
     text-shadow: 0 0 10px var(--accent);
 }
 
+.motto-row {
+    letter-spacing: 0.5px;
+    opacity: 0.9;
+    border-left: 2px solid var(--accent);
+    padding-left: 15px;
+    line-height: 1.4;
+    text-shadow: 0 0 5px rgba(0, 255, 65, 0.2);
+}
+
+/* SOC Bot Terminal Overlay */
+.bot-terminal {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 320px;
+    height: 380px;
+    background: rgba(13, 17, 23, 0.95);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--accent);
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.15);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    z-index: 9999;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    overflow: hidden;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bot-header {
+    background: rgba(0, 255, 65, 0.1);
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: move;
+    border-bottom: 1px solid rgba(0, 255, 65, 0.2);
+}
+
+.bot-status-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--accent);
+    animation: bot-pulse 2s infinite;
+}
+
+@keyframes bot-pulse {
+    0% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+.bot-title {
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+}
+
+.bot-controls {
+    margin-left: auto;
+}
+
+.bot-min {
+    cursor: pointer;
+    color: var(--text-muted);
+    font-weight: bold;
+    padding: 0 5px;
+}
+
+.bot-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--card-border) transparent;
+}
+
+.bot-output {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.bot-line {
+    color: var(--text-muted);
+    line-height: 1.4;
+    word-break: break-word;
+}
+
+.bot-line .soc-accent {
+    color: var(--accent);
+}
+
+.bot-input-line {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.bot-prompt {
+    color: var(--accent);
+    font-weight: 900;
+}
+
+#bot-input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text-main);
+    font-family: inherit;
+    font-size: inherit;
+    width: 100%;
+}
+
+.bot-btn-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 5px;
+}
+
+.bot-btn {
+    background: rgba(0, 255, 65, 0.1);
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 4px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    transition: all 0.2s ease;
+}
+
+.bot-btn:hover {
+    background: var(--accent);
+    color: var(--bg-main);
+    box-shadow: 0 0 10px var(--accent);
+}
+
+/* Minimize State */
+.bot-terminal.minimized {
+    height: 40px;
+    transform: translateY(0);
+}
+
+.bot-terminal.minimized .bot-body {
+    display: none;
+}
+
+/* Identity Card [HUD] */
+.hero-image-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+.hud-scanner-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: var(--accent);
+    box-shadow: 0 0 15px var(--accent);
+    animation: hud-scan-vertical 3s linear infinite;
+    pointer-events: none;
+    z-index: 10;
+}
+
+@keyframes hud-scan-vertical {
+    0% { left: 0%; }
+    50% { left: 100%; }
+    100% { left: 0%; }
+}
+
+.hud-status {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: rgba(13, 17, 23, 0.8);
+    color: var(--accent);
+    padding: 2px 8px;
+    font-size: 0.6rem;
+    border: 1px solid var(--accent);
+    letter-spacing: 1px;
+    z-index: 15;
+    font-weight: 800;
+}
+
+/* Certification Badge Polish */
+.bento-card .bento-icon img {
+    filter: grayscale(100%) brightness(0.8);
+    transition: filter 0.4s ease, transform 0.3s ease;
+}
+
+.bento-card:hover .bento-icon img {
+    filter: none;
+    transform: scale(1.1);
+}
+
+/* Project Dossier Preview */
+.dossier-preview {
+    position: fixed;
+    width: 200px;
+    background: rgba(13, 17, 23, 0.95);
+    border: 1px solid var(--accent);
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.2);
+    display: none;
+    pointer-events: none;
+    z-index: 10000;
+    font-family: var(--font-mono);
+}
+
+.dossier-header {
+    background: var(--accent);
+    color: var(--bg-main);
+    padding: 2px 5px;
+    font-size: 0.6rem;
+    font-weight: 800;
+}
+
+.dossier-img-wrapper {
+    position: relative;
+    padding: 5px;
+}
+
+.dossier-img-wrapper img {
+    width: 100%;
+    filter: sepia(100%) hue-rotate(80deg) saturate(3) brightness(0.7);
+}
+
+.dossier-scanline {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 255, 65, 0.1) 50%), linear-gradient(900deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+    background-size: 100% 2px, 3px 100%;
+    pointer-events: none;
+}
+
+.dossier-footer {
+    color: var(--accent);
+    font-size: 0.5rem;
+    padding: 2px 5px;
+    text-align: right;
+    letter-spacing: 2px;
+}
+
+/* AEGIS AI Avatar - REMOVED */
+
+/* Hardware Backgrounds */
+.section-hardware-bg {
+    position: relative;
+}
+
+.section-hardware-bg::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.12; /* Barely visible */
+    z-index: -1;
+    mix-blend-mode: overlay;
+}
+
+.bg-circuit::before { background-image: url('circuit_board_bg_1775024011218.png'); }
+.bg-server::before { background-image: url('server_rack_bg_1775024026497.png'); }
+
 /* Animations */
 .fade-in-up {
     opacity: 0;

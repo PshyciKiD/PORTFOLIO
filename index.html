@@ -19,6 +19,10 @@
     <!-- Devicon for Technology Stack Logos -->
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
 
+    <!-- GSAP for Professional Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.min.js"></script>
+
     <!-- Vercel Web Analytics & Speed Insights -->
     <script>
         window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
@@ -52,7 +56,10 @@
                 <div class="hero-content fade-in-up">
                     <span class="soc-subtitle"><span id="typewriter-text">> Initializing System_Scan... [DONE]</span><span class="blink">_</span></span>
                     <h1 id="scramble-text" data-value="Akbar M A">Akbar M A</h1>
-                    <p class="hero-desc soc-desc">Security Researcher & Secure Web Developer. Building resilient digital architectures and defending them through advanced penetration testing.</p>
+                    <p class="hero-desc soc-desc"><span class="soc-accent">[ Security-First Architect ]</span> Building resilient digital architectures and defending them through advanced penetration testing.</p>
+                    <div class="motto-row fade-in-up" style="margin-top: 15px; font-style: italic; color: var(--accent); font-family: var(--font-mono); font-size: 0.9rem;">
+                        <i class="fa-solid fa-quote-left"></i> I build what I can defend, and I defend what others have built. <i class="fa-solid fa-quote-right"></i>
+                    </div>
                     
                     <div id="threat-feed" class="threat-feed">
                         <span class="threat-dot blink"></span> <span id="threat-text" class="threat-text">Establishing secure connection to GitHub telemetry...</span>
@@ -70,20 +77,22 @@
                         <div class="hud-bracket top-right"></div>
                         <div class="hud-bracket bottom-left"></div>
                         <div class="hud-bracket bottom-right"></div>
-                        <img src="assets/profile.jpg" alt="Akbar M A" id="profile-pic" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'300\' fill=\'%230d1117\'><rect width=\'300\' height=\'300\' fill=\'%23161b22\'/><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%238b949e\' font-family=\'monospace\' font-size=\'14\'>profile.jpg</text></svg>'">
+                        <img src="/assets/profile.jpg" alt="Akbar M A" id="profile-pic" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'300\' fill=\'%230d1117\'><rect width=\'300\' height=\'300\' fill=\'%23161b22\'/><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%238b949e\' font-family=\'monospace\' font-size=\'14\'>profile.jpg</text></svg>'">
+                        <div class="hud-status">STATUS: <span class="soc-accent">VERIFIED</span></div>
+                        <div class="hud-scanner-line"></div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="about" class="about">
+        <section id="about" class="about section-hardware-bg bg-server">
             <div class="soc-section-title fade-in-up">
                 <h2>> EXE: Professional_Profile</h2>
             </div>
             <div class="soc-grid">
                 <div class="soc-card fade-in-up">
                     <h3 class="soc-mono-title">Executive Summary</h3>
-                    <p>Dedicated Cybersecurity Professional & Secure Web Developer with a proven record of building and defending enterprise-grade digital assets. Expert in identifying vulnerabilities across the full stack and deploying robust mitigation strategies. Adept at leveraging OSINT, OWASP frameworks, and modern development patterns (React/Node) to bridge the gap between technical execution and high-level security architecture.</p>
+                    <p>Dedicated <span class="soc-accent">Security-First Architect</span> & Web Developer with a proven record of building and defending enterprise-grade digital assets. Expert in identifying vulnerabilities across the full stack and deploying robust mitigation strategies. My philosophy centers on "Security by Design," bridging the technical gap between creation and protection to deliver infrastructures that are resilient from line zero.</p>
                 </div>
                 
                 <div class="soc-card fade-in-up" style="transition-delay: 0.1s">
@@ -106,7 +115,7 @@
         </section>
 
         <!-- Proof of Work Terminal -->
-        <section id="projects" class="projects">
+        <section id="projects" class="projects section-hardware-bg bg-circuit">
             <div class="soc-section-title fade-in-up">
                 <h2 class="glitch-effect" data-text="> LS: Security_Projects">> LS: Security_Projects</h2>
             </div>
@@ -410,6 +419,37 @@
         <p>All freelance projects are built following UAE-specific data security standards (NESA, Dubai Data Law).</p>
         <p style="margin-top: 10px;">EOF. &copy; 2026 Akbar M A. Built for the Red Team. <a href="https://github.com/akbarma" target="_blank" style="color: var(--accent);">[SOURCE_CODE]</a> | <a href="#" id="footer-client-trigger" style="color: var(--tag-red); text-decoration: none;">[CLIENT_LOGIN]</a></p>
     </footer>
+
+    <!-- AEGIS SOC Bot Terminal Overlay -->
+    <div id="bot-terminal" class="bot-terminal fade-in minimized">
+        <div id="bot-header" class="bot-header">
+            <span class="bot-status-dot"></span>
+            <span class="bot-title">[ AEGIS // SOC_ASSISTANT ]</span>
+            <div class="bot-controls">
+                <span class="bot-min">+</span>
+            </div>
+        </div>
+        <div id="bot-body" class="bot-body">
+            <div id="bot-output" class="bot-output">
+                <div class="bot-line">[INFO] System initializing...</div>
+                <div class="bot-line">[INFO] AI_Assistant: ONLINE</div>
+            </div>
+            <div class="bot-input-line">
+                <span class="bot-prompt">></span>
+                <input type="text" id="bot-input" placeholder="Type command..." autocomplete="off" spellcheck="false">
+            </div>
+        </div>
+    </div>
+
+    <!-- Project Dossier Terminal Preview -->
+    <div id="dossier-preview" class="dossier-preview">
+        <div class="dossier-header">[ ENCRYPTED_DOSSIER ]</div>
+        <div class="dossier-img-wrapper">
+            <img src="project_dossier_preview_1775024041956.png" alt="Project Preview">
+            <div class="dossier-scanline"></div>
+        </div>
+        <div class="dossier-footer">ANALYZING...</div>
+    </div>
 
     <script src="script.js"></script>
 </body>
