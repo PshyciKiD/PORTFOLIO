@@ -7,7 +7,10 @@
       "default",
       {
         "ignore": [
-          "min-height: auto"
+          "min-height: auto",
+          "scrollbar-color",
+          "scrollbar-width",
+          "scrollbar-width: thin"
         ]
       }
     ]

@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+<!-- [!] SYSTEM BREACH ATTEMPT LOGGED. IP: 127.0.0.1. ...Just kidding, welcome to the source code! Real SOC analysts inspect everything. -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akbar M A | Security Operations Center</title>
+    <title>Akbar M A | Cybersecurity Researcher & Penetration Tester</title>
     <!-- SOC Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230D1117'/><text x='50%' y='50%' font-family='monospace' font-weight='800' font-size='60' fill='%2300FF41' dominant-baseline='central' text-anchor='middle'>A></text></svg>">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230D1117'/><text x='50%25' y='50%25' font-family='monospace' font-weight='800' font-size='46' fill='%2300FF41' dominant-baseline='central' text-anchor='middle'>&gt;_</text></svg>">
     
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,8 +18,19 @@
     
     <!-- Devicon for Technology Stack Logos -->
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+
+    <!-- Vercel Web Analytics & Speed Insights -->
+    <script>
+        window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+        window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
+    <script defer src="/_vercel/speed-insights/script.js"></script>
 </head>
 <body>
+    <canvas id="network-bg"></canvas>
+    <canvas id="hex-stream"></canvas>
+    <div class="scanlines"></div>
     <nav class="soc-nav">
         <div class="nav-container">
             <div class="soc-logo">Akbar<span class="soc-accent">MA</span> <span class="blink">_</span></div>
@@ -29,6 +41,7 @@
                 <li><a href="#experience">/experience</a></li>
                 <li><a href="#certifications">/certifications</a></li>
                 <li><a href="#contact">/contact</a></li>
+                <li class="client-portal-item"><a href="#" id="client-portal-trigger" class="soc-accent">[ CLIENT_ACCESS ]</a></li>
             </ul>
         </div>
     </nav>
@@ -37,16 +50,26 @@
         <section id="home" class="hero">
             <div class="hero-container">
                 <div class="hero-content fade-in-up">
-                    <span class="soc-subtitle">[ SYS_STATUS: ONLINE ]</span>
-                    <h1>Akbar M A</h1>
-                    <p class="hero-desc soc-desc">Security Researcher & Cyber Defense Specialist. Executing vulnerability assessments, penetration testing, and advanced threat monitoring for enterprise architectures.</p>
+                    <span class="soc-subtitle"><span id="typewriter-text">> Initializing System_Scan... [DONE]</span><span class="blink">_</span></span>
+                    <h1 id="scramble-text" data-value="Akbar M A">Akbar M A</h1>
+                    <p class="hero-desc soc-desc">Security Researcher & Secure Web Developer. Building resilient digital architectures and defending them through advanced penetration testing.</p>
+                    
+                    <div id="threat-feed" class="threat-feed">
+                        <span class="threat-dot blink"></span> <span id="threat-text" class="threat-text">Establishing secure connection to GitHub telemetry...</span>
+                    </div>
+
                     <div class="soc-cta-group">
-                        <a href="assets/resume.pdf" class="soc-btn primary-btn" download><i class="fa-solid fa-file-pdf"></i> [Download Resume/CV]</a>
+                        <a href="#" id="download-cv-btn" class="soc-btn primary-btn"><i class="fa-solid fa-file-pdf"></i> [Download Resume/CV]</a>
                         <a href="#certifications" class="soc-btn outline-btn"><i class="fa-solid fa-certificate"></i> [View Certifications]</a>
                     </div>
                 </div>
                 <div class="hero-image-wrapper fade-in-up" style="transition-delay: 0.2s">
                     <div class="radar-pulse">
+                        <div class="hud-scanner"></div>
+                        <div class="hud-bracket top-left"></div>
+                        <div class="hud-bracket top-right"></div>
+                        <div class="hud-bracket bottom-left"></div>
+                        <div class="hud-bracket bottom-right"></div>
                         <img src="assets/profile.jpg" alt="Akbar M A" id="profile-pic" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'300\' fill=\'%230d1117\'><rect width=\'300\' height=\'300\' fill=\'%23161b22\'/><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%238b949e\' font-family=\'monospace\' font-size=\'14\'>profile.jpg</text></svg>'">
                     </div>
                 </div>
@@ -60,23 +83,23 @@
             <div class="soc-grid">
                 <div class="soc-card fade-in-up">
                     <h3 class="soc-mono-title">Executive Summary</h3>
-                    <p>Dedicated Cybersecurity Professional with a proven track record of identifying system vulnerabilities and deploying robust mitigation strategies to safeguard critical assets. Adept at leveraging OSINT, advanced reconnaissance techniques, and industry-standard frameworks (OWASP) to enhance organizational security postures. Strong analytical problem-solver equipped to handle high-pressure environments, conduct thorough risk analyses, and bridge the gap between technical execution and operational efficiency.</p>
+                    <p>Dedicated Cybersecurity Professional & Secure Web Developer with a proven record of building and defending enterprise-grade digital assets. Expert in identifying vulnerabilities across the full stack and deploying robust mitigation strategies. Adept at leveraging OSINT, OWASP frameworks, and modern development patterns (React/Node) to bridge the gap between technical execution and high-level security architecture.</p>
                 </div>
                 
                 <div class="soc-card fade-in-up" style="transition-delay: 0.1s">
                     <h3 class="soc-mono-title">Core Competencies</h3>
                     <div class="soc-badge-list">
-                        <div class="soc-badge"><i class="fa-solid fa-shield-halved"></i> Web App Pen Testing</div>
-                        <div class="soc-badge"><i class="fa-solid fa-bug"></i> Vulnerability Analysis (OWASP)</div>
-                        <div class="soc-badge"><i class="fa-solid fa-magnifying-glass"></i> OSINT & Google Dorking</div>
-                        <div class="soc-badge"><i class="fa-solid fa-network-wired"></i> Network Traffic Analysis</div>
-                        <div class="soc-badge"><i class="fa-solid fa-server"></i> Firewall Configuration</div>
-                        <div class="soc-badge"><i class="devicon-linux-plain"></i> Linux Administration</div>
-                        <div class="soc-badge"><i class="devicon-windows8-original"></i> Windows Environments</div>
-                        <div class="soc-badge"><i class="devicon-python-plain"></i> Python Automation</div>
-                        <div class="soc-badge"><i class="devicon-cplusplus-plain"></i> C++</div>
-                        <div class="soc-badge"><i class="devicon-java-plain"></i> Java</div>
-                        <div class="soc-badge"><i class="devicon-php-plain"></i> PHP</div>
+                        <div class="soc-badge" title="Burp Suite, OWASP ZAP, SQLmap"><i class="fa-solid fa-shield-halved"></i> Web App Pen Testing</div>
+                        <div class="soc-badge" title="Nessus, OpenVAS"><i class="fa-solid fa-bug"></i> Vulnerability Analysis (OWASP)</div>
+                        <div class="soc-badge" title="Recon-ng, Maltego, Shodan"><i class="fa-solid fa-magnifying-glass"></i> OSINT & Google Dorking</div>
+                        <div class="soc-badge" title="Wireshark, tcpdump"><i class="fa-solid fa-network-wired"></i> Network Traffic Analysis</div>
+                        <div class="soc-badge" title="pfSense, iptables"><i class="fa-solid fa-server"></i> Firewall Configuration</div>
+                        <div class="soc-badge" title="Kali, Ubuntu, CentOS"><i class="devicon-linux-plain"></i> Linux Administration</div>
+                        <div class="soc-badge" title="Active Directory, Windows Server"><i class="devicon-windows8-original"></i> Windows Environments</div>
+                        <div class="soc-badge" title="Scripting & Automation"><i class="devicon-python-plain"></i> Python Automation</div>
+                        <div class="soc-badge" title="Core Programming"><i class="devicon-cplusplus-plain"></i> C++</div>
+                        <div class="soc-badge" title="Object-Oriented Logic"><i class="devicon-java-plain"></i> Java</div>
+                        <div class="soc-badge" title="Web Backends"><i class="devicon-php-plain"></i> PHP</div>
                     </div>
                 </div>
             </div>
@@ -85,7 +108,7 @@
         <!-- Proof of Work Terminal -->
         <section id="projects" class="projects">
             <div class="soc-section-title fade-in-up">
-                <h2>> LS: Security_Projects</h2>
+                <h2 class="glitch-effect" data-text="> LS: Security_Projects">> LS: Security_Projects</h2>
             </div>
             
             <div class="terminal-window fade-in-up">
@@ -95,30 +118,14 @@
                     </div>
                     <div class="terminal-title">akbar@soc-hub: ~/projects/write-ups</div>
                 </div>
-                <div class="terminal-body">
-                    <p class="term-line"><span class="prompt">akbar@soc-hub:~/projects/write-ups$</span> ls -la</p>
-                    <ul class="term-list">
-                        <li>
-                            <i class="fa-solid fa-file-pdf file-icon"></i> 
-                            <a href="#" class="term-link">vulnerability-assessment-report.pdf</a> 
-                            <span class="term-comment"># Detailed WAF bypass methodology in a lab environment targeting OWASP vulnerabilities.</span>
-                        </li>
-                        <li>
-                            <i class="devicon-python-plain file-icon"></i> 
-                            <a href="#" class="term-link">automated-osint-framework.py</a> 
-                            <span class="term-comment"># Custom script automating intelligence gathering across public APIs for rapid footprint verification.</span>
-                        </li>
-                        <li>
-                            <i class="devicon-bash-plain file-icon"></i> 
-                            <a href="#" class="term-link">firewall_audit_log_analyzer.sh</a> 
-                            <span class="term-comment"># Shell script for parsing and identifying anomalous perimeter traffic patterns.</span>
-                        </li>
-                        <li>
-                            <i class="fa-brands fa-github file-icon"></i> 
-                            <a href="https://github.com/akbarma" target="_blank" class="term-link">View_All_Repositories</a>
-                        </li>
-                    </ul>
-                    <p class="term-line" style="margin-top: 20px;"><span class="prompt">akbar@soc-hub:~/projects/write-ups$</span> <span class="blink">_</span></p>
+                <div class="terminal-body" id="soc-terminal">
+                    <div id="term-output">
+                        <p class="term-line">Welcome to the interactive portfolio shell. Type <span class="soc-accent">'help'</span> for a list of available commands. Type <span class="soc-accent">'ls'</span> to view security projects.</p>
+                    </div>
+                    <div class="term-input-line">
+                        <span class="prompt">akbar@soc-hub:~$</span>
+                        <input type="text" id="term-input" autocomplete="off" spellcheck="false" autofocus>
+                    </div>
                 </div>
             </div>
         </section>
@@ -132,14 +139,14 @@
                 <!-- Role 0: Current -->
                 <div class="timeline-node fade-in-up">
                     <div class="timeline-marker"></div>
-                    <div class="soc-card experience-card">
+                    <div class="soc-card experience-card core-role">
                         <div class="card-header">
                             <div>
                                 <h3 class="role-title">IT / Cybersecurity Professional</h3>
                                 <h4 class="company">BSBG - Brewer Smith Brewer Group | Dubai, UAE</h4>
                             </div>
                             <div class="role-meta">
-                                <span class="date-badge">Current</span>
+                                <span class="date-badge"><span class="live-pulse"></span> Current</span>
                                 <span class="soc-tag core-security">[Core Security & Operations]</span>
                             </div>
                         </div>
@@ -157,7 +164,7 @@
                 <!-- Role 1 -->
                 <div class="timeline-node fade-in-up">
                     <div class="timeline-marker"></div>
-                    <div class="soc-card experience-card">
+                    <div class="soc-card experience-card core-role">
                         <div class="card-header">
                             <div>
                                 <h3 class="role-title">Cyber Security Researcher</h3>
@@ -255,6 +262,55 @@
             </div>
         </section>
 
+        <!-- Freelance Operations & Services -->
+        <section id="freelance" class="freelance">
+            <div class="soc-section-title fade-in-up">
+                <h2>> LS: Freelance_Operations</h2>
+            </div>
+            
+            <div class="soc-grid">
+                <div class="soc-card fade-in-up">
+                    <h3 class="soc-mono-title">Service_Status.log</h3>
+                    <div class="service-status-list">
+                        <div class="service-status-item">
+                            <span class="status-indicator active">[ ACTIVE ]</span>
+                            <span class="service-text">Full-Stack Web Development (Next.js/React)</span>
+                        </div>
+                        <div class="service-status-item">
+                            <span class="status-indicator active">[ ACTIVE ]</span>
+                            <span class="service-text">Vulnerability Assessments for SMBs</span>
+                        </div>
+                        <div class="service-status-item">
+                            <span class="status-indicator active">[ ACTIVE ]</span>
+                            <span class="service-text">Secure WordPress/CMS Hardening</span>
+                        </div>
+                        <div class="service-status-item">
+                            <span class="status-indicator info">[ MONITOR ]</span>
+                            <span class="service-text">E-Commerce Security Integration (VAPT)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Work with Me Bento -->
+                <div class="bento-grid freelance-bento fade-in-up">
+                    <div class="bento-card bento-wide bento-highlight" style="grid-column: span 3;">
+                        <h3 class="soc-accent">Secure by Design: Full-Stack Dev</h3>
+                        <p>I build applications that are penetration-tested from line zero. Specialized in integrating JWT, CSRF protection, and WAF compatibility into your technical stack.</p>
+                        <div class="tech-stack-row" style="margin-top: 15px;">
+                            <span class="tech-pill"><i class="devicon-nextjs-plain"></i> Next.js</span>
+                            <span class="tech-pill"><i class="devicon-nodejs-plain"></i> Node.js</span>
+                            <span class="tech-pill"><i class="fa-solid fa-user-shield"></i> OWASP-First</span>
+                        </div>
+                    </div>
+                    <div class="bento-card bento-small status-pulse" style="grid-column: span 1; justify-content: center; text-align: center; border: 1px solid var(--accent);">
+                        <i class="fa-solid fa-microscope" style="font-size: 2rem; color: var(--accent); margin-bottom: 10px;"></i>
+                        <h4 style="margin: 0; font-size: 1rem;">Security Audits</h4>
+                        <p style="font-size: 0.8rem; margin: 5px 0;">1-on-1 Consulting</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Bento Box Certifications -->
         <section id="certifications" class="certifications">
             <div class="soc-section-title fade-in-up">
@@ -264,8 +320,8 @@
             <div class="bento-grid">
                 <!-- Large Tile 1: CEH -->
                 <div class="bento-card bento-large fade-in-up ceh-cell">
-                    <div class="bento-icon"><i class="fa-solid fa-user-secret"></i></div>
-                    <h3>Certified Ethical Hacker</h3>
+                    <div class="bento-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/EC-Council_logo.svg/512px-EC-Council_logo.svg.png" alt="EC-Council Logo" style="height: 50px; filter: brightness(0) invert(1);"></div>
+                    <h3 class="glitch-effect" data-text="Certified Ethical Hacker">Certified Ethical Hacker</h3>
                     <p class="bento-authority">EC-Council</p>
                     <a href="https://aspen.eccouncil.org/Certificate/Certificate?a=eof6foV0K5/d/w5hmSyIRQ==" target="_blank" class="bento-link">Verify Credentials <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                 </div>
@@ -294,6 +350,7 @@
 
                 <!-- Small Tiles: Support Skills -->
                 <div class="bento-card bento-small fade-in-up">
+                    <i class="fa-solid fa-shield-halved" style="color: #fff; font-size: 2rem; margin-bottom: 10px;"></i>
                     <h3>Threat Intelligence</h3>
                     <p class="bento-authority">arcX Foundation Level</p>
                 </div>
@@ -350,7 +407,8 @@
     </main>
 
     <footer class="soc-footer">
-        <p>EOF. &copy; 2026 Akbar M A. Built for the Red Team.</p>
+        <p>All freelance projects are built following UAE-specific data security standards (NESA, Dubai Data Law).</p>
+        <p style="margin-top: 10px;">EOF. &copy; 2026 Akbar M A. Built for the Red Team. <a href="https://github.com/akbarma" target="_blank" style="color: var(--accent);">[SOURCE_CODE]</a> | <a href="#" id="footer-client-trigger" style="color: var(--tag-red); text-decoration: none;">[CLIENT_LOGIN]</a></p>
     </footer>
 
     <script src="script.js"></script>
