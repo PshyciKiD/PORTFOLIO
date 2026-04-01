@@ -1382,8 +1382,8 @@ section {
     mix-blend-mode: overlay;
 }
 
-.bg-circuit::before { background-image: url('circuit_board_bg_1775024011218.png'); }
-.bg-server::before { background-image: url('server_rack_bg_1775024026497.png'); }
+.bg-circuit::before { background-image: url('assets/circuit_board_bg.png'); }
+.bg-server::before { background-image: url('assets/server_rack_bg.png'); }
 
 /* Animations */
 .fade-in-up {
