@@ -1,3 +1,7 @@
+// Vercel Web Analytics & Speed Insights — must run before deferred analytics scripts
+window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
+
 // SOC Easter Egg
 console.log("%c [!] Intrusion Detected... Just kidding, welcome to my portfolio! Let's build something secure.", "color: #00FF41; font-size: 16px; font-weight: bold; background: #0D1117; padding: 10px; border: 1px solid #00FF41;");
 
@@ -79,13 +83,10 @@ document.querySelectorAll('.fade-in-up').forEach(element => {
 // Copy to Clipboard Utility
 function copyToClipboard(text, btnElement) {
     navigator.clipboard.writeText(text).then(() => {
-        // Change icon to checkmark momentarily
         const icon = btnElement.querySelector('i');
         const originalClass = icon.className;
-        
         icon.className = 'fa-solid fa-check';
         icon.style.color = 'var(--accent)';
-        
         setTimeout(() => {
             icon.className = originalClass;
             icon.style.color = '';
@@ -95,33 +96,61 @@ function copyToClipboard(text, btnElement) {
     });
 }
 
-// GitHub Threat Feed (Live Data)
+// Copy button event delegation (replaces HTML onclick attributes)
+document.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        copyToClipboard(this.dataset.copy, this);
+    });
+});
+
+// GitHub Threat Feed (Live Data) — cached in sessionStorage to avoid 60 req/hr rate limit
 async function fetchLatestGitHubActivity() {
     const threatText = document.getElementById('threat-text');
     if (!threatText) return;
-    
+
+    const CACHE_KEY = 'gh_activity_cache';
+    const CACHE_TTL = 5 * 60 * 1000; // 5 minutes
+
+    // Show loading state
+    threatText.innerHTML = `<span class="blink">_</span> [CONNECTING] Fetching live telemetry...`;
+
+    // Return cached result if still fresh
+    try {
+        const cached = sessionStorage.getItem(CACHE_KEY);
+        if (cached) {
+            const { html, timestamp } = JSON.parse(cached);
+            if (Date.now() - timestamp < CACHE_TTL) {
+                threatText.innerHTML = html;
+                return;
+            }
+        }
+    } catch (_) {}
+
     try {
         const response = await fetch('https://api.github.com/users/akbarma/events/public');
         if (!response.ok) throw new Error('API Rate Limited');
-        
+
         const data = await response.json();
-        
-        // Find the latest Push/Create event to show activity
-        const latestActivity = data.find(event => event.type === 'PushEvent' || event.type === 'CreateEvent' || event.type === 'WatchEvent');
-        
+        const latestActivity = data.find(event =>
+            event.type === 'PushEvent' || event.type === 'CreateEvent' || event.type === 'WatchEvent'
+        );
+
+        let html;
         if (latestActivity) {
             let repoName = latestActivity.repo.name.split('/')[1] || latestActivity.repo.name;
-            let actionType = "Modified infrastructure in";
-            
-            if(latestActivity.type === 'WatchEvent') actionType = "Currently auditing";
-            if(latestActivity.type === 'CreateEvent') actionType = "Deployed new payload in";
-            
-            threatText.innerHTML = `[LIVE FEED] ${actionType}: <span class="soc-accent">${repoName}</span>`;
+            let actionType = 'Modified infrastructure in';
+            if (latestActivity.type === 'WatchEvent') actionType = 'Currently auditing';
+            if (latestActivity.type === 'CreateEvent') actionType = 'Deployed new payload in';
+            html = `[LIVE FEED] ${actionType}: <span class="soc-accent">${repoName}</span>`;
         } else {
             throw new Error('No recent activity');
         }
+
+        threatText.innerHTML = html;
+        try {
+            sessionStorage.setItem(CACHE_KEY, JSON.stringify({ html, timestamp: Date.now() }));
+        } catch (_) {}
     } catch (error) {
-        // Fallback text if the API limits out or user has no recent events
         threatText.innerHTML = `[STATUS] Currently practicing: <span class="soc-accent">Active Directory Exploitation on HTB.</span>`;
     }
 }
@@ -138,8 +167,12 @@ if (termInput && termOutput) {
         termInput.focus();
     });
 
+    let lastCommandTime = 0;
     termInput.addEventListener('keypress', function(e) {
         if (e.key === 'Enter') {
+            const now = Date.now();
+            if (now - lastCommandTime < 200) return;
+            lastCommandTime = now;
             const command = termInput.value.trim().toLowerCase();
             termInput.value = '';
             
@@ -286,28 +319,37 @@ if (typeElement) {
 // Access Granted Decryption Mock
 const downloadBtn = document.getElementById('download-cv-btn');
 if (downloadBtn) {
-    downloadBtn.addEventListener('click', (e) => {
+    downloadBtn.addEventListener('click', async (e) => {
         e.preventDefault();
-        
-        // Disable temporarily
         downloadBtn.style.pointerEvents = 'none';
-        
         const originalHTML = downloadBtn.innerHTML;
+
+        // Check the file exists before running the animation
+        try {
+            const check = await fetch('assets/resume.pdf', { method: 'HEAD' });
+            if (!check.ok) throw new Error('Not found');
+        } catch {
+            downloadBtn.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> [CV_PENDING — contact via email]';
+            setTimeout(() => {
+                downloadBtn.innerHTML = originalHTML;
+                downloadBtn.style.pointerEvents = 'auto';
+            }, 3000);
+            return;
+        }
+
         const stages = [
             '<i class="fa-solid fa-unlock-keyhole"></i> [||        ] DECRYPTING...',
             '<i class="fa-solid fa-unlock-keyhole"></i> [|||||     ] DECRYPTING...',
             '<i class="fa-solid fa-unlock-keyhole"></i> [||||||||| ] DECRYPTING...',
             '<i class="fa-solid fa-lock-open"></i> [||||||||||] ACCESS GRANTED'
         ];
-        
+
         let i = 0;
         const decryptInterval = setInterval(() => {
             downloadBtn.innerHTML = stages[i];
             i++;
             if (i >= stages.length) {
                 clearInterval(decryptInterval);
-                
-                // Trigger Actual Download
                 setTimeout(() => {
                     const a = document.createElement('a');
                     a.href = 'assets/resume.pdf';
@@ -315,8 +357,6 @@ if (downloadBtn) {
                     document.body.appendChild(a);
                     a.click();
                     document.body.removeChild(a);
-                    
-                    // Reset Button
                     setTimeout(() => {
                         downloadBtn.innerHTML = originalHTML;
                         downloadBtn.style.pointerEvents = 'auto';
@@ -387,23 +427,22 @@ if (canvas) {
         particles.push(new Particle());
     }
     
+    let networkAnimId = null;
+
     function animate() {
         ctx.clearRect(0, 0, width, height);
-        
-        // Only run if user prefers motion
-        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            return;
-        }
-        
+
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
         for (let i = 0; i < particles.length; i++) {
             particles[i].update();
             particles[i].draw();
-            
+
             for (let j = i; j < particles.length; j++) {
                 const dx = particles[i].x - particles[j].x;
                 const dy = particles[i].y - particles[j].y;
                 const dist = Math.sqrt(dx * dx + dy * dy);
-                
+
                 if (dist < connectionDistance) {
                     ctx.beginPath();
                     ctx.strokeStyle = `rgba(0, 255, 65, ${0.05 - (dist / connectionDistance) * 0.05})`;
@@ -413,13 +452,12 @@ if (canvas) {
                     ctx.stroke();
                 }
             }
-            
-            // Mouse Interaction Connector
+
             if (mouse.x != null) {
                 const dxm = particles[i].x - mouse.x;
                 const dym = particles[i].y - mouse.y;
                 const distm = Math.sqrt(dxm * dxm + dym * dym);
-                
+
                 if (distm < mouseConnectionDistance) {
                     ctx.beginPath();
                     ctx.strokeStyle = `rgba(0, 255, 65, ${0.1 - (distm / mouseConnectionDistance) * 0.1})`;
@@ -430,9 +468,17 @@ if (canvas) {
                 }
             }
         }
-        requestAnimationFrame(animate);
+        networkAnimId = requestAnimationFrame(animate);
     }
-    
+
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            if (networkAnimId) { cancelAnimationFrame(networkAnimId); networkAnimId = null; }
+        } else if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            animate();
+        }
+    });
+
     animate();
 }
 
@@ -481,8 +527,16 @@ if (hexCanvas) {
             }
         }
     }
-    // Execution interval slow intentionally
-    setInterval(drawHexBlock, 65);
+    let hexIntervalId = setInterval(drawHexBlock, 65);
+
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            clearInterval(hexIntervalId);
+            hexIntervalId = null;
+        } else if (!hexIntervalId) {
+            hexIntervalId = setInterval(drawHexBlock, 65);
+        }
+    });
 }
 
 // Client Portal Micro-Interaction
@@ -786,6 +840,18 @@ if (termOutput && dossier) {
             dossier.style.display = 'none';
         }
     });
+}
+
+// Profile image fallback (replaces removed onerror= attribute)
+if (profilePic) {
+    const fallbackSrc = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><rect width='300' height='300' fill='%23161b22'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%238b949e' font-family='monospace' font-size='14'>profile.jpg</text></svg>";
+    profilePic.addEventListener('error', function() {
+        this.src = fallbackSrc;
+        this.onerror = null;
+    });
+    if (profilePic.complete && profilePic.naturalHeight === 0) {
+        profilePic.src = fallbackSrc;
+    }
 }
 
 // Hero Profile Glitch Animation

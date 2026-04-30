@@ -24,10 +24,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.min.js"></script>
 
     <!-- Vercel Web Analytics & Speed Insights -->
-    <script>
-        window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
-        window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
-    </script>
     <script defer src="/_vercel/insights/script.js"></script>
     <script defer src="/_vercel/speed-insights/script.js"></script>
 </head>
@@ -77,7 +73,7 @@
                         <div class="hud-bracket top-right"></div>
                         <div class="hud-bracket bottom-left"></div>
                         <div class="hud-bracket bottom-right"></div>
-                        <img src="assets/profile.jpg" alt="Akbar M A" id="profile-pic" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'300\' fill=\'%230d1117\'><rect width=\'300\' height=\'300\' fill=\'%23161b22\'/><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%238b949e\' font-family=\'monospace\' font-size=\'14\'>profile.jpg</text></svg>'">
+                        <img src="assets/profile.jpg" alt="Akbar M A" id="profile-pic">
                         <div class="hud-status">STATUS: <span class="soc-accent">VERIFIED</span></div>
                         <div class="hud-scanner-line"></div>
                     </div>
@@ -110,6 +106,57 @@
                         <div class="soc-badge" title="Object-Oriented Logic"><i class="devicon-java-plain"></i> Java</div>
                         <div class="soc-badge" title="Web Backends"><i class="devicon-php-plain"></i> PHP</div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Career Evolution / Origin Story -->
+        <section id="origin" class="origin-story">
+            <div class="soc-section-title fade-in-up">
+                <h2>> TRACE: System_Evolution.log</h2>
+            </div>
+
+            <div class="evolution-track fade-in-up">
+                <div class="evo-connector"><div class="evo-connector-fill"></div></div>
+
+                <div class="evo-stage" data-index="0">
+                    <div class="evo-icon-wrap">
+                        <i class="fa-solid fa-child-reaching"></i>
+                    </div>
+                    <span class="evo-version">v0.1 <span class="evo-badge archived">ARCHIVED</span></span>
+                    <h4 class="evo-label">CHILDHOOD</h4>
+                    <span class="evo-period">Kerala, India</span>
+                    <p class="evo-desc">System initialized. Core curiosity modules loaded. First exposure to computers — disassembling hardware, learning how things break and why.</p>
+                </div>
+
+                <div class="evo-stage" data-index="1">
+                    <div class="evo-icon-wrap">
+                        <i class="fa-solid fa-utensils"></i>
+                    </div>
+                    <span class="evo-version">v1.0 <span class="evo-badge legacy">LEGACY</span></span>
+                    <h4 class="evo-label">HOSPITALITY OPS</h4>
+                    <span class="evo-period">Catering Service · Kerala</span>
+                    <p class="evo-desc">Deployed in high-pressure operational environments. Developed resilience, rapid problem-solving under load, and real-world client management.</p>
+                </div>
+
+                <div class="evo-stage" data-index="2">
+                    <div class="evo-icon-wrap">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <span class="evo-version">v2.0 <span class="evo-badge milestone">MILESTONE</span></span>
+                    <h4 class="evo-label">CYBER DEFENSE INIT</h4>
+                    <span class="evo-period">Kerala Police Cyberdome · 2023</span>
+                    <p class="evo-desc">First authorized security operations. Collaborated with law enforcement on cybercrime intelligence. The switch from builder to defender clicked here.</p>
+                </div>
+
+                <div class="evo-stage" data-index="3">
+                    <div class="evo-icon-wrap">
+                        <i class="fa-solid fa-tower-broadcast"></i>
+                    </div>
+                    <span class="evo-version">v3.0 <span class="evo-badge live">◉ LIVE</span></span>
+                    <h4 class="evo-label">ENTERPRISE SECURITY</h4>
+                    <span class="evo-period">BSBG · Dubai, UAE · Current</span>
+                    <p class="evo-desc">Full operational deployment. IT &amp; Cybersecurity lead at international architecture firm. Threat surface managed, infrastructure secured.</p>
                 </div>
             </div>
         </section>
@@ -394,12 +441,12 @@
                     <div class="contact-item">
                         <i class="fa-solid fa-envelope"></i>
                         <span id="email-text">akbarmayakkat11@gmail.com</span>
-                        <button class="copy-btn" onclick="copyToClipboard('akbarmayakkat11@gmail.com', this)" title="Copy Email"><i class="fa-regular fa-copy"></i></button>
+                        <button class="copy-btn" data-copy="akbarmayakkat11@gmail.com" title="Copy Email"><i class="fa-regular fa-copy"></i></button>
                     </div>
                     <div class="contact-item" style="margin-left: 15px;">
                         <i class="fa-solid fa-phone"></i>
                         <span id="phone-text">+971-506167230</span>
-                        <button class="copy-btn" onclick="copyToClipboard('+971506167230', this)" title="Copy Phone"><i class="fa-regular fa-copy"></i></button>
+                        <button class="copy-btn" data-copy="+971506167230" title="Copy Phone"><i class="fa-regular fa-copy"></i></button>
                     </div>
                 </div>
 
