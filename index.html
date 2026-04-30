@@ -13,7 +13,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
     <!-- Matrix/SOC Typography: JetBrains Mono for Headers & Logs, Inter for Body Text -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Devicon for Technology Stack Logos -->
@@ -31,18 +31,31 @@
     <canvas id="network-bg"></canvas>
     <canvas id="hex-stream"></canvas>
     <div class="scanlines"></div>
+    <div id="scroll-progress" aria-hidden="true"></div>
+    <div class="orb orb-1" aria-hidden="true"></div>
+    <div class="orb orb-2" aria-hidden="true"></div>
     <nav class="soc-nav">
         <div class="nav-container">
-            <div class="soc-logo">Akbar<span class="soc-accent">MA</span> <span class="blink">_</span></div>
-            <ul class="nav-links">
-                <li><a href="#home" class="active">/home</a></li>
-                <li><a href="#about">/profile</a></li>
-                <li><a href="#projects">/projects</a></li>
-                <li><a href="#experience">/experience</a></li>
-                <li><a href="#certifications">/certifications</a></li>
-                <li><a href="#contact">/contact</a></li>
-                <li class="client-portal-item"><a href="#" id="client-portal-trigger" class="soc-accent">[ CLIENT_ACCESS ]</a></li>
+            <div class="soc-logo">Akbar<span class="soc-accent"> MA</span></div>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li class="client-portal-item"><a href="#" id="client-portal-trigger" class="soc-accent">Client Access</a></li>
             </ul>
+            <div class="nav-right-controls">
+                <div id="theme-picker" class="theme-picker" title="Switch accent colour">
+                    <button class="theme-swatch active" data-a="#3B82F6" data-a2="#06B6D4" style="background:#3B82F6" aria-label="Ocean Blue"></button>
+                    <button class="theme-swatch" data-a="#8B5CF6" data-a2="#A78BFA" style="background:#8B5CF6" aria-label="Cyber Purple"></button>
+                    <button class="theme-swatch" data-a="#10B981" data-a2="#06B6D4" style="background:#10B981" aria-label="Matrix Green"></button>
+                </div>
+                <button id="nav-hamburger" aria-label="Toggle navigation" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
         </div>
     </nav>
 
@@ -50,9 +63,16 @@
         <section id="home" class="hero">
             <div class="hero-container">
                 <div class="hero-content fade-in-up">
-                    <span class="soc-subtitle"><span id="typewriter-text">> Initializing System_Scan... [DONE]</span><span class="blink">_</span></span>
+                    <div class="hero-top-row">
+                        <span class="soc-subtitle"><span id="typewriter-text">Cybersecurity Professional — Dubai, UAE</span></span>
+                        <div class="dubai-clock" id="dubai-clock">
+                            <i class="fa-regular fa-clock"></i>
+                            <span id="clock-time">00:00:00</span>
+                            <span class="clock-tz">UAE</span>
+                        </div>
+                    </div>
                     <h1 id="scramble-text" data-value="Akbar M A">Akbar M A</h1>
-                    <p class="hero-desc soc-desc"><span class="soc-accent">[ Security-First Architect ]</span> Building resilient digital architectures and defending them through advanced penetration testing.</p>
+                    <p class="hero-desc soc-desc">Building resilient digital architectures and defending them through advanced penetration testing.</p>
                     <div class="motto-row fade-in-up" style="margin-top: 15px; font-style: italic; color: var(--accent); font-family: var(--font-mono); font-size: 0.9rem;">
                         <i class="fa-solid fa-quote-left"></i> I build what I can defend, and I defend what others have built. <i class="fa-solid fa-quote-right"></i>
                     </div>
@@ -62,8 +82,28 @@
                     </div>
 
                     <div class="soc-cta-group">
-                        <a href="#" id="download-cv-btn" class="soc-btn primary-btn"><i class="fa-solid fa-file-pdf"></i> [Download Resume/CV]</a>
-                        <a href="#certifications" class="soc-btn outline-btn"><i class="fa-solid fa-certificate"></i> [View Certifications]</a>
+                        <a href="#" id="download-cv-btn" class="soc-btn primary-btn"><i class="fa-solid fa-file-pdf"></i> Download Resume</a>
+                        <a href="#certifications" class="soc-btn outline-btn"><i class="fa-solid fa-certificate"></i> View Certifications</a>
+                    </div>
+                    <div class="hero-stats fade-in-up" style="transition-delay: 0.35s">
+                        <div class="stat-item">
+                            <div class="stat-number-wrap">
+                                <span class="stat-number" data-count="50">0</span><span class="stat-suffix">+</span>
+                            </div>
+                            <span class="stat-label">Pen Tests</span>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number-wrap">
+                                <span class="stat-number" data-count="5">0</span><span class="stat-suffix">+</span>
+                            </div>
+                            <span class="stat-label">Certifications</span>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number-wrap">
+                                <span class="stat-number" data-count="3">0</span><span class="stat-suffix">+</span>
+                            </div>
+                            <span class="stat-label">Years Active</span>
+                        </div>
                     </div>
                 </div>
                 <div class="hero-image-wrapper fade-in-up" style="transition-delay: 0.2s">
@@ -83,7 +123,7 @@
 
         <section id="about" class="about section-hardware-bg bg-server">
             <div class="soc-section-title fade-in-up">
-                <h2>> EXE: Professional_Profile</h2>
+                <h2>About Me</h2>
             </div>
             <div class="soc-grid">
                 <div class="soc-card fade-in-up">
@@ -107,13 +147,39 @@
                         <div class="soc-badge" title="Web Backends"><i class="devicon-php-plain"></i> PHP</div>
                     </div>
                 </div>
+
+                <div class="soc-card skill-bars-card fade-in-up" style="transition-delay: 0.2s; grid-column: span 2;">
+                    <h3 class="soc-mono-title">Proficiency Levels</h3>
+                    <div class="skill-bar-list">
+                        <div class="skill-bar-item">
+                            <div class="skill-bar-header"><span class="skill-bar-name">Web App Penetration Testing</span><span class="skill-bar-pct">92%</span></div>
+                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--target-width: 92%"></div></div>
+                        </div>
+                        <div class="skill-bar-item">
+                            <div class="skill-bar-header"><span class="skill-bar-name">OSINT &amp; Threat Intelligence</span><span class="skill-bar-pct">88%</span></div>
+                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--target-width: 88%"></div></div>
+                        </div>
+                        <div class="skill-bar-item">
+                            <div class="skill-bar-header"><span class="skill-bar-name">Network Security &amp; Firewall</span><span class="skill-bar-pct">85%</span></div>
+                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--target-width: 85%"></div></div>
+                        </div>
+                        <div class="skill-bar-item">
+                            <div class="skill-bar-header"><span class="skill-bar-name">Python &amp; Scripting Automation</span><span class="skill-bar-pct">78%</span></div>
+                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--target-width: 78%"></div></div>
+                        </div>
+                        <div class="skill-bar-item">
+                            <div class="skill-bar-header"><span class="skill-bar-name">Cloud &amp; Enterprise Security</span><span class="skill-bar-pct">70%</span></div>
+                            <div class="skill-bar-track"><div class="skill-bar-fill" style="--target-width: 70%"></div></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
         <!-- Career Evolution / Origin Story -->
         <section id="origin" class="origin-story">
             <div class="soc-section-title fade-in-up">
-                <h2>> TRACE: System_Evolution.log</h2>
+                <h2>Career Evolution</h2>
             </div>
 
             <div class="evolution-track fade-in-up">
@@ -164,7 +230,7 @@
         <!-- Proof of Work Terminal -->
         <section id="projects" class="projects section-hardware-bg bg-circuit">
             <div class="soc-section-title fade-in-up">
-                <h2 class="glitch-effect" data-text="> LS: Security_Projects">> LS: Security_Projects</h2>
+                <h2>Security Projects</h2>
             </div>
             
             <div class="terminal-window fade-in-up">
@@ -188,7 +254,7 @@
 
         <section id="experience" class="experience">
             <div class="soc-section-title fade-in-up">
-                <h2>> CAT: Professional_Experience.log</h2>
+                <h2>Experience</h2>
             </div>
             <div class="soc-timeline">
                 
@@ -203,7 +269,7 @@
                             </div>
                             <div class="role-meta">
                                 <span class="date-badge"><span class="live-pulse"></span> Current</span>
-                                <span class="soc-tag core-security">[Core Security & Operations]</span>
+                                <span class="soc-tag core-security">Core Security & Operations</span>
                             </div>
                         </div>
                         <ul class="soc-list">
@@ -228,7 +294,7 @@
                             </div>
                             <div class="role-meta">
                                 <span class="date-badge">03/2023 - 06/2024</span>
-                                <span class="soc-tag core-security">[Core Security]</span>
+                                <span class="soc-tag core-security">Core Security</span>
                             </div>
                         </div>
                         <ul class="soc-list">
@@ -256,7 +322,7 @@
                             </div>
                             <div class="role-meta">
                                 <span class="date-badge">01/2023 - 06/2023</span>
-                                <span class="soc-tag core-security">[Core Security]</span>
+                                <span class="soc-tag core-security">Core Security</span>
                             </div>
                         </div>
                         <ul class="soc-list">
@@ -281,7 +347,7 @@
                             </div>
                             <div class="role-meta">
                                 <span class="date-badge">12/2020 - 12/2022</span>
-                                <span class="soc-tag it-ops">[IT Support]</span>
+                                <span class="soc-tag it-ops">IT Support</span>
                             </div>
                         </div>
                         <ul class="soc-list">
@@ -306,7 +372,7 @@
                             </div>
                             <div class="role-meta">
                                 <span class="date-badge">01/2022 - 12/2022</span>
-                                <span class="soc-tag it-ops">[IT Operations]</span>
+                                <span class="soc-tag it-ops">IT Operations</span>
                             </div>
                         </div>
                         <ul class="soc-list">
@@ -321,7 +387,7 @@
         <!-- Freelance Operations & Services -->
         <section id="freelance" class="freelance">
             <div class="soc-section-title fade-in-up">
-                <h2>> LS: Freelance_Operations</h2>
+                <h2>Freelance Services</h2>
             </div>
             
             <div class="soc-grid">
@@ -370,13 +436,20 @@
         <!-- Bento Box Certifications -->
         <section id="certifications" class="certifications">
             <div class="soc-section-title fade-in-up">
-                <h2>> FIND: Credentials_&_Skill_Levels</h2>
+                <h2>Certifications & Skills</h2>
             </div>
             
             <div class="bento-grid">
                 <!-- Large Tile 1: CEH -->
                 <div class="bento-card bento-large fade-in-up ceh-cell">
-                    <div class="bento-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/EC-Council_logo.svg/512px-EC-Council_logo.svg.png" alt="EC-Council Logo" style="height: 50px; filter: brightness(0) invert(1);"></div>
+                    <div class="bento-icon">
+                        <svg width="110" height="46" viewBox="0 0 110 46" xmlns="http://www.w3.org/2000/svg" aria-label="EC-Council">
+                            <polygon points="6,1 104,1 109,8 109,38 104,45 6,45 1,38 1,8" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.5"/>
+                            <text x="55" y="20" font-family="Arial,sans-serif" font-size="10.5" font-weight="800" fill="white" text-anchor="middle" letter-spacing="1.5">EC-COUNCIL</text>
+                            <line x1="12" y1="26" x2="98" y2="26" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+                            <text x="55" y="37" font-family="Arial,sans-serif" font-size="7" fill="rgba(255,255,255,0.65)" text-anchor="middle" letter-spacing="3">CERTIFIED</text>
+                        </svg>
+                    </div>
                     <h3 class="glitch-effect" data-text="Certified Ethical Hacker">Certified Ethical Hacker</h3>
                     <p class="bento-authority">EC-Council</p>
                     <a href="https://aspen.eccouncil.org/Certificate/Certificate?a=eof6foV0K5/d/w5hmSyIRQ==" target="_blank" class="bento-link">Verify Credentials <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
@@ -386,7 +459,7 @@
                 <div class="bento-card bento-large fade-in-up thm-cell">
                     <div class="bento-icon"><i class="fa-solid fa-terminal"></i></div>
                     <h3>TryHackMe Rank</h3>
-                    <p class="bento-authority">Level: <span class="soc-accent">[0x5][VISIONARY]</span></p>
+                    <p class="bento-authority">Level: <span class="soc-accent">Expert</span></p>
                     <div class="thm-stats">
                         <span><i class="fa-solid fa-chart-line"></i> Top 30% Global</span>
                         <span><i class="fa-solid fa-check-double"></i> 3 Rooms</span>
@@ -432,7 +505,7 @@
         <!-- Contact UI -->
         <section id="contact" class="contact">
             <div class="soc-section-title fade-in-up">
-                <h2>> INIT: Secure_Comms</h2>
+                <h2>Get In Touch</h2>
             </div>
             <div class="soc-card contact-card fade-in-up">
                 <p class="contact-desc">Operating from Dubai, UAE. <br>Standing by for high-pressure technical analysis, continuous architectural defense, and vulnerability resolution.</p>
@@ -457,6 +530,23 @@
                     <a href="https://tryhackme.com/p/cicatrize.o" target="_blank" class="social-btn" title="TryHackMe"><i class="fa-solid fa-terminal"></i></a>
                     <a href="https://app.hackthebox.com/home" target="_blank" class="social-btn" title="HackTheBox"><i class="fa-solid fa-cube"></i></a>
                     <a href="https://sites.google.com/view/badassminton2025/home" target="_blank" class="social-btn" title="Badassminton Champion"><i class="fa-solid fa-medal"></i></a>
+                </div>
+
+                <div class="contact-form-section">
+                    <h3 class="soc-mono-title" style="margin-top: 36px; padding-top: 32px; border-top: 1px solid var(--card-border);">Send a Message</h3>
+                    <form id="contact-form" class="contact-form" action="https://formspree.io/akbarmayakkat11@gmail.com" method="POST">
+                        <div class="form-row">
+                            <input type="text" name="name" placeholder="Your Name" required autocomplete="name">
+                            <input type="email" name="email" placeholder="Your Email" required autocomplete="email">
+                        </div>
+                        <textarea name="message" placeholder="Your message..." rows="4" required></textarea>
+                        <div class="form-submit-row">
+                            <button type="submit" class="soc-btn primary-btn">
+                                <i class="fa-solid fa-paper-plane"></i> Send Message
+                            </button>
+                            <span id="form-status"></span>
+                        </div>
+                    </form>
                 </div>
             </div>
         </section>
@@ -498,6 +588,13 @@
         <div class="dossier-footer">ANALYZING...</div>
     </div>
 
+    <button id="back-to-top" aria-label="Back to top"><i class="fa-solid fa-chevron-up"></i></button>
+    <div id="availability-badge" class="availability-badge" role="button" tabindex="0" aria-label="Available for hire — click to contact">
+        <span class="avail-pulse"></span>Available for Hire
+    </div>
+    <canvas id="cursor-trail" aria-hidden="true"></canvas>
+    <div id="cursor-ring" aria-hidden="true"></div>
+    <div id="cursor-dot" aria-hidden="true"></div>
     <script src="script.js"></script>
 </body>
 </html>

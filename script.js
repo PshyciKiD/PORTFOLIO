@@ -52,10 +52,10 @@ window.addEventListener('scroll', () => {
 
     // Frosted Glass Shrink Effect on Scroll
     if (scrollY > 50) {
-        nav.style.background = 'rgba(13, 17, 23, 0.95)';
+        nav.style.background = 'rgba(7, 9, 15, 0.95)';
         nav.style.boxShadow = '0 4px 6px -1px rgb(0 0 0 / 0.5)';
     } else {
-        nav.style.background = 'rgba(13, 17, 23, 0.9)';
+        nav.style.background = 'rgba(7, 9, 15, 0.9)';
         nav.style.boxShadow = 'none';
     }
 });
@@ -182,38 +182,132 @@ if (termInput && termOutput) {
             // Process command
             switch(command) {
                 case 'help':
-                    printToTerminal(`Available commands:
-  <span class="soc-accent">ls</span>       - List security projects
-  <span class="soc-accent">whoami</span>   - View current user identity
-  <span class="soc-accent">cat contact.txt</span> - View contact information
-  <span class="soc-accent">clear</span>    - Clear terminal output`);
+                    printToTerminal(`<span class="soc-accent">Available commands:</span>
+  <span class="soc-accent">ls</span>             — List security projects
+  <span class="soc-accent">whoami</span>         — Current operator identity
+  <span class="soc-accent">skills</span>         — Proficiency breakdown
+  <span class="soc-accent">certs</span>          — Credentials & certifications
+  <span class="soc-accent">cat contact.txt</span> — Contact information
+  <span class="soc-accent">github</span>         — Open GitHub profile
+  <span class="soc-accent">hire</span>           — Availability & hiring info
+  <span class="soc-accent">nmap</span>           — Network scan demo
+  <span class="soc-accent">scan</span>           — Security surface scan
+  <span class="soc-accent">ping</span>           — Connectivity check
+  <span class="soc-accent">uname -a</span>       — System information
+  <span class="soc-accent">date</span>           — Current timestamp
+  <span class="soc-accent">clear</span>          — Clear terminal`);
                     break;
+
                 case 'ls':
-                    printToTerminal(`<ul class="term-list" style="margin-top: 10px; margin-bottom: 0;">
+                    printToTerminal(`<ul class="term-list" style="margin-top: 8px; margin-bottom: 0;">
                         <li><i class="fa-solid fa-file-pdf file-icon" style="min-width: 25px;"></i> <a href="assets/vulnerability-assessment-report.pdf" target="_blank" class="term-link">vulnerability-assessment-report.pdf</a></li>
-                        <li><i class="devicon-nextjs-plain file-icon" style="min-width: 25px;"></i> <span style="text-decoration: underline;">secure-ecommerce-platform.v1</span> <span style="color: #58a6ff; font-size: 0.8rem;">[ Integrated JWT Auth ]</span></li>
+                        <li><i class="devicon-nextjs-plain file-icon" style="min-width: 25px;"></i> <span style="text-decoration: underline;">secure-ecommerce-platform.v1</span> <span style="color: #58a6ff; font-size: 0.8rem;">[ JWT Auth · OWASP-Hardened ]</span></li>
                         <li><i class="devicon-react-original file-icon" style="min-width: 25px;"></i> <span style="text-decoration: underline;">banking-dashboard-ui</span> <span style="color: #f85149; font-size: 0.8rem;">[ OWASP Top 10 Protected ]</span></li>
                         <li><i class="devicon-python-plain file-icon" style="min-width: 25px;"></i> <span style="text-decoration: underline;">automated-osint-framework.py</span></li>
                         <li><i class="devicon-bash-plain file-icon" style="min-width: 25px;"></i> <span style="text-decoration: underline;">firewall_audit_log_analyzer.sh</span></li>
                     </ul>`);
                     break;
+
                 case 'whoami':
-                    printToTerminal(`akbar_admin
-Privileges: <span class="soc-accent">root</span>
-Status: Penetration Tester & Security Researcher ready for deployment.`);
+                    printToTerminal(`uid=0(akbar) gid=0(root) groups=0(root),1000(pentesters)
+<span class="soc-accent">Akbar M A</span> — IT & Cybersecurity Professional
+Location: Dubai, UAE  |  Clearance: <span style="color:var(--green)">ACTIVE</span>
+Role: Penetration Tester · Security Researcher · Full-Stack Dev`);
                     break;
+
+                case 'skills':
+                    printToTerminal(`<span class="soc-accent">Proficiency Matrix:</span>
+  Web App Pen Testing     ████████████████████  92%
+  OSINT & Threat Intel    ██████████████████░░  88%
+  Network Security        █████████████████░░░  85%
+  Python Automation       ████████████████░░░░  78%
+  Cloud & Enterprise Sec  ██████████████░░░░░░  70%`);
+                    break;
+
+                case 'certs':
+                    printToTerminal(`<span class="soc-accent">Verified Credentials:</span>
+  [✓] Certified Ethical Hacker (CEH) — EC-Council
+  [✓] Advanced Diploma in Cyber Defence — RedTeam Academy
+  [✓] Threat Intelligence Foundation — arcX
+  [✓] Security Expert — Offenso Academy
+  [✓] GRC Foundations — LinkedIn Learning
+  [~] TryHackMe: Top 30% Global  ·  HackTheBox: Active`);
+                    break;
+
                 case 'cat contact.txt':
-                    printToTerminal(`[TARGET COMMS LOCATED]:
-Email: <span class="soc-accent">akbarmayakkat11@gmail.com</span>
-Phone: <span class="soc-accent">+971-506167230</span>`);
+                    printToTerminal(`Email:    <span class="soc-accent">akbarmayakkat11@gmail.com</span>
+Phone:    <span class="soc-accent">+971-506167230</span>
+LinkedIn: <span class="soc-accent">linkedin.com/in/akbarma</span>
+GitHub:   <span class="soc-accent">github.com/akbarma</span>`);
                     break;
+
+                case 'github':
+                    printToTerminal(`Opening <span class="soc-accent">github.com/akbarma</span>...`);
+                    setTimeout(() => window.open('https://github.com/akbarma', '_blank'), 400);
+                    break;
+
+                case 'hire':
+                    printToTerminal(`<span style="color:var(--green)">[ AVAILABLE FOR HIRE ]</span>
+Status: Open to full-time, contract & freelance roles
+Skills: Pen Testing · Security Audits · Secure Full-Stack Dev
+Base:   Dubai, UAE  (remote-friendly)
+Email:  <span class="soc-accent">akbarmayakkat11@gmail.com</span>`);
+                    break;
+
+                case 'nmap': {
+                    printToTerminal(`Starting Nmap 7.94 — Scanning akbarma.dev ...`);
+                    const nmapLines = [
+                        { d: 400,  t: `PORT     STATE   SERVICE   VERSION` },
+                        { d: 750,  t: `<span style="color:var(--green)">443/tcp  open    https     nginx 1.24</span>` },
+                        { d: 1000, t: `<span style="color:var(--green)">80/tcp   open    http      → 301 to 443</span>` },
+                        { d: 1250, t: `<span style="color:var(--red)">22/tcp   closed  ssh</span>` },
+                        { d: 1600, t: `<span class="soc-accent">Done: 2 open · 1 closed · CSP headers active · Score: A+</span>` },
+                    ];
+                    nmapLines.forEach(({d, t}) => setTimeout(() => { printToTerminal(t); terminalBody.scrollTop = 99999; }, d));
+                    break;
+                }
+
+                case 'scan': {
+                    printToTerminal(`Scanning surface: <span class="soc-accent">akbarma.dev</span>`);
+                    const scanLines = [
+                        { d: 300,  t: `[>] HTTP security headers ...    <span style="color:var(--green)">PASS</span>` },
+                        { d: 600,  t: `[>] HSTS (max-age=63072000) ...  <span style="color:var(--green)">PASS</span>` },
+                        { d: 850,  t: `[>] Content-Security-Policy ...  <span style="color:var(--green)">PASS</span>` },
+                        { d: 1100, t: `[>] X-Frame-Options: DENY ...    <span style="color:var(--green)">PASS</span>` },
+                        { d: 1350, t: `[>] Open redirect check ...      <span style="color:var(--green)">NONE FOUND</span>` },
+                        { d: 1650, t: `<span class="soc-accent">Complete — Security score: A+ · 0 critical findings.</span>` },
+                    ];
+                    scanLines.forEach(({d, t}) => setTimeout(() => { printToTerminal(t); terminalBody.scrollTop = 99999; }, d));
+                    break;
+                }
+
+                case 'ping':
+                    printToTerminal(`PING akbarma.dev: 56 bytes of data.
+64 bytes: icmp_seq=0 ttl=64 time=<span class="soc-accent">2.1 ms</span>
+64 bytes: icmp_seq=1 ttl=64 time=<span class="soc-accent">1.8 ms</span>
+64 bytes: icmp_seq=2 ttl=64 time=<span class="soc-accent">2.0 ms</span>
+3 packets tx · 3 received · <span style="color:var(--green)">0% packet loss</span>`);
+                    break;
+
+                case 'uname -a':
+                case 'uname':
+                    printToTerminal(`Linux akbar-soc 6.1.0-kali #1 SMP PREEMPT x86_64 GNU/Linux
+Shell: zsh 5.9  ·  Kernel: Kali Rolling  ·  Status: <span style="color:var(--green)">online</span>`);
+                    break;
+
+                case 'date':
+                    printToTerminal(`<span class="soc-accent">${new Date().toUTCString()}</span>`);
+                    break;
+
                 case 'clear':
                     termOutput.innerHTML = '';
                     break;
+
                 case '':
                     break;
+
                 default:
-                    printToTerminal(`bash: ${command}: command not found. Type 'help'.`);
+                    printToTerminal(`bash: <span style="color:var(--red)">${command}</span>: command not found — try <span class="soc-accent">'help'</span>`);
             }
             // Auto scroll to bottom
             const terminalBody = document.getElementById('soc-terminal');
@@ -296,24 +390,31 @@ if (scrambleEl && !window.matchMedia('(prefers-reduced-motion: reduce)').matches
     }, 800);
 }
 
-// Hero Typewriter Effect
-const typeText = "> Initializing System_Scan... [DONE]";
-const typeElement = document.getElementById("typewriter-text");
+// Hero Typewriter — cycles through multiple taglines
+const typewriterEl = document.getElementById('typewriter-text');
+if (typewriterEl) {
+    const phrases = [
+        'Cybersecurity Professional — Dubai, UAE',
+        'Penetration Tester & Security Researcher',
+        'CEH Certified · OWASP · Red Teamer',
+        'Building what I can defend.',
+    ];
+    let pIdx = 0, cIdx = 0, deleting = false, delay = 75;
 
-if (typeElement) {
-    let typeIndex = 0;
-    typeElement.innerHTML = '';
-    
-    function typeWriter() {
-        if (typeIndex < typeText.length) {
-            typeElement.innerHTML += typeText.charAt(typeIndex);
-            typeIndex++;
-            setTimeout(typeWriter, 50);
-        }
+    function tick() {
+        const phrase = phrases[pIdx];
+        typewriterEl.textContent = deleting
+            ? phrase.substring(0, cIdx - 1)
+            : phrase.substring(0, cIdx + 1);
+        deleting ? cIdx-- : cIdx++;
+
+        if (!deleting && cIdx === phrase.length) { delay = 2400; deleting = true; }
+        else if (deleting && cIdx === 0)         { deleting = false; pIdx = (pIdx + 1) % phrases.length; delay = 350; }
+        else                                      { delay = deleting ? 32 : 72; }
+
+        setTimeout(tick, delay);
     }
-    
-    // Start typing after a short delay
-    setTimeout(typeWriter, 500);
+    setTimeout(tick, 800);
 }
 
 // Access Granted Decryption Mock
@@ -418,7 +519,7 @@ if (canvas) {
         draw() {
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-            ctx.fillStyle = 'rgba(0, 255, 65, 0.15)';
+            ctx.fillStyle = 'rgba(59, 130, 246, 0.15)';
             ctx.fill();
         }
     }
@@ -445,7 +546,7 @@ if (canvas) {
 
                 if (dist < connectionDistance) {
                     ctx.beginPath();
-                    ctx.strokeStyle = `rgba(0, 255, 65, ${0.05 - (dist / connectionDistance) * 0.05})`;
+                    ctx.strokeStyle = `rgba(59, 130, 246, ${0.05 - (dist / connectionDistance) * 0.05})`;
                     ctx.lineWidth = 1;
                     ctx.moveTo(particles[i].x, particles[i].y);
                     ctx.lineTo(particles[j].x, particles[j].y);
@@ -460,7 +561,7 @@ if (canvas) {
 
                 if (distm < mouseConnectionDistance) {
                     ctx.beginPath();
-                    ctx.strokeStyle = `rgba(0, 255, 65, ${0.1 - (distm / mouseConnectionDistance) * 0.1})`;
+                    ctx.strokeStyle = `rgba(59, 130, 246, ${0.1 - (distm / mouseConnectionDistance) * 0.1})`;
                     ctx.lineWidth = 1.5;
                     ctx.moveTo(particles[i].x, particles[i].y);
                     ctx.lineTo(mouse.x, mouse.y);
@@ -507,7 +608,7 @@ if (hexCanvas) {
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
         
         // Very subtle erase to keep trails faint
-        hCtx.fillStyle = 'rgba(13, 17, 23, 0.15)';
+        hCtx.fillStyle = 'rgba(7, 9, 15, 0.15)';
         hCtx.fillRect(0, 0, hWidth, hHeight);
         
         hCtx.fillStyle = 'rgba(0, 255, 65, 0.05)'; // 5% opacity matrix text
@@ -889,3 +990,396 @@ if (profilePic && typeof gsap !== 'undefined') {
     });
 }
 // End of Bot Logic
+
+// Career Evolution Timeline — staggered activation on scroll into view
+const evolutionTrack = document.querySelector('.evolution-track');
+if (evolutionTrack) {
+    const evoStages = evolutionTrack.querySelectorAll('.evo-stage');
+
+    const evoObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            evolutionTrack.classList.add('evo-animated');
+            evoStages.forEach((stage, i) => {
+                setTimeout(() => stage.classList.add('stage-live'), i * 450);
+            });
+            evoObserver.unobserve(entry.target);
+        });
+    }, { threshold: 0.1 });
+
+    evoObserver.observe(evolutionTrack);
+}
+
+// ============================================================
+// ENHANCED INTERACTIVE FEATURES
+// ============================================================
+
+// Scroll Progress Bar
+const scrollProgress = document.getElementById('scroll-progress');
+if (scrollProgress) {
+    window.addEventListener('scroll', () => {
+        const st = document.documentElement.scrollTop;
+        const sh = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        scrollProgress.style.width = ((st / sh) * 100) + '%';
+    }, { passive: true });
+}
+
+// Custom Cursor (mouse-only)
+if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    const cursorDot  = document.getElementById('cursor-dot');
+    const cursorRing = document.getElementById('cursor-ring');
+
+    if (cursorDot && cursorRing) {
+        let mx = 0, my = 0, rx = 0, ry = 0;
+
+        document.addEventListener('mousemove', e => {
+            mx = e.clientX; my = e.clientY;
+            cursorDot.style.left = mx + 'px';
+            cursorDot.style.top  = my + 'px';
+            cursorDot.style.opacity  = '1';
+            cursorRing.style.opacity = '1';
+        }, { passive: true });
+
+        (function animateRing() {
+            rx += (mx - rx) * 0.13;
+            ry += (my - ry) * 0.13;
+            cursorRing.style.left = rx + 'px';
+            cursorRing.style.top  = ry + 'px';
+            requestAnimationFrame(animateRing);
+        })();
+
+        document.querySelectorAll('a, button, .soc-btn, .soc-card, .bento-card, .evo-stage, .social-btn, input, textarea').forEach(el => {
+            el.addEventListener('mouseenter', () => cursorRing.classList.add('cursor-hover'));
+            el.addEventListener('mouseleave', () => cursorRing.classList.remove('cursor-hover'));
+        });
+
+        document.addEventListener('mouseleave', () => { cursorDot.style.opacity = '0'; cursorRing.style.opacity = '0'; });
+    }
+}
+
+// Hero Stats Counter Animation
+document.querySelectorAll('.stat-number').forEach(el => {
+    const target   = parseInt(el.dataset.count, 10);
+    const duration = 1600;
+    let started    = false;
+
+    const io = new IntersectionObserver(entries => {
+        if (!entries[0].isIntersecting || started) return;
+        started = true;
+        const t0 = performance.now();
+        (function tick(now) {
+            const p = Math.min((now - t0) / duration, 1);
+            el.textContent = Math.floor((1 - Math.pow(1 - p, 3)) * target);
+            if (p < 1) requestAnimationFrame(tick);
+            else el.textContent = target;
+        })(performance.now());
+        io.disconnect();
+    }, { threshold: 0.5 });
+    io.observe(el);
+});
+
+// Skill Bar Fill Animation
+document.querySelectorAll('.skill-bar-fill').forEach(bar => {
+    const io = new IntersectionObserver(entries => {
+        if (!entries[0].isIntersecting) return;
+        bar.classList.add('filled');
+        io.disconnect();
+    }, { threshold: 0.2 });
+    io.observe(bar);
+});
+
+// Skill Badge Stagger Entrance
+document.querySelectorAll('.soc-badge-list').forEach(list => {
+    list.classList.add('js-stagger');
+    const badges = list.querySelectorAll('.soc-badge');
+    const io = new IntersectionObserver(entries => {
+        if (!entries[0].isIntersecting) return;
+        badges.forEach((b, i) => setTimeout(() => b.classList.add('badge-visible'), i * 55));
+        io.disconnect();
+    }, { threshold: 0.2 });
+    io.observe(list);
+});
+
+// 3D Card Tilt
+document.querySelectorAll('.soc-card, .bento-card').forEach(card => {
+    card.addEventListener('mouseenter', () => { card.style.transition = 'transform 0.1s ease, box-shadow 0.1s ease'; });
+    card.addEventListener('mousemove', e => {
+        const r  = card.getBoundingClientRect();
+        const dx = (e.clientX - r.left - r.width  / 2) / (r.width  / 2);
+        const dy = (e.clientY - r.top  - r.height / 2) / (r.height / 2);
+        card.style.transform = `perspective(700px) rotateY(${dx * 5}deg) rotateX(${-dy * 5}deg) translateZ(4px)`;
+    });
+    card.addEventListener('mouseleave', () => {
+        card.style.transition = 'transform 0.5s ease, box-shadow 0.5s ease';
+        card.style.transform  = 'perspective(700px) rotateY(0deg) rotateX(0deg) translateZ(0)';
+    });
+});
+
+// Magnetic CTA Buttons
+document.querySelectorAll('.soc-btn').forEach(btn => {
+    btn.addEventListener('mouseenter', () => { btn.style.transition = 'transform 0.15s ease'; });
+    btn.addEventListener('mousemove', e => {
+        const r  = btn.getBoundingClientRect();
+        const dx = (e.clientX - r.left - r.width  / 2) * 0.22;
+        const dy = (e.clientY - r.top  - r.height / 2) * 0.22;
+        btn.style.transform = `translate(${dx}px, ${dy}px)`;
+    });
+    btn.addEventListener('mouseleave', () => {
+        btn.style.transition = 'transform 0.45s cubic-bezier(0.23, 1, 0.32, 1)';
+        btn.style.transform  = 'translate(0, 0)';
+    });
+});
+
+// Back to Top
+const backToTop = document.getElementById('back-to-top');
+if (backToTop) {
+    window.addEventListener('scroll', () => {
+        backToTop.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+    backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+}
+
+// Contact Form (Formspree)
+const contactForm   = document.getElementById('contact-form');
+const formStatus    = document.getElementById('form-status');
+if (contactForm && formStatus) {
+    contactForm.addEventListener('submit', async e => {
+        e.preventDefault();
+        const btn = contactForm.querySelector('[type="submit"]');
+        const orig = btn.innerHTML;
+        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
+        btn.disabled  = true;
+
+        try {
+            const res = await fetch(contactForm.action, {
+                method:  'POST',
+                body:    new FormData(contactForm),
+                headers: { Accept: 'application/json' },
+            });
+            if (!res.ok) throw new Error();
+            formStatus.textContent = '✓ Sent! I\'ll reply within 24h.';
+            formStatus.style.color = 'var(--green)';
+            contactForm.reset();
+        } catch {
+            formStatus.textContent = '✗ Failed — email me directly.';
+            formStatus.style.color = 'var(--red)';
+        }
+
+        formStatus.classList.add('visible');
+        btn.innerHTML = orig;
+        btn.disabled  = false;
+        setTimeout(() => formStatus.classList.remove('visible'), 7000);
+    });
+}
+
+// ============================================================
+// NEW FEATURES BATCH 2
+// ============================================================
+
+// 1 ── Mobile hamburger menu
+const hamburger   = document.getElementById('nav-hamburger');
+const navLinksList = document.getElementById('nav-links');
+if (hamburger && navLinksList) {
+    hamburger.addEventListener('click', () => {
+        const open = hamburger.classList.toggle('open');
+        navLinksList.classList.toggle('open', open);
+        hamburger.setAttribute('aria-expanded', open);
+    });
+    navLinksList.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+            hamburger.classList.remove('open');
+            navLinksList.classList.remove('open');
+            hamburger.setAttribute('aria-expanded', 'false');
+        });
+    });
+}
+
+// 2 ── Accent colour / theme picker
+document.querySelectorAll('.theme-swatch').forEach(swatch => {
+    swatch.addEventListener('click', () => {
+        document.querySelectorAll('.theme-swatch').forEach(s => s.classList.remove('active'));
+        swatch.classList.add('active');
+        const a  = swatch.dataset.a;
+        const a2 = swatch.dataset.a2;
+        const root = document.documentElement;
+        root.style.setProperty('--accent',       a);
+        root.style.setProperty('--accent-2',     a2);
+        root.style.setProperty('--accent-grad',  `linear-gradient(135deg, ${a} 0%, ${a2} 100%)`);
+        root.style.setProperty('--border-focus', `${a}66`);
+        root.style.setProperty('--neon-glow',    `0 0 15px ${a}33`);
+    });
+});
+
+// 3 ── Live Dubai time clock
+function updateClock() {
+    const el = document.getElementById('clock-time');
+    if (!el) return;
+    const d = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Dubai' }));
+    el.textContent = [d.getHours(), d.getMinutes(), d.getSeconds()]
+        .map(n => String(n).padStart(2, '0')).join(':');
+}
+updateClock();
+setInterval(updateClock, 1000);
+
+// 4 ── Mouse parallax on hero
+(function() {
+    const hero    = document.getElementById('home');
+    const hContent = hero?.querySelector('.hero-content');
+    const hImage   = hero?.querySelector('.hero-image-wrapper');
+    if (!hero || !hContent || !hImage) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    hero.addEventListener('mousemove', e => {
+        const { width, height, left, top } = hero.getBoundingClientRect();
+        const nx = (e.clientX - left - width  / 2) / (width  / 2);
+        const ny = (e.clientY - top  - height / 2) / (height / 2);
+        hContent.style.transform = `translate(${nx * -10}px, ${ny * -6}px)`;
+        hImage.style.transform   = `translate(${nx *  14}px, ${ny *  9}px)`;
+    }, { passive: true });
+
+    hero.addEventListener('mouseleave', () => {
+        hContent.style.transform = 'translate(0,0)';
+        hImage.style.transform   = 'translate(0,0)';
+    });
+})();
+
+// 5 ── Cursor trail particles
+if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    const trailCanvas = document.getElementById('cursor-trail');
+    if (trailCanvas && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        const tCtx = trailCanvas.getContext('2d');
+        let tw = trailCanvas.width  = window.innerWidth;
+        let th = trailCanvas.height = window.innerHeight;
+        window.addEventListener('resize', () => {
+            tw = trailCanvas.width  = window.innerWidth;
+            th = trailCanvas.height = window.innerHeight;
+        }, { passive: true });
+
+        const trail = [];
+        let tmx = 0, tmy = 0;
+        document.addEventListener('mousemove', e => {
+            tmx = e.clientX; tmy = e.clientY;
+            for (let i = 0; i < 2; i++) {
+                trail.push({
+                    x: tmx + (Math.random() - 0.5) * 6,
+                    y: tmy + (Math.random() - 0.5) * 6,
+                    r: Math.random() * 2.5 + 0.8,
+                    a: 0.55,
+                    vx: (Math.random() - 0.5) * 1.2,
+                    vy: (Math.random() - 0.5) * 1.2 - 0.4,
+                    col: Math.random() > 0.45 ? '59,130,246' : '6,182,212',
+                });
+            }
+        }, { passive: true });
+
+        (function drawTrail() {
+            tCtx.clearRect(0, 0, tw, th);
+            for (let i = trail.length - 1; i >= 0; i--) {
+                const p = trail[i];
+                p.x += p.vx; p.y += p.vy;
+                p.a -= 0.022; p.r *= 0.97;
+                if (p.a <= 0) { trail.splice(i, 1); continue; }
+                tCtx.beginPath();
+                tCtx.arc(p.x, p.y, Math.max(p.r, 0.1), 0, Math.PI * 2);
+                tCtx.fillStyle = `rgba(${p.col},${p.a.toFixed(2)})`;
+                tCtx.fill();
+            }
+            requestAnimationFrame(drawTrail);
+        })();
+    }
+}
+
+// 6 ── Floating "Available for Hire" badge
+const availBadge = document.getElementById('availability-badge');
+if (availBadge) {
+    setTimeout(() => availBadge.classList.add('visible'), 3500);
+    const scrollToContact = () =>
+        document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+    availBadge.addEventListener('click',  scrollToContact);
+    availBadge.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') scrollToContact(); });
+}
+
+// 7 ── Text split-reveal on section headings
+if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('.soc-section-title h2').forEach(h2 => {
+        const raw = h2.textContent;
+        h2.innerHTML = raw.split('').map((ch, i) =>
+            ch === ' '
+                ? '<span class="char" style="display:inline-block"> </span>'
+                : `<span class="char" style="transition-delay:${i * 28}ms">${ch}</span>`
+        ).join('');
+        h2.classList.add('text-split');
+        const io = new IntersectionObserver(entries => {
+            if (!entries[0].isIntersecting) return;
+            h2.classList.add('revealed');
+            io.disconnect();
+        }, { threshold: 0.6 });
+        io.observe(h2);
+    });
+}
+
+// 8 ── Rich custom tooltips on skill badges
+document.querySelectorAll('.soc-badge[title]').forEach(badge => {
+    const tipText = badge.getAttribute('title');
+    badge.removeAttribute('title');
+    const tip = document.createElement('span');
+    tip.className = 'custom-tooltip';
+    tip.textContent = tipText;
+    badge.appendChild(tip);
+});
+
+// 9 ── Konami Code easter egg  (↑↑↓↓←→←→BA)
+(function() {
+    const SEQ = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+    let idx = 0;
+    document.addEventListener('keydown', e => {
+        idx = (e.key === SEQ[idx]) ? idx + 1 : (e.key === SEQ[0] ? 1 : 0);
+        if (idx < SEQ.length) return;
+        idx = 0;
+
+        const overlay = document.createElement('div');
+        overlay.style.cssText = 'position:fixed;inset:0;z-index:999999;background:rgba(0,0,0,0.96);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px;';
+
+        const rain = document.createElement('canvas');
+        rain.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;opacity:0.25;';
+        rain.width = window.innerWidth; rain.height = window.innerHeight;
+        overlay.appendChild(rain);
+
+        const rCtx = rain.getContext('2d');
+        const cols  = Math.floor(rain.width / 14);
+        const drops = Array.from({ length: cols }, () => Math.random() * rain.height / 14 | 0);
+        const matrixId = setInterval(() => {
+            rCtx.fillStyle = 'rgba(0,0,0,0.06)';
+            rCtx.fillRect(0, 0, rain.width, rain.height);
+            rCtx.fillStyle = '#00FF41'; rCtx.font = '13px monospace';
+            drops.forEach((y, i) => {
+                rCtx.fillText(String.fromCharCode(0x30A0 + Math.random() * 96), i * 14, y * 14);
+                if (y * 14 > rain.height && Math.random() > 0.975) drops[i] = 0;
+                drops[i]++;
+            });
+        }, 38);
+
+        const msg = document.createElement('div');
+        msg.innerHTML = `
+            <div style="font-family:'JetBrains Mono',monospace;color:#00FF41;text-align:center;position:relative;z-index:1;padding:20px">
+                <div style="font-size:2.8rem;font-weight:800;text-shadow:0 0 25px #00FF41;letter-spacing:-1px">ACCESS GRANTED</div>
+                <div style="font-size:0.9rem;opacity:0.65;margin-top:10px">↑↑↓↓←→←→BA — nice one, you found it.</div>
+                <div style="font-size:0.75rem;opacity:0.4;margin-top:6px">Real hackers always check the source.</div>
+            </div>`;
+        overlay.appendChild(msg);
+        document.body.appendChild(overlay);
+
+        overlay.addEventListener('click', () => {
+            clearInterval(matrixId);
+            overlay.style.transition = 'opacity 0.4s';
+            overlay.style.opacity = '0';
+            setTimeout(() => overlay.remove(), 420);
+        });
+        setTimeout(() => {
+            clearInterval(matrixId);
+            overlay.style.transition = 'opacity 0.4s';
+            overlay.style.opacity = '0';
+            setTimeout(() => overlay.remove(), 420);
+        }, 5000);
+    });
+})();
