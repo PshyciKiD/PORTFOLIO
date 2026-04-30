@@ -42,6 +42,7 @@
                 <li><a href="#home" class="active">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#projects">Projects</a></li>
+                <li><a href="#tools">Toolkit</a></li>
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="#certifications">Certifications</a></li>
                 <li><a href="#contact">Contact</a></li>
@@ -256,6 +257,43 @@
                         <input type="text" id="term-input" autocomplete="off" spellcheck="false" autofocus>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <!-- Security Toolkit & Arsenal -->
+        <section id="tools" class="tools">
+            <div class="soc-section-title fade-in-up">
+                <h2>Toolkit &amp; Arsenal</h2>
+            </div>
+            <div class="tools-filter fade-in-up">
+                <button class="tool-filter-btn active" data-cat="all">All</button>
+                <button class="tool-filter-btn" data-cat="offensive">Offensive</button>
+                <button class="tool-filter-btn" data-cat="defensive">Defensive</button>
+                <button class="tool-filter-btn" data-cat="recon">Recon / OSINT</button>
+                <button class="tool-filter-btn" data-cat="platform">Platforms</button>
+                <button class="tool-filter-btn" data-cat="dev">Dev &amp; Scripting</button>
+            </div>
+            <div class="tools-grid" id="tools-grid">
+                <div class="tool-card" data-cat="offensive"><div class="tool-icon"><i class="fa-solid fa-spider"></i></div><div class="tool-info"><span class="tool-name">Burp Suite</span><span class="tool-cat offensive">Offensive</span></div><span class="tool-desc">Web app proxy &amp; active scanner</span></div>
+                <div class="tool-card" data-cat="offensive"><div class="tool-icon"><i class="fa-solid fa-bolt"></i></div><div class="tool-info"><span class="tool-name">Metasploit</span><span class="tool-cat offensive">Offensive</span></div><span class="tool-desc">Exploit framework &amp; payload delivery</span></div>
+                <div class="tool-card" data-cat="offensive"><div class="tool-icon"><i class="fa-solid fa-database"></i></div><div class="tool-info"><span class="tool-name">SQLmap</span><span class="tool-cat offensive">Offensive</span></div><span class="tool-desc">Automated SQL injection &amp; takeover</span></div>
+                <div class="tool-card" data-cat="offensive"><div class="tool-icon"><i class="fa-solid fa-key"></i></div><div class="tool-info"><span class="tool-name">Hydra</span><span class="tool-cat offensive">Offensive</span></div><span class="tool-desc">Online brute-force credential cracker</span></div>
+                <div class="tool-card" data-cat="offensive"><div class="tool-icon"><i class="fa-solid fa-lock-open"></i></div><div class="tool-info"><span class="tool-name">John the Ripper</span><span class="tool-cat offensive">Offensive</span></div><span class="tool-desc">Offline password hash cracker</span></div>
+                <div class="tool-card" data-cat="offensive"><div class="tool-icon"><i class="fa-solid fa-globe"></i></div><div class="tool-info"><span class="tool-name">Nikto</span><span class="tool-cat offensive">Offensive</span></div><span class="tool-desc">Web server misconfiguration scanner</span></div>
+                <div class="tool-card" data-cat="defensive"><div class="tool-icon"><i class="fa-solid fa-shield-halved"></i></div><div class="tool-info"><span class="tool-name">OWASP ZAP</span><span class="tool-cat defensive">Defensive</span></div><span class="tool-desc">DAST scanner &amp; security testing proxy</span></div>
+                <div class="tool-card" data-cat="defensive"><div class="tool-icon"><i class="fa-solid fa-bug-slash"></i></div><div class="tool-info"><span class="tool-name">Nessus</span><span class="tool-cat defensive">Defensive</span></div><span class="tool-desc">Enterprise vulnerability assessment</span></div>
+                <div class="tool-card" data-cat="defensive"><div class="tool-icon"><i class="fa-solid fa-server"></i></div><div class="tool-info"><span class="tool-name">pfSense</span><span class="tool-cat defensive">Defensive</span></div><span class="tool-desc">Firewall &amp; network perimeter control</span></div>
+                <div class="tool-card" data-cat="defensive"><div class="tool-icon"><i class="fa-solid fa-eye"></i></div><div class="tool-info"><span class="tool-name">Wireshark</span><span class="tool-cat defensive">Defensive</span></div><span class="tool-desc">Deep packet inspection &amp; analysis</span></div>
+                <div class="tool-card" data-cat="recon"><div class="tool-icon"><i class="fa-solid fa-network-wired"></i></div><div class="tool-info"><span class="tool-name">Nmap</span><span class="tool-cat recon">Recon</span></div><span class="tool-desc">Network discovery &amp; port scanning</span></div>
+                <div class="tool-card" data-cat="recon"><div class="tool-icon"><i class="fa-solid fa-magnifying-glass"></i></div><div class="tool-info"><span class="tool-name">Maltego</span><span class="tool-cat recon">OSINT</span></div><span class="tool-desc">Link analysis &amp; threat intelligence</span></div>
+                <div class="tool-card" data-cat="recon"><div class="tool-icon"><i class="fa-solid fa-satellite-dish"></i></div><div class="tool-info"><span class="tool-name">Shodan</span><span class="tool-cat recon">OSINT</span></div><span class="tool-desc">IoT &amp; exposed services discovery</span></div>
+                <div class="tool-card" data-cat="recon"><div class="tool-icon"><i class="fa-solid fa-binoculars"></i></div><div class="tool-info"><span class="tool-name">Recon-ng</span><span class="tool-cat recon">Recon</span></div><span class="tool-desc">Automated web reconnaissance framework</span></div>
+                <div class="tool-card" data-cat="platform"><div class="tool-icon"><i class="devicon-kali-plain"></i></div><div class="tool-info"><span class="tool-name">Kali Linux</span><span class="tool-cat platform">Platform</span></div><span class="tool-desc">Primary penetration testing OS</span></div>
+                <div class="tool-card" data-cat="platform"><div class="tool-icon"><i class="devicon-linux-plain"></i></div><div class="tool-info"><span class="tool-name">Parrot OS</span><span class="tool-cat platform">Platform</span></div><span class="tool-desc">Privacy-focused security distro</span></div>
+                <div class="tool-card" data-cat="platform"><div class="tool-icon"><i class="devicon-windows8-original"></i></div><div class="tool-info"><span class="tool-name">Windows Server</span><span class="tool-cat platform">Platform</span></div><span class="tool-desc">AD, Group Policy &amp; hardening</span></div>
+                <div class="tool-card" data-cat="dev"><div class="tool-icon"><i class="devicon-python-plain"></i></div><div class="tool-info"><span class="tool-name">Python</span><span class="tool-cat dev">Scripting</span></div><span class="tool-desc">Automation, OSINT tooling &amp; exploits</span></div>
+                <div class="tool-card" data-cat="dev"><div class="tool-icon"><i class="devicon-bash-plain"></i></div><div class="tool-info"><span class="tool-name">Bash</span><span class="tool-cat dev">Scripting</span></div><span class="tool-desc">Shell automation &amp; log parsing</span></div>
+                <div class="tool-card" data-cat="dev"><div class="tool-icon"><i class="fa-brands fa-git-alt"></i></div><div class="tool-info"><span class="tool-name">Git / GitHub</span><span class="tool-cat dev">Dev</span></div><span class="tool-desc">Version control &amp; code collaboration</span></div>
             </div>
         </section>
 
@@ -602,6 +640,60 @@
     <canvas id="cursor-trail" aria-hidden="true"></canvas>
     <div id="cursor-ring" aria-hidden="true"></div>
     <div id="cursor-dot" aria-hidden="true"></div>
+
+    <!-- Boot Loader -->
+    <div id="boot-loader" aria-hidden="true">
+        <div class="boot-content">
+            <div class="boot-logo">&gt;_ AKBAR.MA</div>
+            <div class="boot-log" id="boot-log"></div>
+            <div class="boot-bar-wrap"><div class="boot-bar" id="boot-bar"></div></div>
+            <div class="boot-status" id="boot-status">LOADING...</div>
+        </div>
+    </div>
+
+    <!-- Section Dot Navigation -->
+    <nav id="dot-nav" aria-label="Section navigation">
+        <div class="dot-nav-item active" data-target="home"><span class="dot-pip"></span><span class="dot-label">Home</span></div>
+        <div class="dot-nav-item" data-target="about"><span class="dot-pip"></span><span class="dot-label">About</span></div>
+        <div class="dot-nav-item" data-target="origin"><span class="dot-pip"></span><span class="dot-label">Career</span></div>
+        <div class="dot-nav-item" data-target="projects"><span class="dot-pip"></span><span class="dot-label">Projects</span></div>
+        <div class="dot-nav-item" data-target="tools"><span class="dot-pip"></span><span class="dot-label">Toolkit</span></div>
+        <div class="dot-nav-item" data-target="experience"><span class="dot-pip"></span><span class="dot-label">Experience</span></div>
+        <div class="dot-nav-item" data-target="certifications"><span class="dot-pip"></span><span class="dot-label">Certs</span></div>
+        <div class="dot-nav-item" data-target="contact"><span class="dot-pip"></span><span class="dot-label">Contact</span></div>
+    </nav>
+
+    <!-- Custom Context Menu -->
+    <div id="ctx-menu" class="ctx-menu" role="menu">
+        <div class="ctx-item" id="ctx-copy-url"><i class="fa-solid fa-link"></i> Copy Portfolio URL</div>
+        <div class="ctx-item" id="ctx-download-cv"><i class="fa-solid fa-file-pdf"></i> Download Resume</div>
+        <div class="ctx-item" id="ctx-view-source"><i class="fa-solid fa-code"></i> View Source</div>
+        <div class="ctx-divider"></div>
+        <div class="ctx-item" id="ctx-shortcuts"><i class="fa-solid fa-keyboard"></i> Keyboard Shortcuts <kbd>?</kbd></div>
+        <div class="ctx-item" id="ctx-contact"><i class="fa-solid fa-envelope"></i> Get In Touch</div>
+    </div>
+
+    <!-- Keyboard Shortcuts Modal -->
+    <div id="shortcuts-modal" class="shortcuts-modal" role="dialog" aria-modal="true">
+        <div class="shortcuts-panel">
+            <div class="shortcuts-header">
+                <span><i class="fa-solid fa-keyboard"></i>&nbsp; Keyboard Shortcuts</span>
+                <button id="close-shortcuts" aria-label="Close shortcuts">✕</button>
+            </div>
+            <div class="shortcuts-list">
+                <div class="shortcut-row"><kbd>?</kbd><span>Show / hide this panel</span></div>
+                <div class="shortcut-row"><kbd>G H</kbd><span>Go to Home</span></div>
+                <div class="shortcut-row"><kbd>G P</kbd><span>Go to Projects / Terminal</span></div>
+                <div class="shortcut-row"><kbd>G E</kbd><span>Go to Experience</span></div>
+                <div class="shortcut-row"><kbd>G C</kbd><span>Go to Contact</span></div>
+                <div class="shortcut-row"><kbd>G T</kbd><span>Go to Toolkit</span></div>
+                <div class="shortcut-row"><kbd>/</kbd><span>Focus terminal input</span></div>
+                <div class="shortcut-row"><kbd>Esc</kbd><span>Close modals</span></div>
+                <div class="shortcut-row"><kbd>↑↑↓↓←→←→BA</kbd><span>???</span></div>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>

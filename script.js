@@ -201,6 +201,8 @@ if (termInput && termOutput) {
   <span class="soc-accent">ping</span>           — Connectivity check
   <span class="soc-accent">uname -a</span>       — System information
   <span class="soc-accent">date</span>           — Current timestamp
+  <span class="soc-accent">tools</span>          — Security toolkit &amp; arsenal
+  <span class="soc-accent">download</span>       — Download resume PDF
   <span class="soc-accent">clear</span>          — Clear terminal`);
                     break;
 
@@ -303,6 +305,23 @@ Shell: zsh 5.9  ·  Kernel: Kali Rolling  ·  Status: <span style="color:var(--g
 
                 case 'date':
                     printToTerminal(`<span class="soc-accent">${new Date().toUTCString()}</span>`);
+                    break;
+
+                case 'tools':
+                    printToTerminal(`<span class="soc-accent">Security Toolkit — Loaded Arsenal:</span>
+  <span style="color:#f85149">[ OFFENSIVE ]</span>  Burp Suite · Metasploit · SQLmap · Hydra · John the Ripper · Nikto
+  <span style="color:#10b981">[ DEFENSIVE ]</span>  OWASP ZAP · Nessus · pfSense · Wireshark
+  <span style="color:#f59e0b">[ RECON     ]</span>  Nmap · Maltego · Shodan · Recon-ng
+  <span style="color:var(--accent)">[ PLATFORMS ]</span>  Kali Linux · Parrot OS · Windows Server
+  <span style="color:#8b5cf6">[ DEV       ]</span>  Python · Bash · Git
+  → <a href="#tools" class="term-link" style="color:var(--accent)">View full toolkit →</a>`);
+                    break;
+
+                case 'download':
+                case 'download resume':
+                    printToTerminal(`<span style="color:var(--green)">Fetching resume...</span>
+<span class="soc-accent">akbar-ma-resume.pdf</span> — initiating download...`);
+                    setTimeout(() => document.getElementById('download-cv-btn')?.click(), 400);
                     break;
 
                 case 'clear':
@@ -1334,15 +1353,15 @@ document.querySelectorAll('.soc-badge[title]').forEach(badge => {
     badge.appendChild(tip);
 });
 
-// 9 ── GSAP Hero Entrance + ScrollTrigger
+// 9 ── GSAP Hero Entrance + ScrollTrigger batches
 (function() {
     if (!window.gsap) return;
     gsap.registerPlugin(ScrollTrigger);
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    if (!reduced) {
-        // Cinematic hero boot sequence
-        const heroTL = gsap.timeline({ delay: 0.15 });
+    function startHeroAnimation() {
+        if (reduced) return;
+        const heroTL = gsap.timeline({ delay: 0.1 });
         heroTL
             .from('.soc-subtitle',       { opacity: 0, y: 22, duration: 0.65, ease: 'power2.out' })
             .from('#scramble-text',      { opacity: 0, y: 32, duration: 0.75, ease: 'power3.out' }, '-=0.25')
@@ -1353,19 +1372,50 @@ document.querySelectorAll('.soc-badge[title]').forEach(badge => {
             .from('.hero-stats',         { opacity: 0, y: 16, duration: 0.5,  ease: 'power2.out' }, '-=0.1')
             .from('.hero-image-wrapper', { opacity: 0, x: 30, duration: 0.85, ease: 'power3.out' }, '-=0.7')
             .from('.orbit-ring',         { opacity: 0, scale: 0.7, duration: 0.6, ease: 'back.out(1.4)' }, '-=0.5');
+    }
 
+    // Fire after boot loader dispatches 'boot:complete', hard fallback at 4.5s
+    let heroStarted = false;
+    function tryHero() {
+        if (heroStarted) return;
+        heroStarted = true;
+        startHeroAnimation();
+    }
+    window.addEventListener('boot:complete', tryHero, { once: true });
+    setTimeout(tryHero, 4500);
+
+    if (!reduced) {
         // Section background parallax
         document.querySelectorAll('.section-hardware-bg').forEach(section => {
             gsap.to(section, {
                 backgroundPositionY: '+=20%',
                 ease: 'none',
-                scrollTrigger: {
-                    trigger: section,
-                    start: 'top bottom',
-                    end: 'bottom top',
-                    scrub: 1.5,
-                }
+                scrollTrigger: { trigger: section, start: 'top bottom', end: 'bottom top', scrub: 1.5 }
             });
+        });
+
+        // Experience timeline stagger
+        ScrollTrigger.batch('.timeline-node', {
+            onEnter: batch => gsap.from(batch, {
+                opacity: 0, x: -28, stagger: 0.13, duration: 0.65, ease: 'power2.out', overwrite: true,
+            }),
+            start: 'top 82%', once: true,
+        });
+
+        // Toolkit cards cascade
+        ScrollTrigger.batch('.tool-card', {
+            onEnter: batch => gsap.from(batch, {
+                opacity: 0, y: 24, scale: 0.94, stagger: 0.055, duration: 0.5, ease: 'back.out(1.3)', overwrite: true,
+            }),
+            start: 'top 88%', once: true,
+        });
+
+        // Bento certifications cascade
+        ScrollTrigger.batch('.bento-card', {
+            onEnter: batch => gsap.from(batch, {
+                opacity: 0, y: 18, scale: 0.96, stagger: 0.08, duration: 0.5, ease: 'back.out(1.4)', overwrite: true,
+            }),
+            start: 'top 85%', once: true,
         });
     }
 })();
@@ -1423,7 +1473,217 @@ if (socTimeline) {
     autoIO.observe(projectsSection);
 })();
 
-// 13 ── Konami Code easter egg  (↑↑↓↓←→←→BA)
+// 13 ── Boot Loader sequence
+(function() {
+    const loader   = document.getElementById('boot-loader');
+    const log      = document.getElementById('boot-log');
+    const bar      = document.getElementById('boot-bar');
+    const status   = document.getElementById('boot-status');
+    if (!loader) return;
+
+    const msgs = [
+        { tag: 'tag-info', label: '[INIT]', text: 'Loading security modules...' },
+        { tag: 'tag-ok',   label: '[OK]',   text: 'Firewall active — 0 threats detected' },
+        { tag: 'tag-ok',   label: '[OK]',   text: 'Identity verified: AKBAR.MA // CEH' },
+        { tag: 'tag-ok',   label: '[BOOT]', text: 'System ready — Welcome, Analyst' },
+    ];
+
+    // Skip button
+    const skip = document.createElement('div');
+    skip.className = 'boot-skip';
+    skip.textContent = 'PRESS ANY KEY TO SKIP';
+    loader.appendChild(skip);
+
+    let done = false;
+    function complete() {
+        if (done) return;
+        done = true;
+        bar.style.width = '100%';
+        status.textContent = 'ACCESS GRANTED';
+        status.style.color = '#10b981';
+        setTimeout(() => {
+            loader.classList.add('fade-out');
+            setTimeout(() => {
+                loader.classList.add('gone');
+                window.dispatchEvent(new Event('boot:complete'));
+            }, 680);
+        }, 350);
+    }
+
+    // Auto-run sequence
+    msgs.forEach(({ tag, label, text }, i) => {
+        const pct = Math.round(((i + 1) / msgs.length) * 100);
+        setTimeout(() => {
+            const line = document.createElement('div');
+            line.className = 'boot-log-line';
+            line.innerHTML = `<span class="${tag}">${label}</span><span>${text}</span>`;
+            log.appendChild(line);
+            bar.style.width = pct + '%';
+            if (i === msgs.length - 1) setTimeout(complete, 480);
+        }, 420 + i * 550);
+    });
+
+    // Skip on any interaction
+    ['keydown', 'click', 'touchstart'].forEach(evt =>
+        document.addEventListener(evt, complete, { once: true })
+    );
+})();
+
+// 14 ── Toolkit filter
+(function() {
+    const btns  = document.querySelectorAll('.tool-filter-btn');
+    const cards = document.querySelectorAll('.tool-card');
+    if (!btns.length) return;
+
+    btns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            btns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const cat = btn.dataset.cat;
+            cards.forEach(card => {
+                const match = cat === 'all' || card.dataset.cat === cat;
+                card.classList.toggle('tool-hidden', !match);
+            });
+        });
+    });
+})();
+
+// 15 ── Section dot navigation
+(function() {
+    const items = document.querySelectorAll('.dot-nav-item');
+    if (!items.length) return;
+
+    items.forEach(item => {
+        item.addEventListener('click', () => {
+            const target = document.getElementById(item.dataset.target);
+            if (target) target.scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+
+    const allSections = document.querySelectorAll('section[id]');
+    const io = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            const id = entry.target.id;
+            items.forEach(item => item.classList.toggle('active', item.dataset.target === id));
+        });
+    }, { threshold: 0.4 });
+
+    allSections.forEach(s => io.observe(s));
+})();
+
+// 16 ── Custom right-click context menu
+(function() {
+    const menu = document.getElementById('ctx-menu');
+    if (!menu) return;
+
+    function show(x, y) {
+        const vw = window.innerWidth, vh = window.innerHeight;
+        const mw = 224, mh = 220;
+        menu.style.left = Math.min(x, vw - mw - 8) + 'px';
+        menu.style.top  = Math.min(y, vh - mh - 8) + 'px';
+        menu.classList.add('visible');
+    }
+    function hide() { menu.classList.remove('visible'); }
+
+    document.addEventListener('contextmenu', e => {
+        e.preventDefault();
+        show(e.clientX, e.clientY);
+    });
+    document.addEventListener('click', hide);
+    document.addEventListener('scroll', hide, { passive: true });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') hide(); });
+
+    document.getElementById('ctx-copy-url').addEventListener('click', () => {
+        navigator.clipboard.writeText(window.location.href).catch(() => {});
+        hide();
+    });
+    document.getElementById('ctx-download-cv').addEventListener('click', () => {
+        document.getElementById('download-cv-btn')?.click();
+        hide();
+    });
+    document.getElementById('ctx-view-source').addEventListener('click', () => {
+        window.open('view-source:' + window.location.href, '_blank');
+        hide();
+    });
+    document.getElementById('ctx-shortcuts').addEventListener('click', () => {
+        document.getElementById('shortcuts-modal').classList.add('visible');
+        hide();
+    });
+    document.getElementById('ctx-contact').addEventListener('click', () => {
+        document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        hide();
+    });
+})();
+
+// 17 ── Keyboard shortcuts modal + hotkeys
+(function() {
+    const modal = document.getElementById('shortcuts-modal');
+    const closeBtn = document.getElementById('close-shortcuts');
+    if (!modal) return;
+
+    function open()  { modal.classList.add('visible'); }
+    function close() { modal.classList.remove('visible'); }
+
+    closeBtn?.addEventListener('click', close);
+    modal.addEventListener('click', e => { if (e.target === modal) close(); });
+
+    // Hotkey engine (g+key navigation + ? for shortcuts)
+    let gPressed = false, gTimer;
+    document.addEventListener('keydown', e => {
+        // Ignore if typing in input/textarea
+        if (['INPUT','TEXTAREA'].includes(document.activeElement.tagName)) return;
+
+        if (e.key === '?') { modal.classList.toggle('visible'); return; }
+        if (e.key === 'Escape') { close(); return; }
+
+        // / focuses terminal
+        if (e.key === '/') {
+            e.preventDefault();
+            const input = document.getElementById('term-input');
+            if (input) { input.focus(); document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' }); }
+            return;
+        }
+
+        // g+letter navigation
+        if (e.key.toLowerCase() === 'g') {
+            gPressed = true;
+            clearTimeout(gTimer);
+            gTimer = setTimeout(() => { gPressed = false; }, 1000);
+            return;
+        }
+        if (gPressed) {
+            gPressed = false;
+            const map = { h: 'home', p: 'projects', e: 'experience', c: 'contact', t: 'tools', a: 'about' };
+            const target = map[e.key.toLowerCase()];
+            if (target) document.getElementById(target)?.scrollIntoView({ behavior: 'smooth' });
+        }
+    });
+})();
+
+// 18 ── Floating background code fragments
+(function() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const words = [
+        '0xDEADBEEF', 'CVE-2024', 'PAYLOAD', '#!/usr/bin/env', 'root@kali',
+        '443/tcp open', 'nmap -sV', 'SELECT * FROM', '200 OK', 'sudo su',
+        '/bin/bash', 'XSS', 'SQLi', 'MITM', '256-AES', 'RSA-4096',
+        'chmod 700', 'iptables', 'OWASP', 'hydra -l',
+    ];
+    for (let i = 0; i < 18; i++) {
+        const el = document.createElement('div');
+        el.className = 'code-frag';
+        el.textContent = words[i % words.length];
+        el.style.cssText = [
+            `left:${Math.random() * 98}vw`,
+            `animation-duration:${14 + Math.random() * 22}s`,
+            `animation-delay:${Math.random() * 18}s`,
+        ].join(';');
+        document.body.appendChild(el);
+    }
+})();
+
+// 19 ── Konami Code easter egg  (↑↑↓↓←→←→BA)
 (function() {
     const SEQ = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
     let idx = 0;
