@@ -76,8 +76,14 @@ const observer = new IntersectionObserver((entries, observer) => {
     });
 }, observerOptions);
 
+// Mark hero elements as CSS-visible immediately so GSAP can take exclusive control
+document.querySelectorAll('#home .fade-in-up').forEach(el => el.classList.add('visible'));
+
+// Observe all non-hero fade-in-up elements
 document.querySelectorAll('.fade-in-up').forEach(element => {
-    observer.observe(element);
+    if (!element.closest('#home')) {
+        observer.observe(element);
+    }
 });
 
 // Copy to Clipboard Utility
@@ -1328,7 +1334,96 @@ document.querySelectorAll('.soc-badge[title]').forEach(badge => {
     badge.appendChild(tip);
 });
 
-// 9 ── Konami Code easter egg  (↑↑↓↓←→←→BA)
+// 9 ── GSAP Hero Entrance + ScrollTrigger
+(function() {
+    if (!window.gsap) return;
+    gsap.registerPlugin(ScrollTrigger);
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (!reduced) {
+        // Cinematic hero boot sequence
+        const heroTL = gsap.timeline({ delay: 0.15 });
+        heroTL
+            .from('.soc-subtitle',       { opacity: 0, y: 22, duration: 0.65, ease: 'power2.out' })
+            .from('#scramble-text',      { opacity: 0, y: 32, duration: 0.75, ease: 'power3.out' }, '-=0.25')
+            .from('.hero-desc',          { opacity: 0, y: 20, duration: 0.6,  ease: 'power2.out' }, '-=0.3')
+            .from('.motto-row',          { opacity: 0, y: 16, duration: 0.5,  ease: 'power2.out' }, '-=0.2')
+            .from('#threat-feed',        { opacity: 0, y: 12, duration: 0.5,  ease: 'power2.out' }, '-=0.15')
+            .from('.soc-cta-group',      { opacity: 0, y: 16, duration: 0.5,  ease: 'power2.out' }, '-=0.1')
+            .from('.hero-stats',         { opacity: 0, y: 16, duration: 0.5,  ease: 'power2.out' }, '-=0.1')
+            .from('.hero-image-wrapper', { opacity: 0, x: 30, duration: 0.85, ease: 'power3.out' }, '-=0.7')
+            .from('.orbit-ring',         { opacity: 0, scale: 0.7, duration: 0.6, ease: 'back.out(1.4)' }, '-=0.5');
+
+        // Section background parallax
+        document.querySelectorAll('.section-hardware-bg').forEach(section => {
+            gsap.to(section, {
+                backgroundPositionY: '+=20%',
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: section,
+                    start: 'top bottom',
+                    end: 'bottom top',
+                    scrub: 1.5,
+                }
+            });
+        });
+    }
+})();
+
+// 10 ── Button click ripple
+document.querySelectorAll('.soc-btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        const rect = this.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const wave = document.createElement('span');
+        wave.className = 'btn-ripple-wave';
+        wave.style.cssText = `width:${size}px;height:${size}px;left:${e.clientX - rect.left - size / 2}px;top:${e.clientY - rect.top - size / 2}px;`;
+        this.appendChild(wave);
+        wave.addEventListener('animationend', () => wave.remove());
+    });
+});
+
+// 11 ── Timeline line draw-in on scroll
+const socTimeline = document.querySelector('.soc-timeline');
+if (socTimeline) {
+    const lineIO = new IntersectionObserver(entries => {
+        if (!entries[0].isIntersecting) return;
+        socTimeline.classList.add('line-drawn');
+        lineIO.disconnect();
+    }, { threshold: 0.1 });
+    lineIO.observe(socTimeline);
+}
+
+// 12 ── Terminal auto-type "ls" when Projects section scrolls into view
+(function() {
+    const projectsSection = document.getElementById('projects');
+    const termIn = document.getElementById('term-input');
+    if (!projectsSection || !termIn) return;
+    let triggered = false;
+    const autoIO = new IntersectionObserver(entries => {
+        if (!entries[0].isIntersecting || triggered) return;
+        triggered = true;
+        autoIO.disconnect();
+        setTimeout(() => {
+            const cmd = 'ls';
+            let i = 0;
+            const tick = setInterval(() => {
+                if (i < cmd.length) {
+                    termIn.value += cmd[i++];
+                } else {
+                    clearInterval(tick);
+                    setTimeout(() => {
+                        termIn.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter', bubbles: true }));
+                    }, 450);
+                }
+            }, 80);
+        }, 900);
+    }, { threshold: 0.45 });
+    autoIO.observe(projectsSection);
+})();
+
+// 13 ── Konami Code easter egg  (↑↑↓↓←→←→BA)
 (function() {
     const SEQ = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
     let idx = 0;
