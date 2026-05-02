@@ -30,9 +30,33 @@ const sections = document.querySelectorAll('section');
 const navLinks = document.querySelectorAll('.nav-links a');
 const nav = document.querySelector('.soc-nav');
 
+// Smooth scroll for navigation links
+navLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href && href.startsWith('#')) {
+            e.preventDefault();
+            const target = document.querySelector(href);
+            if (target) {
+                // Close mobile menu if open
+                const navLinksContainer = document.getElementById('nav-links');
+                const hamburger = document.getElementById('nav-hamburger');
+                if (navLinksContainer && navLinksContainer.classList.contains('open')) {
+                    navLinksContainer.classList.remove('open');
+                    if (hamburger) {
+                        hamburger.classList.remove('open');
+                        hamburger.setAttribute('aria-expanded', 'false');
+                    }
+                }
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+    });
+});
+
 window.addEventListener('scroll', () => {
     let current = '';
-    
+
     // Determine active section
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
@@ -55,7 +79,7 @@ window.addEventListener('scroll', () => {
         nav.style.background = 'rgba(7, 9, 15, 0.95)';
         nav.style.boxShadow = '0 4px 6px -1px rgb(0 0 0 / 0.5)';
     } else {
-        nav.style.background = 'rgba(7, 9, 15, 0.9)';
+        nav.style.background = 'rgba(7, 9, 15, 0.75)';
         nav.style.boxShadow = 'none';
     }
 });
@@ -1967,20 +1991,21 @@ document.querySelectorAll('.experience-card .soc-list').forEach(list => {
 // 19 ── Profile picture: dramatic scan-on-click
 (function() {
     const pic    = document.getElementById('profile-pic');
-    const status = document.querySelector('.hud-status');
+    const overlay = document.querySelector('.profile-overlay .soc-accent');
+    const img    = document.querySelector('.profile-img');
     if (!pic) return;
     pic.addEventListener('click', () => {
-        const scanLine = document.querySelector('.hud-scanner-line');
-        if (scanLine) {
-            scanLine.style.animation = 'none';
-            requestAnimationFrame(() => { scanLine.style.animation = ''; });
+        if (overlay) {
+            const originalText = overlay.textContent;
+            overlay.textContent = 'SCANNING...';
+            overlay.style.color = '#f59e0b';
+            setTimeout(() => {
+                overlay.textContent = originalText;
+                overlay.style.color = '';
+            }, 1800);
         }
-        if (status) {
-            status.innerHTML = 'STATUS: <span style="color:#f59e0b">SCANNING...</span>';
-            setTimeout(() => { status.innerHTML = 'STATUS: <span class="soc-accent">VERIFIED</span>'; }, 1800);
-        }
-        if (window.gsap) {
-            gsap.fromTo(pic,
+        if (img && window.gsap) {
+            gsap.fromTo(img,
                 { filter: 'brightness(2.2) saturate(0)' },
                 { filter: 'brightness(1) saturate(1)', duration: 1.6, ease: 'power2.out' }
             );
