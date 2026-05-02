@@ -48,3 +48,125 @@ Sticky "Emergency" CV: Add a fixed "Download CV" button that looks like a "Syste
 Mobile "Thumb-Friendly" Navigation: Your current nav is great, but ensure the "AEGIS Bot" input doesn't get covered by the mobile keyboard.
 
 Animated Favicon: Since you have a terminal icon, you can use a small script to make the >_ cursor blink in the browser tab!
+
+cross check the blow given details and update the details
+
+Summary
+A motivated and personable graduate in Advanced Diploma In Cyber Defense, seeking an opportunity to work in a challenging environment which may help learn and be motivated by the company to make the best of knowledge. “I can do” attitude in every difficult job, punctual and honest. Highly organized and dedicated, with a positive thinking, able to handle multiple assignments under high pressure. Have good interpersonal communication skills.
+
+Overview
+2
+years of professional experience
+1
+Certification
+Work History
+Cyber Security Researcher
+Offenso Hackers' Academy
+Cochin, India
+03.2023 - 06.2024
+Show Description
+Hardware/Software Technician
+I Mate Solutions
+Kothamangalam, Kerala
+Show Description
+Relationship Manager
+Indus Nexa Pvt Ltd.
+Cochin, India
+01.2022 - 12.2022
+Show Description
+Volunteer
+Kerala Police Cyber Dome
+Remote
+Show Description
+Education
+Advanced Diploma - Advanced Diploma In Cyber Defence
+Redteam Hackery Academy
+Cochin, Kerala
+11.2022
+Show Description
+SSLC & PLUS TWO -
+St. Joseph's HSS
+Paingottoor, Kerala
+2021
+Show Description
+Skills
+Network Basics Testing Automated & Manual
+Social Engineering (Phishing) Operation
+OSINT
+OWASP
+Systems Linux & Windows
+Penetration Vulnerability Analysis
+Programming Languages (Basics in HTTP, PHP, JAVA, PYTHON and C)
+Good in English Typing/Data Entry Knows MS Office & Photoshop
+Completed 6 months course in Computer Hardware and Software Training
+Information Security
+Web Application Penetration testing
+Knowing in Hacking Phases
+Practical Skills In Try hack me & Hack The Box
+Google Dorking
+Operating System Knowledge
+System Troubleshooting
+Hardware Installation
+Cybersecurity Practices
+Additional Information
+Participated in SEASIDES CONFERENCE in GOA, INDIA.
+Acknowledgement from PayTM Bug Bounty Program For Finding Vulnerability In Banking Application.
+Completed Practical Workshops Of 'Unlocking The World Of Ethical Hacking' & 'Exploring Innovative Strategies in SOC'
+Certification
+Certified Ethical Hacker V11
+Google Ads Search Certification
+Languages
+English
+Malayalam (Mother Tongue)
+Hindi
+Tamil
+Tools Used
+Splunk
+Burp Suite
+SQL Map
+Metasploit Framework
+Hydra
+Nmap
+Nikto
+Nuclei
+WP Scan
+Nessus
+Aircrack-ng
+Wireshark
+Social Engineering Toolkit
+Other Details
+Driving license details : Holding Indian Light Motor (two & four wheel) license valid upto 08.09.2042
+Extra-curricular activities : Won several prizes in Sports competitions during my school days
+Projects
+Penetration testing
+Cisco Packet Tracer
+To test the machine Redteam Vulnerability
+Create a sample network for packet testing
+Declaration
+I hereby declare that whatever stated herein above is true, complete and correct to the best of my knowledge and belief.
+
+
+
+Dubai,UAE
+
+Date : 23/07/2024                                                               Akbar MA
+
+
+
+
+
+Timeline
+Cyber Security Researcher
+Offenso Hackers' Academy
+03.2023 - 06.2024
+Relationship Manager
+Indus Nexa Pvt Ltd.
+01.2022 - 12.2022
+Hardware/Software Technician
+I Mate Solutions
+Volunteer
+Kerala Police Cyber Dome
+Advanced Diploma - Advanced Diploma In Cyber Defence
+Redteam Hackery Academy
+SSLC & PLUS TWO -
+St. Joseph's HSS
