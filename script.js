@@ -1394,30 +1394,312 @@ document.querySelectorAll('.soc-badge[title]').forEach(badge => {
             });
         });
 
-        // Experience timeline stagger
+        // ── STORY: Experience timeline — alternating L/R entrance (dialogue style)
         ScrollTrigger.batch('.timeline-node', {
-            onEnter: batch => gsap.from(batch, {
-                opacity: 0, x: -28, stagger: 0.13, duration: 0.65, ease: 'power2.out', overwrite: true,
-            }),
-            start: 'top 82%', once: true,
+            onEnter: batch => {
+                const allNodes = gsap.utils.toArray('.timeline-node');
+                batch.forEach((el, i) => {
+                    el.classList.add('visible');
+                    el.style.setProperty('transition', 'none', 'important');
+                    const globalIdx = allNodes.indexOf(el);
+                    gsap.fromTo(el,
+                        { opacity: 0, x: globalIdx % 2 === 0 ? -38 : 38, scale: 0.97 },
+                        { opacity: 1, x: 0, scale: 1, duration: 0.45, ease: 'power3.out',
+                          delay: i * 0.08,
+                          onComplete() { el.style.removeProperty('transition'); } }
+                    );
+                });
+            },
+            start: 'top 80%', once: true,
         });
 
-        // Toolkit cards cascade
+        // Toolkit cards cascade (no fade-in-up conflict)
         ScrollTrigger.batch('.tool-card', {
-            onEnter: batch => gsap.from(batch, {
-                opacity: 0, y: 24, scale: 0.94, stagger: 0.055, duration: 0.5, ease: 'back.out(1.3)', overwrite: true,
-            }),
+            onEnter: batch => gsap.fromTo(batch,
+                { opacity: 0, y: 26, scale: 0.92 },
+                { opacity: 1, y: 0, scale: 1, stagger: 0.055, duration: 0.5, ease: 'back.out(1.4)' }
+            ),
             start: 'top 88%', once: true,
         });
 
-        // Bento certifications cascade
+        // ── STORY: Bento/cert cards — cert cards flip in 3D, others slide up
         ScrollTrigger.batch('.bento-card', {
-            onEnter: batch => gsap.from(batch, {
-                opacity: 0, y: 18, scale: 0.96, stagger: 0.08, duration: 0.5, ease: 'back.out(1.4)', overwrite: true,
-            }),
+            onEnter: batch => {
+                const certSection = document.getElementById('certifications');
+                batch.forEach((el, i) => {
+                    el.classList.add('visible');
+                    el.style.setProperty('transition', 'none', 'important');
+                    const isCert = certSection && certSection.contains(el);
+                    if (isCert) {
+                        gsap.fromTo(el,
+                            { opacity: 0, rotateY: -80, scale: 0.95, transformOrigin: 'center center' },
+                            { opacity: 1, rotateY: 0, scale: 1, duration: 0.48, ease: 'power2.out',
+                              delay: i * 0.07,
+                              onComplete() { el.style.removeProperty('transition'); } }
+                        );
+                    } else {
+                        gsap.fromTo(el,
+                            { opacity: 0, y: 20, scale: 0.95 },
+                            { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: 'back.out(1.4)',
+                              delay: i * 0.07,
+                              onComplete() { el.style.removeProperty('transition'); } }
+                        );
+                    }
+                });
+            },
             start: 'top 85%', once: true,
         });
+
+        // ══════════════════════════════════════════
+        // STORY MODE ANIMATIONS
+        // ══════════════════════════════════════════
+
+        // STORY 1 — Career Evolution: PINNED cinematic scroll-driven chapter
+        (function() {
+            const evoStages = gsap.utils.toArray('.evo-stage');
+            const origin    = document.querySelector('#origin');
+            if (!evoStages.length || !origin) return;
+
+            const isMobile = window.innerWidth < 768;
+            gsap.set(evoStages, { opacity: 0, y: isMobile ? 40 : 65, scale: 0.84 });
+            const connFill = document.querySelector('.evo-connector-fill');
+            if (connFill) gsap.set(connFill, { scaleX: 0, transformOrigin: 'left center' });
+
+            if (isMobile) {
+                // Mobile: simple stagger (no pin — too disorienting on small screens)
+                const mobTL = gsap.timeline({
+                    scrollTrigger: { trigger: origin, start: 'top 62%', toggleActions: 'play none none reverse' }
+                });
+                if (connFill) mobTL.to(connFill, { scaleX: 1, duration: 1.0, ease: 'power2.inOut' }, 0);
+                evoStages.forEach((stage, i) => {
+                    mobTL.to(stage, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: 'back.out(1.5)' }, 0.1 + i * 0.22);
+                });
+                return;
+            }
+
+            // Desktop: pinned scroll-driven chapter reveal
+            const pinTL = gsap.timeline({
+                scrollTrigger: {
+                    trigger: origin,
+                    start: 'top top',
+                    end: '+=900',
+                    pin: true,
+                    scrub: 0.5,
+                    anticipatePin: 1,
+                }
+            });
+
+            if (connFill) pinTL.to(connFill, { scaleX: 1, duration: 2.8, ease: 'none' }, 0);
+
+            evoStages.forEach((stage, i) => {
+                pinTL.fromTo(stage,
+                    { opacity: 0, y: 50, scale: 0.85 },
+                    { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: 'back.out(1.4)' },
+                    i * 0.7
+                );
+                const iconWrap = stage.querySelector('.evo-icon-wrap');
+                if (iconWrap) {
+                    pinTL.fromTo(iconWrap,
+                        { '--scan-pos': '-100%' },
+                        { '--scan-pos': '200%', duration: 0.35, ease: 'power2.inOut' },
+                        i * 0.7 + 0.2
+                    );
+                }
+                pinTL.call(() => stage.classList.add('stage-live'), [], i * 0.7 + 0.4);
+            });
+        })();
+
+        // STORY 2 — Section headings: clip-path wipe reveal (L→R cinematic)
+        document.querySelectorAll('.soc-section-title').forEach(titleEl => {
+            if (titleEl.closest('#home')) return;
+            titleEl.classList.add('gsap-clip-init');
+            gsap.fromTo(titleEl,
+                { clipPath: 'inset(0 100% 0 0)' },
+                { clipPath: 'inset(0 0% 0 0)', duration: 0.85, ease: 'power3.inOut',
+                  scrollTrigger: { trigger: titleEl, start: 'top 84%', once: true } }
+            );
+        });
+
+        // STORY 3 — Timeline vertical line: scroll-scrubbed draw
+        (function() {
+            const lineEl = document.querySelector('.timeline-draw-line');
+            if (!lineEl) return;
+            gsap.fromTo(lineEl,
+                { scaleY: 0 },
+                { scaleY: 1, ease: 'none',
+                  scrollTrigger: { trigger: '.soc-timeline', start: 'top 65%', end: 'bottom 35%', scrub: 1 } }
+            );
+        })();
+
+        // STORY 4 — About section: cards enter with depth stagger (z-axis pop)
+        ScrollTrigger.batch('#about .soc-card', {
+            onEnter: batch => {
+                batch.forEach(el => {
+                    el.classList.add('visible');
+                    el.style.setProperty('transition', 'none', 'important');
+                });
+                gsap.fromTo(batch,
+                    { opacity: 0, y: 40, rotateX: 12 },
+                    { opacity: 1, y: 0, rotateX: 0, stagger: 0.12, duration: 0.7, ease: 'power3.out',
+                      onComplete() { batch.forEach(el => el.style.removeProperty('transition')); } }
+                );
+            },
+            start: 'top 80%', once: true,
+        });
+
+        // STORY 5 — Contact section: scan-in from centre
+        (function() {
+            const contactCard = document.querySelector('.contact-card');
+            if (!contactCard) return;
+            contactCard.classList.add('visible');
+            contactCard.style.setProperty('transition', 'none', 'important');
+            gsap.fromTo(contactCard,
+                { opacity: 0, scale: 0.92, y: 30 },
+                { opacity: 1, scale: 1, y: 0, duration: 0.8, ease: 'power3.out',
+                  scrollTrigger: { trigger: contactCard, start: 'top 78%', once: true },
+                  onComplete() { contactCard.style.removeProperty('transition'); } }
+            );
+        })();
+
+        // STORY 6 — Scroll-linked ambient background hue shift
+        (function() {
+            const body = document.body;
+            ScrollTrigger.create({
+                trigger: body,
+                start: 'top top',
+                end: 'bottom bottom',
+                scrub: 3,
+                onUpdate: self => {
+                    const hue = 210 + Math.sin(self.progress * Math.PI * 1.5) * 18;
+                    body.style.setProperty('--scroll-hue', hue.toFixed(1));
+                }
+            });
+        })();
+
+        // STORY 7 — Scroll velocity tilt: cards subtly tilt with scroll momentum
+        (function() {
+            const tiltTargets = gsap.utils.toArray('.soc-card, .bento-card, .tool-card');
+            if (!tiltTargets.length) return;
+            let lastTilt = 0;
+            ScrollTrigger.create({
+                trigger: document.body,
+                start: 'top top',
+                end: 'bottom bottom',
+                onUpdate: self => {
+                    const vel = self.getVelocity();
+                    const tilt = gsap.utils.clamp(-3.5, 3.5, vel * 0.0025);
+                    if (Math.abs(tilt - lastTilt) < 0.08) return;
+                    lastTilt = tilt;
+                    gsap.to(tiltTargets, {
+                        rotateX: -tilt * 0.45,
+                        duration: 0.4,
+                        ease: 'power2.out',
+                        overwrite: 'auto',
+                    });
+                }
+            });
+            ScrollTrigger.addEventListener('scrollEnd', () => {
+                gsap.to(tiltTargets, { rotateX: 0, duration: 0.7, ease: 'elastic.out(1, 0.5)' });
+            });
+        })();
     }
+})();
+
+// ── H1 periodic glitch effect ──────────────────────────────────────────────
+(function() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const h1 = document.querySelector('#home h1');
+    if (!h1) return;
+    h1.classList.add('hero-h1-glitch');
+    h1.dataset.text = h1.textContent;
+
+    function glitch() {
+        h1.classList.add('glitching');
+        setTimeout(() => h1.classList.remove('glitching'), 340);
+    }
+    function schedule() {
+        setTimeout(() => { glitch(); schedule(); }, 6500 + Math.random() * 7000);
+    }
+    setTimeout(schedule, 5000);
+    h1.addEventListener('mouseenter', () => { if (!h1.classList.contains('glitching')) glitch(); });
+})();
+
+// ── Chapter flash overlay ──────────────────────────────────────────────────
+(function() {
+    const overlay = document.getElementById('chapter-overlay');
+    if (!overlay) return;
+    const numEl   = document.getElementById('chapter-num');
+    const titleEl = document.getElementById('chapter-title');
+    const subEl   = document.getElementById('chapter-sub');
+    if (!numEl || !titleEl || !subEl) return;
+
+    const chapters = [
+        { section: 'about',          num: 'CHAPTER 01', title: 'ANALYST PROFILE',    sub: '// IDENTITY CONFIRMED' },
+        { section: 'origin',         num: 'CHAPTER 02', title: 'ORIGIN STORY',        sub: '// CAREER EVOLUTION' },
+        { section: 'projects',       num: 'CHAPTER 03', title: 'PROOF OF WORK',       sub: '// OPERATIONS LOG' },
+        { section: 'tools',          num: 'CHAPTER 04', title: 'ARSENAL',             sub: '// TOOLKIT DEPLOYED' },
+        { section: 'experience',     num: 'CHAPTER 05', title: 'FIELD RECORD',        sub: '// OPERATIONAL HISTORY' },
+        { section: 'freelance',      num: 'CHAPTER 06', title: 'SERVICES ONLINE',     sub: '// AVAILABLE FOR HIRE' },
+        { section: 'certifications', num: 'CHAPTER 07', title: 'CREDENTIALS',         sub: '// AUTHORITY VERIFIED' },
+        { section: 'contact',        num: 'CHAPTER 08', title: 'ESTABLISH LINK',      sub: '// OPEN CHANNEL' },
+    ];
+
+    let lastTriggered = '';
+    const io = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            const ch = chapters.find(c => c.section === entry.target.id);
+            if (!ch || ch.section === lastTriggered) return;
+            lastTriggered = ch.section;
+            numEl.textContent   = ch.num;
+            titleEl.textContent = ch.title;
+            subEl.textContent   = ch.sub;
+            overlay.classList.remove('flash-in');
+            void overlay.offsetWidth;
+            overlay.classList.add('flash-in');
+        });
+    }, { threshold: 0.22, rootMargin: '-8% 0px -8% 0px' });
+
+    chapters.forEach(({ section }) => {
+        const el = document.getElementById(section);
+        if (el) io.observe(el);
+    });
+})();
+
+// ── Story chapter progress nav ─────────────────────────────────────────────
+(function() {
+    const nav   = document.getElementById('story-nav');
+    if (!nav) return;
+    const dots  = nav.querySelectorAll('.snav-dot');
+    const label = document.getElementById('snav-label');
+    if (!dots.length) return;
+
+    const chapterNames = ['HOME', 'ABOUT', 'CAREER', 'PROJECTS', 'TOOLKIT', 'EXPERIENCE', 'SERVICES', 'CERTS', 'CONTACT'];
+    const sectionIds   = ['home', 'about', 'origin', 'projects', 'tools', 'experience', 'freelance', 'certifications', 'contact'];
+
+    window.addEventListener('boot:complete', () => setTimeout(() => nav.classList.add('visible'), 1400));
+
+    dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => {
+            const el = document.getElementById(sectionIds[i]);
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+
+    const io = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            const idx = sectionIds.indexOf(entry.target.id);
+            if (idx < 0) return;
+            dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+            if (label) label.textContent = chapterNames[idx];
+        });
+    }, { threshold: 0.45 });
+
+    sectionIds.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) io.observe(el);
+    });
 })();
 
 // 10 ── Button click ripple
@@ -1637,14 +1919,6 @@ if (socTimeline) {
         if (e.key === '?') { modal.classList.toggle('visible'); return; }
         if (e.key === 'Escape') { close(); return; }
 
-        // / focuses terminal
-        if (e.key === '/') {
-            e.preventDefault();
-            const input = document.getElementById('term-input');
-            if (input) { input.focus(); document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' }); }
-            return;
-        }
-
         // g+letter navigation
         if (e.key.toLowerCase() === 'g') {
             gPressed = true;
@@ -1654,14 +1928,88 @@ if (socTimeline) {
         }
         if (gPressed) {
             gPressed = false;
-            const map = { h: 'home', p: 'projects', e: 'experience', c: 'contact', t: 'tools', a: 'about' };
+            const map = { h: 'home', p: 'projects', e: 'experience', c: 'contact', t: 'tools', a: 'about', s: 'freelance' };
             const target = map[e.key.toLowerCase()];
             if (target) document.getElementById(target)?.scrollIntoView({ behavior: 'smooth' });
         }
     });
 })();
 
-// 18 ── Floating background code fragments
+// 18 ── Expandable experience card bullet lists
+document.querySelectorAll('.experience-card .soc-list').forEach(list => {
+    const items = Array.from(list.querySelectorAll(':scope > li'));
+    if (items.length <= 2) return;
+
+    const group = document.createElement('div');
+    group.className = 'expand-group';
+    items.slice(2).forEach(li => group.appendChild(li));
+    list.appendChild(group);
+
+    const toggle = document.createElement('button');
+    toggle.className = 'expand-toggle';
+    toggle.innerHTML = '<i class="fa-solid fa-chevron-down"></i> Show more';
+    toggle.addEventListener('click', () => {
+        const open = group.classList.toggle('expanded');
+        toggle.classList.toggle('open', open);
+        toggle.innerHTML = open
+            ? '<i class="fa-solid fa-chevron-up"></i> Show less'
+            : '<i class="fa-solid fa-chevron-down"></i> Show more';
+        if (open && window.gsap) {
+            gsap.fromTo(Array.from(group.querySelectorAll('li')),
+                { opacity: 0, x: -12 },
+                { opacity: 1, x: 0, stagger: 0.08, duration: 0.4, ease: 'power2.out' }
+            );
+        }
+    });
+    list.appendChild(toggle);
+});
+
+// 19 ── Profile picture: dramatic scan-on-click
+(function() {
+    const pic    = document.getElementById('profile-pic');
+    const status = document.querySelector('.hud-status');
+    if (!pic) return;
+    pic.addEventListener('click', () => {
+        const scanLine = document.querySelector('.hud-scanner-line');
+        if (scanLine) {
+            scanLine.style.animation = 'none';
+            requestAnimationFrame(() => { scanLine.style.animation = ''; });
+        }
+        if (status) {
+            status.innerHTML = 'STATUS: <span style="color:#f59e0b">SCANNING...</span>';
+            setTimeout(() => { status.innerHTML = 'STATUS: <span class="soc-accent">VERIFIED</span>'; }, 1800);
+        }
+        if (window.gsap) {
+            gsap.fromTo(pic,
+                { filter: 'brightness(2.2) saturate(0)' },
+                { filter: 'brightness(1) saturate(1)', duration: 1.6, ease: 'power2.out' }
+            );
+        }
+    });
+})();
+
+// 20 ── Toolkit live search
+(function() {
+    const grid = document.getElementById('tools-grid');
+    if (!grid) return;
+    const searchEl = document.createElement('input');
+    searchEl.type        = 'text';
+    searchEl.placeholder = 'Search tools...';
+    searchEl.className   = 'tool-search';
+    searchEl.setAttribute('aria-label', 'Search toolkit');
+    grid.closest('section').insertBefore(searchEl, grid);
+
+    searchEl.addEventListener('input', () => {
+        const q = searchEl.value.trim().toLowerCase();
+        document.querySelectorAll('.tool-card').forEach(card => {
+            const name = card.querySelector('.tool-name')?.textContent.toLowerCase() || '';
+            const desc = card.querySelector('.tool-desc')?.textContent.toLowerCase() || '';
+            card.classList.toggle('tool-hidden', q !== '' && !name.includes(q) && !desc.includes(q));
+        });
+    });
+})();
+
+// 21 ── Floating background code fragments
 (function() {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const words = [
@@ -1683,7 +2031,7 @@ if (socTimeline) {
     }
 })();
 
-// 19 ── Konami Code easter egg  (↑↑↓↓←→←→BA)
+// 22 ── Konami Code easter egg  (↑↑↓↓←→←→BA)
 (function() {
     const SEQ = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
     let idx = 0;
