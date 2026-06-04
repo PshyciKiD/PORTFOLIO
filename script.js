@@ -71,7 +71,7 @@ function copyToClipboard(text, btnElement) {
         const icon = btnElement.querySelector('i');
         const orig = icon.className;
         icon.className = 'fa-solid fa-check';
-        icon.style.color = 'var(--accent)';
+        icon.style.color = 'var(--ac)';
         setTimeout(() => { icon.className = orig; icon.style.color = ''; }, 2000);
     }).catch(() => {});
 }
@@ -377,20 +377,40 @@ document.querySelectorAll('.soc-badge[title]').forEach(badge => {
     gsap.registerPlugin(ScrollTrigger);
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // Hero entrance — split layout: photo slides left, text fades right
+    // Hero entrance — split layout
+    // gsap.set() fires synchronously before any CSS transition can interfere,
+    // then .to() animates to an explicit target — no mid-transition opacity-read bug.
     if (!reduced) {
-        const heroTL = gsap.timeline({ delay: 0.1 });
+        gsap.set('.hero-photo-col',   { opacity: 0, x: -80 });
+        gsap.set('.hero-photo-badge', { opacity: 0, y: 18 });
+        gsap.set('.founder-badge',    { opacity: 0, y: 20 });
+        gsap.set('.soc-subtitle',     { opacity: 0, y: 16 });
+        gsap.set('#scramble-text',    { opacity: 0, y: 28 });
+        gsap.set('.hero-desc',        { opacity: 0, y: 16 });
+        gsap.set('.motto-row',        { opacity: 0, y: 14 });
+        gsap.set('.soc-cta-group',    { opacity: 0, y: 14 });
+        gsap.set('.hero-stats',       { opacity: 0, y: 12 });
+        gsap.set('.hero-scroll-hint', { opacity: 0, y: 8 });
+
+        const heroTL = gsap.timeline({
+            delay: 0.15,
+            onComplete() {
+                // Clear transform so badge-float CSS animation can take effect
+                gsap.set('.hero-photo-badge', { clearProps: 'transform' });
+                gsap.set('.hero-photo-col',   { clearProps: 'x' });
+            }
+        });
         heroTL
-            .from('.hero-photo-col',    { opacity: 0, x: -80, duration: 1.1, ease: 'power3.out' })
-            .from('.hero-photo-badge',  { opacity: 0, y: 18,  duration: 0.5, ease: 'power2.out' }, '-=0.3')
-            .from('.founder-badge',     { opacity: 0, y: 20,  duration: 0.5, ease: 'power2.out' }, '-=0.65')
-            .from('.soc-subtitle',      { opacity: 0, y: 16,  duration: 0.5, ease: 'power2.out' }, '-=0.3')
-            .from('#scramble-text',     { opacity: 0, y: 30,  duration: 0.7, ease: 'power3.out' }, '-=0.25')
-            .from('.hero-desc',         { opacity: 0, y: 16,  duration: 0.5, ease: 'power2.out' }, '-=0.3')
-            .from('.motto-row',         { opacity: 0, y: 14,  duration: 0.4, ease: 'power2.out' }, '-=0.25')
-            .from('.soc-cta-group',     { opacity: 0, y: 14,  duration: 0.4, ease: 'power2.out' }, '-=0.2')
-            .from('.hero-stats',        { opacity: 0, y: 12,  duration: 0.4, ease: 'power2.out' }, '-=0.15')
-            .from('.hero-scroll-hint',  { opacity: 0, y: 8,   duration: 0.35, ease: 'power2.out' }, '-=0.1');
+            .to('.hero-photo-col',   { opacity: 1, x: 0, duration: 1.1,  ease: 'power3.out' })
+            .to('.hero-photo-badge', { opacity: 1, y: 0, duration: 0.5,  ease: 'power2.out' }, '-=0.3')
+            .to('.founder-badge',    { opacity: 1, y: 0, duration: 0.5,  ease: 'power2.out' }, '-=0.65')
+            .to('.soc-subtitle',     { opacity: 1, y: 0, duration: 0.5,  ease: 'power2.out' }, '-=0.3')
+            .to('#scramble-text',    { opacity: 1, y: 0, duration: 0.7,  ease: 'power3.out' }, '-=0.25')
+            .to('.hero-desc',        { opacity: 1, y: 0, duration: 0.5,  ease: 'power2.out' }, '-=0.3')
+            .to('.motto-row',        { opacity: 1, y: 0, duration: 0.4,  ease: 'power2.out' }, '-=0.25')
+            .to('.soc-cta-group',    { opacity: 1, y: 0, duration: 0.4,  ease: 'power2.out' }, '-=0.2')
+            .to('.hero-stats',       { opacity: 1, y: 0, duration: 0.4,  ease: 'power2.out' }, '-=0.15')
+            .to('.hero-scroll-hint', { opacity: 1, y: 0, duration: 0.35, ease: 'power2.out' }, '-=0.1');
     }
 
     if (!reduced) {
@@ -706,8 +726,8 @@ document.querySelectorAll('.experience-card .soc-list').forEach(list => {
         const overlay = document.createElement('div');
         overlay.style.cssText = 'position:fixed;inset:0;z-index:999999;background:rgba(0,0,0,0.96);display:flex;align-items:center;justify-content:center;cursor:pointer;';
         const msg = document.createElement('div');
-        msg.innerHTML = `<div style="font-family:'JetBrains Mono',monospace;color:#3B82F6;text-align:center;padding:20px">
-            <div style="font-size:2.8rem;font-weight:800;letter-spacing:-1px;text-shadow:0 0 25px #3B82F6">ACCESS GRANTED</div>
+        msg.innerHTML = `<div style="font-family:'JetBrains Mono',monospace;color:#C9A84C;text-align:center;padding:20px">
+            <div style="font-size:2.8rem;font-weight:800;letter-spacing:-1px;text-shadow:0 0 25px #C9A84C">ACCESS GRANTED</div>
             <div style="font-size:0.9rem;opacity:0.6;margin-top:10px">↑↑↓↓←→←→BA — nice one.</div>
             <div style="font-size:0.75rem;opacity:0.4;margin-top:6px">Click to dismiss.</div>
         </div>`;
