@@ -443,7 +443,8 @@ section { padding: 6rem 2rem; max-width: 1280px; margin: 0 auto; }
 .profile-photo-card { padding: 0; overflow: hidden; border: 1px solid var(--bd-l); }
 .profile-photo-single { overflow: hidden; }
 .profile-photo-main {
-  width: 100%; height: 320px; object-fit: cover; object-position: center 25%;
+  width: 100%; aspect-ratio: 3 / 4; height: auto;
+  object-fit: cover; object-position: center 20%;
   display: block; transition: transform 0.6s var(--ease), filter 0.4s;
 }
 .profile-photo-main:hover { transform: scale(1.04); filter: brightness(1.05); }
@@ -469,23 +470,37 @@ section { padding: 6rem 2rem; max-width: 1280px; margin: 0 auto; }
 }
 .skill-bar-fill.filled { width: var(--target-width); }
 
-/* Competency badges */
+/* Competency badges — always visible; CSS-only stagger entrance (bulletproof) */
 .soc-badge-list { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-.soc-badge-list.js-stagger .soc-badge {
-  opacity: 0; transform: translateY(6px);
-  transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
-}
-.soc-badge.badge-visible { opacity: 1; transform: translateY(0); }
 .soc-badge {
   display: inline-flex; align-items: center; gap: 0.4rem;
-  padding: 0.3rem 0.75rem; border-radius: var(--r);
-  background: rgba(255,255,255,0.06); border: 1px solid var(--bd-l);
+  padding: 0.34rem 0.8rem; border-radius: var(--r);
+  background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.22);
   font-size: 0.8rem; font-weight: 500; color: var(--ltx);
-  transition: border-color var(--dur), color var(--dur);
+  transition: border-color var(--dur), color var(--dur), background var(--dur), transform var(--dur);
   position: relative; cursor: default;
+  animation: badge-pop 0.45s var(--ease) both;
 }
-.soc-badge:hover { border-color: rgba(201,168,76,0.35); color: var(--ac-3); }
-.soc-badge i, .soc-badge [class^="devicon-"] { font-size: 0.75rem; color: var(--ac-3); flex-shrink: 0; }
+.soc-badge:hover {
+  border-color: rgba(201,168,76,0.5); color: var(--ac-3);
+  background: rgba(201,168,76,0.14); transform: translateY(-2px);
+}
+.soc-badge i, .soc-badge [class^="devicon-"] { font-size: 0.78rem; color: var(--ac-3); flex-shrink: 0; }
+@keyframes badge-pop {
+  from { opacity: 0; transform: translateY(7px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.soc-badge:nth-child(1)  { animation-delay: 0.02s; }
+.soc-badge:nth-child(2)  { animation-delay: 0.06s; }
+.soc-badge:nth-child(3)  { animation-delay: 0.10s; }
+.soc-badge:nth-child(4)  { animation-delay: 0.14s; }
+.soc-badge:nth-child(5)  { animation-delay: 0.18s; }
+.soc-badge:nth-child(6)  { animation-delay: 0.22s; }
+.soc-badge:nth-child(7)  { animation-delay: 0.26s; }
+.soc-badge:nth-child(8)  { animation-delay: 0.30s; }
+.soc-badge:nth-child(9)  { animation-delay: 0.34s; }
+.soc-badge:nth-child(10) { animation-delay: 0.38s; }
+.soc-badge:nth-child(11) { animation-delay: 0.42s; }
 
 /* Custom tooltip */
 .custom-tooltip {
@@ -1032,7 +1047,7 @@ section { padding: 6rem 2rem; max-width: 1280px; margin: 0 auto; }
   .company-pillars { grid-template-columns: 1fr; }
   .company-header { gap: 1.5rem; }
   .company-hero-logo { height: 48px; }
-  .profile-photo-main { height: 280px; }
+  .profile-photo-main { aspect-ratio: 4 / 5; }
   .nav-logo-img { height: 30px; }
   #cursor-spotlight { display: none; }
 }
@@ -1044,5 +1059,5 @@ section { padding: 6rem 2rem; max-width: 1280px; margin: 0 auto; }
   .hero h1 { font-size: 2.375rem; }
   .hero-stats { gap: 1.25rem; flex-wrap: wrap; }
   .company-header { flex-direction: column; align-items: flex-start; gap: 1.25rem; }
-  .profile-photo-main { height: 260px; }
+  .profile-photo-main { aspect-ratio: 4 / 5; }
 }

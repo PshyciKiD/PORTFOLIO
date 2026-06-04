@@ -239,25 +239,8 @@ document.querySelectorAll('.skill-bar-fill').forEach(bar => {
     }, { threshold: 0.2 }).observe(bar);
 });
 
-// ── Skill badge stagger entrance ──────────────────────────────────────────
-document.querySelectorAll('.soc-badge-list').forEach(list => {
-    list.classList.add('js-stagger');
-    const badges = list.querySelectorAll('.soc-badge');
-    let revealed = false;
-    const reveal = () => {
-        if (revealed) return;
-        revealed = true;
-        badges.forEach((b, i) => setTimeout(() => b.classList.add('badge-visible'), i * 55));
-    };
-    const io = new IntersectionObserver(entries => {
-        if (!entries[0].isIntersecting) return;
-        reveal();
-        io.disconnect();
-    }, { threshold: 0.05, rootMargin: '0px 0px -10% 0px' });
-    io.observe(list);
-    // Safety fallback: if the observer never fires (layout quirks), reveal anyway.
-    setTimeout(reveal, 2500);
-});
+// ── Skill badges: entrance handled by pure CSS (bulletproof, always visible) ──
+// (No JS hiding — badges can never get stuck invisible.)
 
 // ── 3D card tilt ──────────────────────────────────────────────────────────
 document.querySelectorAll('.soc-card, .bento-card').forEach(card => {
