@@ -347,20 +347,17 @@ document.querySelectorAll('.theme-swatch').forEach(swatch => {
 // ── Hero mouse parallax ───────────────────────────────────────────────────
 (function() {
     const hero    = document.getElementById('home');
-    const hContent = hero?.querySelector('.hero-content');
-    const hImage   = hero?.querySelector('.hero-image-wrapper');
-    if (!hero || !hContent || !hImage) return;
+    const hCenter = hero?.querySelector('.hero-center');
+    if (!hero || !hCenter) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     hero.addEventListener('mousemove', e => {
         const { width, height, left, top } = hero.getBoundingClientRect();
         const nx = (e.clientX - left - width  / 2) / (width  / 2);
         const ny = (e.clientY - top  - height / 2) / (height / 2);
-        hContent.style.transform = `translate(${nx * -8}px, ${ny * -5}px)`;
-        hImage.style.transform   = `translate(${nx * 12}px, ${ny * 8}px)`;
+        hCenter.style.transform = `translate(${nx * -5}px, ${ny * -3}px)`;
     }, { passive: true });
     hero.addEventListener('mouseleave', () => {
-        hContent.style.transform = 'translate(0,0)';
-        hImage.style.transform   = 'translate(0,0)';
+        hCenter.style.transform = 'translate(0,0)';
     });
 })();
 
@@ -382,16 +379,17 @@ document.querySelectorAll('.soc-badge[title]').forEach(badge => {
 
     // Hero entrance — fires directly on load
     if (!reduced) {
-        const heroTL = gsap.timeline({ delay: 0.2 });
+        const heroTL = gsap.timeline({ delay: 0.15 });
         heroTL
-            .from('.soc-subtitle',       { opacity: 0, y: 22, duration: 0.65, ease: 'power2.out' })
-            .from('#scramble-text',      { opacity: 0, y: 32, duration: 0.75, ease: 'power3.out' }, '-=0.25')
-            .from('.hero-desc',          { opacity: 0, y: 20, duration: 0.6,  ease: 'power2.out' }, '-=0.3')
-            .from('.motto-row',          { opacity: 0, y: 16, duration: 0.5,  ease: 'power2.out' }, '-=0.2')
-            .from('.soc-cta-group',      { opacity: 0, y: 16, duration: 0.5,  ease: 'power2.out' }, '-=0.1')
-            .from('.hero-stats',         { opacity: 0, y: 16, duration: 0.5,  ease: 'power2.out' }, '-=0.1')
-            .from('.hero-image-wrapper', { opacity: 0, x: 30, duration: 0.85, ease: 'power3.out' }, '-=0.7')
-            .from('.hero-scroll-hint',   { opacity: 0, y: 10, duration: 0.5,  ease: 'power2.out' }, '-=0.2');
+            .from('.hero-avatar-wrap',   { opacity: 0, scale: 0.88, duration: 0.8,  ease: 'back.out(1.4)' })
+            .from('.founder-badge',      { opacity: 0, y: 16, duration: 0.5,  ease: 'power2.out' }, '-=0.3')
+            .from('.soc-subtitle',       { opacity: 0, y: 16, duration: 0.55, ease: 'power2.out' }, '-=0.25')
+            .from('#scramble-text',      { opacity: 0, y: 28, duration: 0.7,  ease: 'power3.out' }, '-=0.2')
+            .from('.hero-desc',          { opacity: 0, y: 16, duration: 0.55, ease: 'power2.out' }, '-=0.25')
+            .from('.motto-row',          { opacity: 0, y: 14, duration: 0.45, ease: 'power2.out' }, '-=0.2')
+            .from('.soc-cta-group',      { opacity: 0, y: 14, duration: 0.45, ease: 'power2.out' }, '-=0.15')
+            .from('.hero-stats',         { opacity: 0, y: 14, duration: 0.45, ease: 'power2.out' }, '-=0.1')
+            .from('.hero-scroll-hint',   { opacity: 0, y: 8,  duration: 0.4,  ease: 'power2.out' }, '-=0.1');
     }
 
     if (!reduced) {
@@ -721,6 +719,50 @@ document.querySelectorAll('.experience-card .soc-list').forEach(list => {
         });
         setTimeout(() => { overlay.style.transition = 'opacity 0.4s'; overlay.style.opacity = '0'; setTimeout(() => overlay.remove(), 420); }, 5000);
     });
+})();
+
+// ── Hero background ambient particles (gold) ──────────────────────────────────
+(function () {
+    const canvas = document.getElementById('hero-bg-particles');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const NUM = 55;
+    const pts = [];
+
+    function resize() {
+        canvas.width  = canvas.offsetWidth  || window.innerWidth;
+        canvas.height = canvas.offsetHeight || window.innerHeight;
+    }
+    function newPt() {
+        return {
+            x:  Math.random() * canvas.width,
+            y:  canvas.height + 8,
+            r:  Math.random() * 1.3 + 0.3,
+            vx: (Math.random() - 0.5) * 0.25,
+            vy: -(Math.random() * 0.35 + 0.1),
+            a:  Math.random() * 0.22 + 0.04,
+        };
+    }
+    resize();
+    window.addEventListener('resize', resize, { passive: true });
+    for (let i = 0; i < NUM; i++) { const p = newPt(); p.y = Math.random() * canvas.height; pts.push(p); }
+
+    (function tick() {
+        requestAnimationFrame(tick);
+        if (!canvas.width) return;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        pts.forEach((p, i) => {
+            p.y += p.vy; p.x += p.vx;
+            p.a -= 0.00055;
+            if (p.y < -8 || p.a <= 0) pts[i] = newPt();
+            if (p.x < 0) p.x = canvas.width;
+            if (p.x > canvas.width) p.x = 0;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(201,168,76,${p.a})`;
+            ctx.fill();
+        });
+    })();
 })();
 
 // ── Cinematic Avatar ──────────────────────────────────────────────────────────

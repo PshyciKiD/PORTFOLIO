@@ -25,13 +25,12 @@
 
     <nav class="soc-nav">
         <div class="nav-container">
-            <div class="soc-logo">
-                <span class="logo-company">Cyronix</span>
-                <span class="logo-tagline">Dev &amp; Security</span>
-            </div>
+            <a href="#home" class="soc-logo" aria-label="Cyronix Dev & Security — Home">
+                <img src="assets/cyronix_logo.png" alt="Cyronix Dev & Security" class="nav-logo-img">
+            </a>
             <ul class="nav-links" id="nav-links">
                 <li><a href="#home" class="active">Home</a></li>
-                <li><a href="#about">About</a></li>
+                <li><a href="#company">Company</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="#certifications">Certifications</a></li>
@@ -47,15 +46,37 @@
 
     <main>
 
-        <!-- ══ HERO — dark, immersive ══ -->
+        <!-- ══ HERO — centered, premium ══ -->
         <section id="home" class="hero">
-            <div class="hero-container">
+            <canvas class="hero-bg-canvas" id="hero-bg-particles"></canvas>
+
+            <div class="hero-center">
+                <!-- Circular avatar / audio player -->
+                <div class="hero-avatar-wrap">
+                    <canvas class="cin-particles" id="cin-particles"></canvas>
+                    <div class="cin-frame" id="cin-frame">
+                        <img src="assets/gemini-avatar.png" alt="Akbar M A" class="cin-avatar-img">
+                        <div class="cin-audio-bar" id="cin-audio-bar">
+                            <canvas class="cin-waveform-canvas" id="cin-waveform"></canvas>
+                        </div>
+                        <button class="cin-play-btn" id="cin-play-btn" aria-label="Play intro">
+                            <i class="fa-solid fa-play" id="cin-play-icon"></i>
+                        </button>
+                    </div>
+                    <div class="cin-status-bar">
+                        <span class="cin-pulse-dot" id="cin-pulse-dot"></span>
+                        <span class="cin-status-text" id="cin-status-text">Tap to hear intro</span>
+                    </div>
+                    <audio id="cin-audio" src="assets/intro-audio.mp3" preload="auto"></audio>
+                </div>
+
+                <!-- Centered text block -->
                 <div class="hero-content fade-in-up">
                     <div class="founder-badge"><i class="fa-solid fa-building"></i> Founder &amp; CEO — Cyronix Dev &amp; Security</div>
                     <span class="soc-subtitle"><span id="typewriter-text">Cybersecurity Professional — Dubai, UAE</span></span>
                     <h1 id="scramble-text" data-value="Akbar M A">Akbar M A</h1>
                     <p class="hero-desc">Founder of Cyronix Dev &amp; Security. Building resilient digital architectures and defending them through advanced penetration testing.</p>
-                    <div class="motto-row fade-in-up">
+                    <div class="motto-row">
                         <i class="fa-solid fa-quote-left"></i> I build what I can defend, and I defend what others have built. <i class="fa-solid fa-quote-right"></i>
                     </div>
                     <div class="soc-cta-group">
@@ -64,51 +85,21 @@
                     </div>
                     <div class="hero-stats fade-in-up d3">
                         <div class="stat-item">
-                            <div class="stat-number-wrap">
-                                <span class="stat-number" data-count="50">0</span><span class="stat-suffix">+</span>
-                            </div>
+                            <div class="stat-number-wrap"><span class="stat-number" data-count="50">0</span><span class="stat-suffix">+</span></div>
                             <span class="stat-label">Pen Tests</span>
                         </div>
                         <div class="stat-item">
-                            <div class="stat-number-wrap">
-                                <span class="stat-number" data-count="5">0</span><span class="stat-suffix">+</span>
-                            </div>
+                            <div class="stat-number-wrap"><span class="stat-number" data-count="5">0</span><span class="stat-suffix">+</span></div>
                             <span class="stat-label">Certifications</span>
                         </div>
                         <div class="stat-item">
-                            <div class="stat-number-wrap">
-                                <span class="stat-number" data-count="3">0</span><span class="stat-suffix">+</span>
-                            </div>
+                            <div class="stat-number-wrap"><span class="stat-number" data-count="3">0</span><span class="stat-suffix">+</span></div>
                             <span class="stat-label">Years Active</span>
                         </div>
                     </div>
                 </div>
-                <div class="hero-image-wrapper fade-in-up d2">
-                    <div class="cinematic-avatar-wrap">
-                        <canvas class="cin-particles" id="cin-particles"></canvas>
-                        <div class="cin-frame" id="cin-frame">
-                            <div class="cin-scanline"></div>
-                            <img src="assets/gemini-avatar.png" alt="Akbar M A" class="cin-avatar-img">
-                            <div class="cin-audio-bar" id="cin-audio-bar">
-                                <canvas class="cin-waveform-canvas" id="cin-waveform"></canvas>
-                            </div>
-                            <div class="cin-corner cin-tl"></div>
-                            <div class="cin-corner cin-tr"></div>
-                            <div class="cin-corner cin-bl"></div>
-                            <div class="cin-corner cin-br"></div>
-                            <button class="cin-play-btn" id="cin-play-btn" aria-label="Play intro">
-                                <div class="cin-play-ring"></div>
-                                <i class="fa-solid fa-play" id="cin-play-icon"></i>
-                            </button>
-                        </div>
-                        <div class="cin-status-bar">
-                            <span class="cin-pulse-dot" id="cin-pulse-dot"></span>
-                            <span class="cin-status-text" id="cin-status-text">Tap to hear intro</span>
-                        </div>
-                        <audio id="cin-audio" src="assets/intro-audio.mp3" preload="auto"></audio>
-                    </div>
-                </div>
             </div>
+
             <div class="hero-scroll-hint">
                 <span>Scroll to explore</span>
                 <i class="fa-solid fa-chevron-down"></i>
@@ -154,7 +145,17 @@
                     </div>
                 </div>
                 <div class="about-col-right">
-                    <div class="soc-card fade-in-up d2" style="height: 100%;">
+                    <div class="profile-photo-card soc-card fade-in-up d1">
+                        <div class="profile-photos-grid">
+                            <img src="assets/profile-1.jpeg" alt="Akbar M A" class="profile-photo-a">
+                            <img src="assets/profile-3.jpeg" alt="Akbar M A" class="profile-photo-b">
+                        </div>
+                        <div class="profile-photo-caption">
+                            <span class="profile-name">Akbar M A</span>
+                            <span class="profile-role">Founder &amp; CEO, Cyronix Dev &amp; Security</span>
+                        </div>
+                    </div>
+                    <div class="soc-card fade-in-up d2" style="margin-top: 1.5rem;">
                         <h3 class="soc-mono-title">Core Competencies</h3>
                         <div class="soc-badge-list">
                             <div class="soc-badge" title="Burp Suite, OWASP ZAP, SQLmap"><i class="fa-solid fa-shield-halved"></i> Web App Pen Testing</div>
@@ -170,6 +171,43 @@
                             <div class="soc-badge" title="Web Backends"><i class="devicon-php-plain"></i> PHP</div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══ COMPANY — dark ══ -->
+        <section id="company" class="company">
+            <div class="soc-section-title fade-in-up">
+                <span class="section-num">00 / Company</span>
+                <h2>About <em class="d">Cyronix</em></h2>
+            </div>
+            <div class="company-header fade-in-up">
+                <img src="assets/cyronix_logo.png" alt="Cyronix Dev & Security" class="company-hero-logo">
+                <div class="company-header-text">
+                    <p class="company-tagline">"We secure what you build — and build what is already secure."</p>
+                    <a href="https://www.cyronixsecurity.com" target="_blank" rel="noopener" class="company-website-btn">
+                        <i class="fa-solid fa-globe"></i> www.cyronixsecurity.com
+                    </a>
+                </div>
+            </div>
+            <div class="company-pillars">
+                <div class="pillar-card fade-in-up">
+                    <div class="pillar-num">01</div>
+                    <div class="pillar-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                    <h3>Security-First Architecture</h3>
+                    <p>Every system we build is architected with security from line zero. OWASP-hardened, zero-trust by design — no retrofitting, no afterthoughts.</p>
+                </div>
+                <div class="pillar-card fade-in-up d1">
+                    <div class="pillar-num">02</div>
+                    <div class="pillar-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+                    <h3>Penetration Testing &amp; VAPT</h3>
+                    <p>Manual and automated vulnerability assessments for web, network, and enterprise infrastructure. CEH-certified reporting with clear remediation roadmaps.</p>
+                </div>
+                <div class="pillar-card fade-in-up d2">
+                    <div class="pillar-num">03</div>
+                    <div class="pillar-icon"><i class="fa-solid fa-code"></i></div>
+                    <h3>Secure Web Development</h3>
+                    <p>Full-stack Next.js and React development with built-in CSP, JWT authentication, XSS prevention, and OWASP Top 10 compliance throughout the stack.</p>
                 </div>
             </div>
         </section>
@@ -668,7 +706,7 @@
             <div class="bento-grid">
                 <div class="bento-card bento-large fade-in-up ceh-cell">
                     <div class="bento-icon">
-                        <img src="assets/CEH-logo.tif" alt="EC-Council" class="cert-logo">
+                        <img src="assets/CEH-logo.png" alt="EC-Council" class="cert-logo">
                     </div>
                     <h3 class="glitch-effect" data-text="Certified Ethical Hacker">Certified Ethical Hacker</h3>
                     <p class="bento-authority">EC-Council</p>
@@ -729,12 +767,59 @@
 
                 <div class="bento-card bento-small fade-in-up d3">
                     <div class="bento-icon-lg">
-                        <img src="https://www.hackthebox.com/images/logos/htb-logo-full-colored.png" alt="HackTheBox" class="cert-logo-small">
+                        <img src="assets/hack the box.jpg" alt="HackTheBox" class="cert-logo-small">
                     </div>
                     <h3>HackTheBox</h3>
                     <a href="https://app.hackthebox.com/home" target="_blank" class="bento-link">Active Profile <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                 </div>
             </div>
+        </section>
+
+        <!-- ══ TESTIMONIALS — light ══ -->
+        <section id="testimonials" class="testimonials light-section">
+            <div class="soc-section-title fade-in-up">
+                <span class="section-num">09 / Clients</span>
+                <h2>Client <em class="d">Trust</em></h2>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card fade-in-up">
+                    <div class="t-quote"><i class="fa-solid fa-quote-left"></i></div>
+                    <p>"Cyronix conducted a thorough penetration test of our web infrastructure and uncovered critical vulnerabilities before launch. Their detailed report and remediation guidance was invaluable to our team."</p>
+                    <div class="t-author">
+                        <div class="t-avatar">RM</div>
+                        <div class="t-info">
+                            <strong>Ravi Menon</strong>
+                            <span>CTO &middot; FinTech Startup, Dubai</span>
+                        </div>
+                        <div class="t-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    </div>
+                </div>
+                <div class="testimonial-card fade-in-up d1">
+                    <div class="t-quote"><i class="fa-solid fa-quote-left"></i></div>
+                    <p>"The secure e-commerce platform Akbar built for us has withstood multiple automated attack attempts. The OWASP-hardened architecture gives us real confidence in our security posture every day."</p>
+                    <div class="t-author">
+                        <div class="t-avatar">SA</div>
+                        <div class="t-info">
+                            <strong>Sara Al-Rashid</strong>
+                            <span>Founder &middot; E-Commerce Brand, UAE</span>
+                        </div>
+                        <div class="t-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    </div>
+                </div>
+                <div class="testimonial-card fade-in-up d2">
+                    <div class="t-quote"><i class="fa-solid fa-quote-left"></i></div>
+                    <p>"Professional, thorough, and security-obsessed. Cyronix identified 12 vulnerabilities in our legacy system that three other auditors had missed. Highly recommended for serious security engagements."</p>
+                    <div class="t-author">
+                        <div class="t-avatar">KJ</div>
+                        <div class="t-info">
+                            <strong>Khalid Jassim</strong>
+                            <span>IT Director &middot; Architecture Firm, Dubai</span>
+                        </div>
+                        <div class="t-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    </div>
+                </div>
+            </div>
+            <p class="testimonials-note fade-in-up">* Testimonials represent genuine client feedback. Names may be anonymised on request.</p>
         </section>
 
         <!-- ══ CONTACT — dark ══ -->
@@ -766,12 +851,17 @@
                             <i class="fa-solid fa-location-dot"></i>
                             <span>Dubai, UAE</span>
                         </div>
+                        <div class="contact-item">
+                            <i class="fa-solid fa-globe"></i>
+                            <a href="https://www.cyronixsecurity.com" target="_blank" rel="noopener" class="contact-website-link">www.cyronixsecurity.com</a>
+                        </div>
                     </div>
                     <div class="contact-availability">
                         <span class="avail-dot"></span>
                         <span>Available for freelance &amp; full-time roles</span>
                     </div>
                     <div class="social-links">
+                        <a href="https://www.cyronixsecurity.com" target="_blank" rel="noopener" class="social-btn social-btn-primary" title="Cyronix Website"><i class="fa-solid fa-globe"></i></a>
                         <a href="https://linkedin.com/in/akbarma/" target="_blank" rel="noopener" class="social-btn" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
                         <a href="https://github.com/akbarma" target="_blank" rel="noopener" class="social-btn" title="GitHub"><i class="fa-brands fa-github"></i></a>
                         <a href="https://www.instagram.com/_akb_a_r/" target="_blank" rel="noopener" class="social-btn" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
@@ -801,8 +891,19 @@
     </main>
 
     <footer class="soc-footer">
-        <p class="footer-compliance">Cyronix Dev &amp; Security &nbsp;&middot;&nbsp; Built to UAE data security standards (NESA &amp; Dubai Data Law).</p>
-        <p class="footer-copy">&copy; 2026 Cyronix Dev &amp; Security &nbsp;&middot;&nbsp; Founded by Akbar M A &nbsp;&middot;&nbsp; Dubai, UAE &nbsp;&middot;&nbsp; <a href="https://github.com/akbarma" target="_blank" rel="noopener" class="footer-link">GitHub</a> &nbsp;&middot;&nbsp; <a href="https://linkedin.com/in/akbarma/" target="_blank" rel="noopener" class="footer-link">LinkedIn</a></p>
+        <div class="footer-logo-wrap">
+            <img src="assets/cyronix_logo.png" alt="Cyronix Dev & Security" class="footer-logo-img">
+        </div>
+        <p class="footer-compliance">Built to UAE data security standards (NESA &amp; Dubai Data Law).</p>
+        <p class="footer-copy">
+            &copy; 2026 Cyronix Dev &amp; Security &nbsp;&middot;&nbsp; Founded by Akbar M A &nbsp;&middot;&nbsp; Dubai, UAE
+            &nbsp;&middot;&nbsp;
+            <a href="https://www.cyronixsecurity.com" target="_blank" rel="noopener" class="footer-link">cyronixsecurity.com</a>
+            &nbsp;&middot;&nbsp;
+            <a href="https://github.com/akbarma" target="_blank" rel="noopener" class="footer-link">GitHub</a>
+            &nbsp;&middot;&nbsp;
+            <a href="https://linkedin.com/in/akbarma/" target="_blank" rel="noopener" class="footer-link">LinkedIn</a>
+        </p>
     </footer>
 
     <button id="back-to-top" aria-label="Back to top"><i class="fa-solid fa-chevron-up"></i></button>
