@@ -1,40 +1,28 @@
 <!DOCTYPE html>
-<!-- [!] SYSTEM BREACH ATTEMPT LOGGED. IP: 127.0.0.1. ...Just kidding, welcome to the source code! Real SOC analysts inspect everything. -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Akbar M A | Cybersecurity Researcher & Penetration Tester</title>
-    <!-- SOC Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230D1117'/><text x='50%25' y='50%25' font-family='monospace' font-weight='800' font-size='46' fill='%2300FF41' dominant-baseline='central' text-anchor='middle'>&gt;_</text></svg>">
-    
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230D1117'/><text x='50%25' y='50%25' font-family='monospace' font-weight='800' font-size='46' fill='%233B82F6' dominant-baseline='central' text-anchor='middle'>A</text></svg>">
+
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
-    <!-- Matrix/SOC Typography: JetBrains Mono for Headers & Logs, Inter for Body Text -->
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Devicon for Technology Stack Logos -->
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
 
-    <!-- GSAP for Professional Animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
-    <!-- Vercel Web Analytics & Speed Insights -->
     <script defer src="/_vercel/insights/script.js"></script>
     <script defer src="/_vercel/speed-insights/script.js"></script>
 </head>
 <body>
-    <canvas id="network-bg"></canvas>
-    <canvas id="hex-stream"></canvas>
-    <div class="scanlines"></div>
     <div id="scroll-progress" aria-hidden="true"></div>
-    <div class="orb orb-1" aria-hidden="true"></div>
-    <div class="orb orb-2" aria-hidden="true"></div>
+
     <nav class="soc-nav">
         <div class="nav-container">
             <div class="soc-logo">Akbar<span class="soc-accent"> MA</span></div>
@@ -60,27 +48,17 @@
     </nav>
 
     <main>
+
+        <!-- ══ HERO — dark, immersive ══ -->
         <section id="home" class="hero">
             <div class="hero-container">
                 <div class="hero-content fade-in-up">
-                    <div class="hero-top-row">
-                        <span class="soc-subtitle"><span id="typewriter-text">Cybersecurity Professional — Dubai, UAE</span></span>
-                        <div class="dubai-clock" id="dubai-clock">
-                            <i class="fa-regular fa-clock"></i>
-                            <span id="clock-time">00:00:00</span>
-                            <span class="clock-tz">UAE</span>
-                        </div>
-                    </div>
+                    <span class="soc-subtitle"><span id="typewriter-text">Cybersecurity Professional — Dubai, UAE</span></span>
                     <h1 id="scramble-text" data-value="Akbar M A">Akbar M A</h1>
-                    <p class="hero-desc soc-desc">Building resilient digital architectures and defending them through advanced penetration testing.</p>
+                    <p class="hero-desc">Building resilient digital architectures and defending them through advanced penetration testing.</p>
                     <div class="motto-row fade-in-up">
                         <i class="fa-solid fa-quote-left"></i> I build what I can defend, and I defend what others have built. <i class="fa-solid fa-quote-right"></i>
                     </div>
-                    
-                    <div id="threat-feed" class="threat-feed">
-                        <span class="threat-dot blink"></span> <span id="threat-text" class="threat-text">Establishing secure connection to GitHub telemetry...</span>
-                    </div>
-
                     <div class="soc-cta-group">
                         <a href="#" id="download-cv-btn" class="soc-btn primary-btn"><i class="fa-solid fa-file-pdf"></i> Download Resume</a>
                         <a href="#certifications" class="soc-btn outline-btn"><i class="fa-solid fa-certificate"></i> View Certifications</a>
@@ -107,38 +85,26 @@
                     </div>
                 </div>
                 <div class="hero-image-wrapper fade-in-up d2">
-                    <div class="radar-pulse">
-                        <div class="orbit-ring" aria-hidden="true">
-                            <div class="orbit-icon orbit-0"><i class="devicon-python-plain"></i></div>
-                            <div class="orbit-icon orbit-90"><i class="devicon-linux-plain"></i></div>
-                            <div class="orbit-icon orbit-180"><i class="fa-solid fa-shield-halved"></i></div>
-                            <div class="orbit-icon orbit-270"><i class="fa-solid fa-network-wired"></i></div>
+                    <div class="hero-profile-ring">
+                        <div id="profile-pic" class="profile-image" aria-label="Akbar M A">
+                            <img src="assets/profile.jpg" alt="Akbar M A" class="profile-img">
                         </div>
-                        <div class="hud-scanner"></div>
-                        <div class="hud-bracket top-left"></div>
-                        <div class="hud-bracket top-right"></div>
-                        <div class="hud-bracket bottom-left"></div>
-                        <div class="hud-bracket bottom-right"></div>
-                    <div id="profile-pic" class="profile-image" aria-label="Akbar M A">
-                        <img src="assets/profile.jpg" alt="Akbar M A" class="profile-img">
-                        <div class="profile-overlay">
-                            <span class="profile-status">STATUS: <span class="soc-accent">VERIFIED</span></span>
-                        </div>
-                    </div>
-                        <div class="hud-status">STATUS: <span class="soc-accent">VERIFIED</span></div>
-                        <div class="hud-scanner-line"></div>
                     </div>
                 </div>
             </div>
+            <div class="hero-scroll-hint">
+                <span>Scroll to explore</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
         </section>
 
-        <section id="about" class="about section-hardware-bg bg-server">
+        <!-- ══ ABOUT — light ══ -->
+        <section id="about" class="about light-section">
             <div class="soc-section-title fade-in-up">
                 <span class="section-num">01 / About</span>
-                <h2>About Me</h2>
+                <h2>Ab<em class="d">out</em> Me</h2>
             </div>
             <div class="about-layout">
-                <!-- Left column: summary + skill bars -->
                 <div class="about-col-left">
                     <div class="soc-card fade-in-up">
                         <h3 class="soc-mono-title">Executive Summary</h3>
@@ -170,7 +136,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- Right column: competencies -->
                 <div class="about-col-right">
                     <div class="soc-card fade-in-up d2" style="height: 100%;">
                         <h3 class="soc-mono-title">Core Competencies</h3>
@@ -192,50 +157,37 @@
             </div>
         </section>
 
-        <!-- Career Evolution / Origin Story -->
+        <!-- ══ CAREER EVOLUTION — dark ══ -->
         <section id="origin" class="origin-story">
             <div class="soc-section-title fade-in-up">
                 <span class="section-num">02 / Career</span>
-                <h2>Career Evolution</h2>
+                <h2>Car<em class="d">eer</em> Evolution</h2>
             </div>
-
             <div class="evolution-track fade-in-up">
                 <div class="evo-connector"><div class="evo-connector-fill"></div></div>
-
                 <div class="evo-stage" data-index="0">
-                    <div class="evo-icon-wrap">
-                        <i class="fa-solid fa-child-reaching"></i>
-                    </div>
+                    <div class="evo-icon-wrap"><i class="fa-solid fa-child-reaching"></i></div>
                     <span class="evo-version">v0.1 <span class="evo-badge archived">ARCHIVED</span></span>
                     <h4 class="evo-label">CHILDHOOD</h4>
                     <span class="evo-period">Kerala, India</span>
                     <p class="evo-desc">System initialized. Core curiosity modules loaded. First exposure to computers — disassembling hardware, learning how things break and why.</p>
                 </div>
-
                 <div class="evo-stage" data-index="1">
-                    <div class="evo-icon-wrap">
-                        <i class="fa-solid fa-utensils"></i>
-                    </div>
+                    <div class="evo-icon-wrap"><i class="fa-solid fa-utensils"></i></div>
                     <span class="evo-version">v1.0 <span class="evo-badge legacy">LEGACY</span></span>
                     <h4 class="evo-label">HOSPITALITY OPS</h4>
                     <span class="evo-period">Catering Service · Kerala</span>
                     <p class="evo-desc">Deployed in high-pressure operational environments. Developed resilience, rapid problem-solving under load, and real-world client management.</p>
                 </div>
-
                 <div class="evo-stage" data-index="2">
-                    <div class="evo-icon-wrap">
-                        <i class="fa-solid fa-shield-halved"></i>
-                    </div>
+                    <div class="evo-icon-wrap"><i class="fa-solid fa-shield-halved"></i></div>
                     <span class="evo-version">v2.0 <span class="evo-badge milestone">MILESTONE</span></span>
                     <h4 class="evo-label">CYBER DEFENSE INIT</h4>
                     <span class="evo-period">Kerala Police Cyberdome · 2023</span>
                     <p class="evo-desc">First authorized security operations. Collaborated with law enforcement on cybercrime intelligence. The switch from builder to defender clicked here.</p>
                 </div>
-
                 <div class="evo-stage" data-index="3">
-                    <div class="evo-icon-wrap">
-                        <i class="fa-solid fa-tower-broadcast"></i>
-                    </div>
+                    <div class="evo-icon-wrap"><i class="fa-solid fa-tower-broadcast"></i></div>
                     <span class="evo-version">v3.0 <span class="evo-badge live">◉ LIVE</span></span>
                     <h4 class="evo-label">ENTERPRISE SECURITY</h4>
                     <span class="evo-period">BSBG · Dubai, UAE · Current</span>
@@ -244,25 +196,23 @@
             </div>
         </section>
 
-        <!-- Security Projects -->
-        <section id="projects" class="projects section-hardware-bg bg-circuit">
+        <!-- ══ PROJECTS — light ══ -->
+        <section id="projects" class="projects light-section">
             <div class="soc-section-title fade-in-up">
                 <span class="section-num">03 / Projects</span>
-                <h2>Security Projects</h2>
+                <h2>Sec<em class="d">ur</em>ity Projects</h2>
             </div>
-
             <div class="projects-grid">
-                <!-- Vulnerability Assessment Report -->
                 <div class="project-card fade-in-up">
-                <div class="project-card-top">
-                    <span class="project-badge badge-pentest">PENTEST</span>
-                    <span class="project-year">2024</span>
-                </div>
-                <div class="project-image">
-                    <img src="assets/20635.jpg" alt="Vulnerability Assessment Preview" class="project-img">
-                </div>
-                <div class="project-icon-wrap"><i class="fa-solid fa-file-shield"></i></div>
-                <h3 class="project-title">Vulnerability Assessment Report</h3>
+                    <div class="project-card-top">
+                        <span class="project-badge badge-pentest">PENTEST</span>
+                        <span class="project-year">2024</span>
+                    </div>
+                    <div class="project-image">
+                        <img src="assets/20635.jpg" alt="Vulnerability Assessment Preview" class="project-img">
+                    </div>
+                    <div class="project-icon-wrap"><i class="fa-solid fa-file-shield"></i></div>
+                    <h3 class="project-title">Vulnerability Assessment Report</h3>
                     <p class="project-desc">Comprehensive audit documenting discovered CVEs, attack vectors, and step-by-step remediation across enterprise web infrastructure.</p>
                     <div class="project-tags">
                         <span class="ptag">Web App</span><span class="ptag">CVE Analysis</span><span class="ptag">OWASP</span>
@@ -272,17 +222,16 @@
                     </div>
                 </div>
 
-                <!-- Secure E-Commerce Platform -->
                 <div class="project-card fade-in-up">
-                <div class="project-card-top">
-                    <span class="project-badge badge-dev">SECURE DEV</span>
-                    <span class="project-year">2024</span>
-                </div>
-                <div class="project-image">
-                    <img src="assets/3828838.jpg" alt="Secure E-Commerce Platform" class="project-img">
-                </div>
-                <div class="project-icon-wrap"><i class="devicon-nextjs-plain"></i></div>
-                <h3 class="project-title">Secure E-Commerce Platform</h3>
+                    <div class="project-card-top">
+                        <span class="project-badge badge-dev">SECURE DEV</span>
+                        <span class="project-year">2024</span>
+                    </div>
+                    <div class="project-image">
+                        <img src="assets/3828838.jpg" alt="Secure E-Commerce Platform" class="project-img">
+                    </div>
+                    <div class="project-icon-wrap"><i class="devicon-nextjs-plain"></i></div>
+                    <h3 class="project-title">Secure E-Commerce Platform</h3>
                     <p class="project-desc">Full-stack storefront built security-first — JWT auth, input sanitisation, CSRF protection, and hardened against OWASP Top 10 throughout.</p>
                     <div class="project-tags">
                         <span class="ptag">Next.js</span><span class="ptag">JWT Auth</span><span class="ptag">OWASP-Hardened</span>
@@ -292,17 +241,16 @@
                     </div>
                 </div>
 
-                <!-- Banking Dashboard UI -->
                 <div class="project-card fade-in-up">
-                <div class="project-card-top">
-                    <span class="project-badge badge-dev">SECURE DEV</span>
-                    <span class="project-year">2023</span>
-                </div>
-                <div class="project-image">
-                    <img src="assets/01.jpg" alt="Banking Dashboard UI" class="project-img">
-                </div>
-                <div class="project-icon-wrap"><i class="devicon-react-original"></i></div>
-                <h3 class="project-title">Banking Dashboard UI</h3>
+                    <div class="project-card-top">
+                        <span class="project-badge badge-dev">SECURE DEV</span>
+                        <span class="project-year">2023</span>
+                    </div>
+                    <div class="project-image">
+                        <img src="assets/01.jpg" alt="Banking Dashboard UI" class="project-img">
+                    </div>
+                    <div class="project-icon-wrap"><i class="devicon-react-original"></i></div>
+                    <h3 class="project-title">Banking Dashboard UI</h3>
                     <p class="project-desc">React financial dashboard with XSS prevention, strict Content Security Policy headers, and full OWASP Top 10 hardening baked in.</p>
                     <div class="project-tags">
                         <span class="ptag">React</span><span class="ptag">CSP</span><span class="ptag">XSS Prevention</span>
@@ -312,17 +260,16 @@
                     </div>
                 </div>
 
-                <!-- Automated OSINT Framework -->
                 <div class="project-card fade-in-up">
-                <div class="project-card-top">
-                    <span class="project-badge badge-recon">OSINT</span>
-                    <span class="project-year">2024</span>
-                </div>
-                <div class="project-image">
-                    <img src="assets/osint.jpg" alt="Automated OSINT Framework" class="project-img">
-                </div>
-                <div class="project-icon-wrap"><i class="devicon-python-plain"></i></div>
-                <h3 class="project-title">Automated OSINT Framework</h3>
+                    <div class="project-card-top">
+                        <span class="project-badge badge-recon">OSINT</span>
+                        <span class="project-year">2024</span>
+                    </div>
+                    <div class="project-image">
+                        <img src="assets/osint.jpg" alt="Automated OSINT Framework" class="project-img">
+                    </div>
+                    <div class="project-icon-wrap"><i class="devicon-python-plain"></i></div>
+                    <h3 class="project-title">Automated OSINT Framework</h3>
                     <p class="project-desc">Python toolchain that aggregates open-source intelligence — domain pivoting, email enumeration, and passive fingerprinting in one pipeline.</p>
                     <div class="project-tags">
                         <span class="ptag">Python</span><span class="ptag">OSINT</span><span class="ptag">Automation</span>
@@ -332,17 +279,16 @@
                     </div>
                 </div>
 
-                <!-- Firewall Audit Log Analyzer -->
                 <div class="project-card fade-in-up">
-                <div class="project-card-top">
-                    <span class="project-badge badge-defensive">DEFENSIVE</span>
-                    <span class="project-year">2023</span>
-                </div>
-                <div class="project-image">
-                    <img src="assets/14526.jpg" alt="Firewall Audit Log Analyzer" class="project-img">
-                </div>
-                <div class="project-icon-wrap"><i class="devicon-bash-plain"></i></div>
-                <h3 class="project-title">Firewall Audit Log Analyzer</h3>
+                    <div class="project-card-top">
+                        <span class="project-badge badge-defensive">DEFENSIVE</span>
+                        <span class="project-year">2023</span>
+                    </div>
+                    <div class="project-image">
+                        <img src="assets/14526.jpg" alt="Firewall Audit Log Analyzer" class="project-img">
+                    </div>
+                    <div class="project-icon-wrap"><i class="devicon-bash-plain"></i></div>
+                    <h3 class="project-title">Firewall Audit Log Analyzer</h3>
                     <p class="project-desc">Bash script that parses raw firewall logs, flags anomalous traffic patterns, and generates structured CSV reports for IR teams.</p>
                     <div class="project-tags">
                         <span class="ptag">Bash</span><span class="ptag">Log Analysis</span><span class="ptag">Incident Response</span>
@@ -354,53 +300,126 @@
             </div>
         </section>
 
-        <!-- Security Toolkit & Arsenal -->
+        <!-- ══ TOOLKIT — dark, accordion ══ -->
         <section id="tools" class="tools">
             <div class="soc-section-title fade-in-up">
                 <span class="section-num">04 / Toolkit</span>
-                <h2>Toolkit &amp; Arsenal</h2>
+                <h2>Tool<em class="d">k</em>it &amp; Arsenal</h2>
             </div>
-            <div class="tools-filter fade-in-up">
-                <button class="tool-filter-btn active" data-cat="all">All</button>
-                <button class="tool-filter-btn" data-cat="offensive">Offensive</button>
-                <button class="tool-filter-btn" data-cat="defensive">Defensive</button>
-                <button class="tool-filter-btn" data-cat="recon">Recon / OSINT</button>
-                <button class="tool-filter-btn" data-cat="platform">Platforms</button>
-                <button class="tool-filter-btn" data-cat="dev">Dev &amp; Scripting</button>
-            </div>
-            <div class="tools-grid" id="tools-grid">
-                <div class="tool-card" data-cat="offensive"><div class="tool-icon"><i class="fa-solid fa-spider"></i></div><div class="tool-info"><span class="tool-name">Burp Suite</span><span class="tool-cat offensive">Offensive</span></div><span class="tool-desc">Web app proxy &amp; active scanner</span></div>
-                <div class="tool-card" data-cat="offensive"><div class="tool-icon"><i class="fa-solid fa-bolt"></i></div><div class="tool-info"><span class="tool-name">Metasploit</span><span class="tool-cat offensive">Offensive</span></div><span class="tool-desc">Exploit framework &amp; payload delivery</span></div>
-                <div class="tool-card" data-cat="offensive"><div class="tool-icon"><i class="fa-solid fa-database"></i></div><div class="tool-info"><span class="tool-name">SQLmap</span><span class="tool-cat offensive">Offensive</span></div><span class="tool-desc">Automated SQL injection &amp; takeover</span></div>
-                <div class="tool-card" data-cat="offensive"><div class="tool-icon"><i class="fa-solid fa-key"></i></div><div class="tool-info"><span class="tool-name">Hydra</span><span class="tool-cat offensive">Offensive</span></div><span class="tool-desc">Online brute-force credential cracker</span></div>
-                <div class="tool-card" data-cat="offensive"><div class="tool-icon"><i class="fa-solid fa-lock-open"></i></div><div class="tool-info"><span class="tool-name">John the Ripper</span><span class="tool-cat offensive">Offensive</span></div><span class="tool-desc">Offline password hash cracker</span></div>
-                <div class="tool-card" data-cat="offensive"><div class="tool-icon"><i class="fa-solid fa-globe"></i></div><div class="tool-info"><span class="tool-name">Nikto</span><span class="tool-cat offensive">Offensive</span></div><span class="tool-desc">Web server misconfiguration scanner</span></div>
-                <div class="tool-card" data-cat="defensive"><div class="tool-icon"><i class="fa-solid fa-shield-halved"></i></div><div class="tool-info"><span class="tool-name">OWASP ZAP</span><span class="tool-cat defensive">Defensive</span></div><span class="tool-desc">DAST scanner &amp; security testing proxy</span></div>
-                <div class="tool-card" data-cat="defensive"><div class="tool-icon"><i class="fa-solid fa-bug-slash"></i></div><div class="tool-info"><span class="tool-name">Nessus</span><span class="tool-cat defensive">Defensive</span></div><span class="tool-desc">Enterprise vulnerability assessment</span></div>
-                <div class="tool-card" data-cat="defensive"><div class="tool-icon"><i class="fa-solid fa-server"></i></div><div class="tool-info"><span class="tool-name">pfSense</span><span class="tool-cat defensive">Defensive</span></div><span class="tool-desc">Firewall &amp; network perimeter control</span></div>
-                <div class="tool-card" data-cat="defensive"><div class="tool-icon"><i class="fa-solid fa-eye"></i></div><div class="tool-info"><span class="tool-name">Wireshark</span><span class="tool-cat defensive">Defensive</span></div><span class="tool-desc">Deep packet inspection &amp; analysis</span></div>
-                <div class="tool-card" data-cat="recon"><div class="tool-icon"><i class="fa-solid fa-network-wired"></i></div><div class="tool-info"><span class="tool-name">Nmap</span><span class="tool-cat recon">Recon</span></div><span class="tool-desc">Network discovery &amp; port scanning</span></div>
-                <div class="tool-card" data-cat="recon"><div class="tool-icon"><i class="fa-solid fa-magnifying-glass"></i></div><div class="tool-info"><span class="tool-name">Maltego</span><span class="tool-cat recon">OSINT</span></div><span class="tool-desc">Link analysis &amp; threat intelligence</span></div>
-                <div class="tool-card" data-cat="recon"><div class="tool-icon"><i class="fa-solid fa-satellite-dish"></i></div><div class="tool-info"><span class="tool-name">Shodan</span><span class="tool-cat recon">OSINT</span></div><span class="tool-desc">IoT &amp; exposed services discovery</span></div>
-                <div class="tool-card" data-cat="recon"><div class="tool-icon"><i class="fa-solid fa-binoculars"></i></div><div class="tool-info"><span class="tool-name">Recon-ng</span><span class="tool-cat recon">Recon</span></div><span class="tool-desc">Automated web reconnaissance framework</span></div>
-                <div class="tool-card" data-cat="platform"><div class="tool-icon"><i class="devicon-kali-plain"></i></div><div class="tool-info"><span class="tool-name">Kali Linux</span><span class="tool-cat platform">Platform</span></div><span class="tool-desc">Primary penetration testing OS</span></div>
-                <div class="tool-card" data-cat="platform"><div class="tool-icon"><i class="devicon-linux-plain"></i></div><div class="tool-info"><span class="tool-name">Parrot OS</span><span class="tool-cat platform">Platform</span></div><span class="tool-desc">Privacy-focused security distro</span></div>
-                <div class="tool-card" data-cat="platform"><div class="tool-icon"><i class="devicon-windows8-original"></i></div><div class="tool-info"><span class="tool-name">Windows Server</span><span class="tool-cat platform">Platform</span></div><span class="tool-desc">AD, Group Policy &amp; hardening</span></div>
-                <div class="tool-card" data-cat="dev"><div class="tool-icon"><i class="devicon-python-plain"></i></div><div class="tool-info"><span class="tool-name">Python</span><span class="tool-cat dev">Scripting</span></div><span class="tool-desc">Automation, OSINT tooling &amp; exploits</span></div>
-                <div class="tool-card" data-cat="dev"><div class="tool-icon"><i class="devicon-bash-plain"></i></div><div class="tool-info"><span class="tool-name">Bash</span><span class="tool-cat dev">Scripting</span></div><span class="tool-desc">Shell automation &amp; log parsing</span></div>
-                <div class="tool-card" data-cat="dev"><div class="tool-icon"><i class="fa-brands fa-git-alt"></i></div><div class="tool-info"><span class="tool-name">Git / GitHub</span><span class="tool-cat dev">Dev</span></div><span class="tool-desc">Version control &amp; code collaboration</span></div>
+            <div class="tools-accordion fade-in-up" id="tools-accordion">
+
+                <!-- Offensive -->
+                <div class="acc-panel open" data-panel="offensive">
+                    <button class="acc-header" aria-expanded="true">
+                        <div class="acc-header-left">
+                            <span class="acc-dot" style="background:#EF4444"></span>
+                            <span class="acc-label">Offensive</span>
+                            <span class="acc-count">6 tools</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-down acc-chevron"></i>
+                    </button>
+                    <div class="acc-body">
+                        <div class="tools-inner-grid">
+                            <div class="tool-card" data-cat="offensive"><div class="tool-icon"><i class="fa-solid fa-spider"></i></div><div class="tool-info"><span class="tool-name">Burp Suite</span><span class="tool-cat offensive">Offensive</span></div><span class="tool-desc">Web app proxy &amp; active scanner</span></div>
+                            <div class="tool-card" data-cat="offensive"><div class="tool-icon"><i class="fa-solid fa-bolt"></i></div><div class="tool-info"><span class="tool-name">Metasploit</span><span class="tool-cat offensive">Offensive</span></div><span class="tool-desc">Exploit framework &amp; payload delivery</span></div>
+                            <div class="tool-card" data-cat="offensive"><div class="tool-icon"><i class="fa-solid fa-database"></i></div><div class="tool-info"><span class="tool-name">SQLmap</span><span class="tool-cat offensive">Offensive</span></div><span class="tool-desc">Automated SQL injection &amp; takeover</span></div>
+                            <div class="tool-card" data-cat="offensive"><div class="tool-icon"><i class="fa-solid fa-key"></i></div><div class="tool-info"><span class="tool-name">Hydra</span><span class="tool-cat offensive">Offensive</span></div><span class="tool-desc">Online brute-force credential cracker</span></div>
+                            <div class="tool-card" data-cat="offensive"><div class="tool-icon"><i class="fa-solid fa-lock-open"></i></div><div class="tool-info"><span class="tool-name">John the Ripper</span><span class="tool-cat offensive">Offensive</span></div><span class="tool-desc">Offline password hash cracker</span></div>
+                            <div class="tool-card" data-cat="offensive"><div class="tool-icon"><i class="fa-solid fa-globe"></i></div><div class="tool-info"><span class="tool-name">Nikto</span><span class="tool-cat offensive">Offensive</span></div><span class="tool-desc">Web server misconfiguration scanner</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Defensive -->
+                <div class="acc-panel" data-panel="defensive">
+                    <button class="acc-header" aria-expanded="false">
+                        <div class="acc-header-left">
+                            <span class="acc-dot" style="background:#10B981"></span>
+                            <span class="acc-label">Defensive</span>
+                            <span class="acc-count">4 tools</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-down acc-chevron"></i>
+                    </button>
+                    <div class="acc-body">
+                        <div class="tools-inner-grid">
+                            <div class="tool-card" data-cat="defensive"><div class="tool-icon"><i class="fa-solid fa-shield-halved"></i></div><div class="tool-info"><span class="tool-name">OWASP ZAP</span><span class="tool-cat defensive">Defensive</span></div><span class="tool-desc">DAST scanner &amp; security testing proxy</span></div>
+                            <div class="tool-card" data-cat="defensive"><div class="tool-icon"><i class="fa-solid fa-bug-slash"></i></div><div class="tool-info"><span class="tool-name">Nessus</span><span class="tool-cat defensive">Defensive</span></div><span class="tool-desc">Enterprise vulnerability assessment</span></div>
+                            <div class="tool-card" data-cat="defensive"><div class="tool-icon"><i class="fa-solid fa-server"></i></div><div class="tool-info"><span class="tool-name">pfSense</span><span class="tool-cat defensive">Defensive</span></div><span class="tool-desc">Firewall &amp; network perimeter control</span></div>
+                            <div class="tool-card" data-cat="defensive"><div class="tool-icon"><i class="fa-solid fa-eye"></i></div><div class="tool-info"><span class="tool-name">Wireshark</span><span class="tool-cat defensive">Defensive</span></div><span class="tool-desc">Deep packet inspection &amp; analysis</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recon / OSINT -->
+                <div class="acc-panel" data-panel="recon">
+                    <button class="acc-header" aria-expanded="false">
+                        <div class="acc-header-left">
+                            <span class="acc-dot" style="background:#F59E0B"></span>
+                            <span class="acc-label">Recon / OSINT</span>
+                            <span class="acc-count">4 tools</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-down acc-chevron"></i>
+                    </button>
+                    <div class="acc-body">
+                        <div class="tools-inner-grid">
+                            <div class="tool-card" data-cat="recon"><div class="tool-icon"><i class="fa-solid fa-network-wired"></i></div><div class="tool-info"><span class="tool-name">Nmap</span><span class="tool-cat recon">Recon</span></div><span class="tool-desc">Network discovery &amp; port scanning</span></div>
+                            <div class="tool-card" data-cat="recon"><div class="tool-icon"><i class="fa-solid fa-magnifying-glass"></i></div><div class="tool-info"><span class="tool-name">Maltego</span><span class="tool-cat recon">OSINT</span></div><span class="tool-desc">Link analysis &amp; threat intelligence</span></div>
+                            <div class="tool-card" data-cat="recon"><div class="tool-icon"><i class="fa-solid fa-satellite-dish"></i></div><div class="tool-info"><span class="tool-name">Shodan</span><span class="tool-cat recon">OSINT</span></div><span class="tool-desc">IoT &amp; exposed services discovery</span></div>
+                            <div class="tool-card" data-cat="recon"><div class="tool-icon"><i class="fa-solid fa-binoculars"></i></div><div class="tool-info"><span class="tool-name">Recon-ng</span><span class="tool-cat recon">Recon</span></div><span class="tool-desc">Automated web reconnaissance framework</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Platforms -->
+                <div class="acc-panel" data-panel="platform">
+                    <button class="acc-header" aria-expanded="false">
+                        <div class="acc-header-left">
+                            <span class="acc-dot" style="background:#3B82F6"></span>
+                            <span class="acc-label">Platforms</span>
+                            <span class="acc-count">3 tools</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-down acc-chevron"></i>
+                    </button>
+                    <div class="acc-body">
+                        <div class="tools-inner-grid">
+                            <div class="tool-card" data-cat="platform"><div class="tool-icon"><i class="devicon-kali-plain"></i></div><div class="tool-info"><span class="tool-name">Kali Linux</span><span class="tool-cat platform">Platform</span></div><span class="tool-desc">Primary penetration testing OS</span></div>
+                            <div class="tool-card" data-cat="platform"><div class="tool-icon"><i class="devicon-linux-plain"></i></div><div class="tool-info"><span class="tool-name">Parrot OS</span><span class="tool-cat platform">Platform</span></div><span class="tool-desc">Privacy-focused security distro</span></div>
+                            <div class="tool-card" data-cat="platform"><div class="tool-icon"><i class="devicon-windows8-original"></i></div><div class="tool-info"><span class="tool-name">Windows Server</span><span class="tool-cat platform">Platform</span></div><span class="tool-desc">AD, Group Policy &amp; hardening</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dev & Scripting -->
+                <div class="acc-panel" data-panel="dev">
+                    <button class="acc-header" aria-expanded="false">
+                        <div class="acc-header-left">
+                            <span class="acc-dot" style="background:#8B5CF6"></span>
+                            <span class="acc-label">Dev &amp; Scripting</span>
+                            <span class="acc-count">3 tools</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-down acc-chevron"></i>
+                    </button>
+                    <div class="acc-body">
+                        <div class="tools-inner-grid">
+                            <div class="tool-card" data-cat="dev"><div class="tool-icon"><i class="devicon-python-plain"></i></div><div class="tool-info"><span class="tool-name">Python</span><span class="tool-cat dev">Scripting</span></div><span class="tool-desc">Automation, OSINT tooling &amp; exploits</span></div>
+                            <div class="tool-card" data-cat="dev"><div class="tool-icon"><i class="devicon-bash-plain"></i></div><div class="tool-info"><span class="tool-name">Bash</span><span class="tool-cat dev">Scripting</span></div><span class="tool-desc">Shell automation &amp; log parsing</span></div>
+                            <div class="tool-card" data-cat="dev"><div class="tool-icon"><i class="fa-brands fa-git-alt"></i></div><div class="tool-info"><span class="tool-name">Git / GitHub</span><span class="tool-cat dev">Dev</span></div><span class="tool-desc">Version control &amp; code collaboration</span></div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </section>
 
-        <section id="experience" class="experience">
+        <!-- ══ EXPERIENCE — light ══ -->
+        <section id="experience" class="experience light-section">
             <div class="soc-section-title fade-in-up">
                 <span class="section-num">05 / Experience</span>
-                <h2>Experience</h2>
+                <h2>Exper<em class="d">ie</em>nce</h2>
             </div>
             <div class="soc-timeline">
                 <div class="timeline-draw-line" aria-hidden="true"></div>
-                
-                <!-- Role 0: Current -->
+
                 <div class="timeline-node fade-in-up">
                     <div class="timeline-marker"></div>
                     <div class="soc-card experience-card core-role">
@@ -428,7 +447,6 @@
                     </div>
                 </div>
 
-                <!-- Role 1 -->
                 <div class="timeline-node fade-in-up">
                     <div class="timeline-marker"></div>
                     <div class="soc-card experience-card core-role">
@@ -459,7 +477,6 @@
                     </div>
                 </div>
 
-                <!-- Role 2 -->
                 <div class="timeline-node fade-in-up">
                     <div class="timeline-marker"></div>
                     <div class="soc-card experience-card">
@@ -487,7 +504,6 @@
                     </div>
                 </div>
 
-                <!-- Role 3 -->
                 <div class="timeline-node fade-in-up">
                     <div class="timeline-marker"></div>
                     <div class="soc-card experience-card">
@@ -515,7 +531,6 @@
                     </div>
                 </div>
 
-                <!-- Role 4 -->
                 <div class="timeline-node fade-in-up">
                     <div class="timeline-marker"></div>
                     <div class="soc-card experience-card">
@@ -541,42 +556,38 @@
             </div>
         </section>
 
-        <!-- Freelance Operations & Services -->
+        <!-- ══ SERVICES — dark ══ -->
         <section id="freelance" class="freelance">
             <div class="soc-section-title fade-in-up">
                 <span class="section-num">06 / Services</span>
-                <h2>Services</h2>
+                <h2>Serv<em class="d">ic</em>es</h2>
             </div>
-
             <div class="services-layout">
-                <!-- Service status list -->
                 <div class="soc-card fade-in-up">
                     <h3 class="soc-mono-title">Service_Status.log</h3>
                     <div class="service-status-list">
-                <div class="service-status-item">
-                    <span class="status-indicator active">[ ACTIVE ]</span>
-                    <i class="devicon-nextjs-plain service-icon"></i>
-                    <span class="service-text">Full-Stack Web Development (Next.js / React)</span>
-                </div>
-                <div class="service-status-item">
-                    <span class="status-indicator active">[ ACTIVE ]</span>
-                    <i class="fa-solid fa-shield-halved service-icon"></i>
-                    <span class="service-text">Vulnerability Assessments for SMBs</span>
-                </div>
-                <div class="service-status-item">
-                    <span class="status-indicator active">[ ACTIVE ]</span>
-                    <i class="fab fa-wordpress service-icon"></i>
-                    <span class="service-text">Secure WordPress / CMS Hardening</span>
-                </div>
-                <div class="service-status-item">
-                    <span class="status-indicator info">[ MONITOR ]</span>
-                    <i class="fa-solid fa-cart-shopping service-icon"></i>
-                    <span class="service-text">E-Commerce Security Integration (VAPT)</span>
-                </div>
+                        <div class="service-status-item">
+                            <span class="status-indicator active">[ ACTIVE ]</span>
+                            <i class="devicon-nextjs-plain service-icon"></i>
+                            <span class="service-text">Full-Stack Web Development (Next.js / React)</span>
+                        </div>
+                        <div class="service-status-item">
+                            <span class="status-indicator active">[ ACTIVE ]</span>
+                            <i class="fa-solid fa-shield-halved service-icon"></i>
+                            <span class="service-text">Vulnerability Assessments for SMBs</span>
+                        </div>
+                        <div class="service-status-item">
+                            <span class="status-indicator active">[ ACTIVE ]</span>
+                            <i class="fab fa-wordpress service-icon"></i>
+                            <span class="service-text">Secure WordPress / CMS Hardening</span>
+                        </div>
+                        <div class="service-status-item">
+                            <span class="status-indicator info">[ MONITOR ]</span>
+                            <i class="fa-solid fa-cart-shopping service-icon"></i>
+                            <span class="service-text">E-Commerce Security Integration (VAPT)</span>
+                        </div>
                     </div>
                 </div>
-
-                <!-- Service cards -->
                 <div class="services-cards fade-in-up">
                     <div class="service-card service-card-main">
                         <div class="service-card-icon"><i class="fa-solid fa-shield-halved"></i></div>
@@ -598,15 +609,13 @@
             </div>
         </section>
 
-        <!-- Bento Box Certifications -->
-        <section id="certifications" class="certifications">
+        <!-- ══ CERTIFICATIONS — light ══ -->
+        <section id="certifications" class="certifications light-section">
             <div class="soc-section-title fade-in-up">
                 <span class="section-num">07 / Credentials</span>
-                <h2>Certifications &amp; Skills</h2>
+                <h2>Certifi<em class="d">cat</em>ions</h2>
             </div>
-            
             <div class="bento-grid">
-                <!-- Large Tile 1: CEH -->
                 <div class="bento-card bento-large fade-in-up ceh-cell">
                     <div class="bento-icon">
                         <img src="assets/CEH-logo.tif" alt="EC-Council" class="cert-logo">
@@ -620,7 +629,6 @@
                     <a href="https://aspen.eccouncil.org/Certificate/Certificate?a=eof6foV0K5/d/w5hmSyIRQ==" target="_blank" class="bento-link">Verify Credentials <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                 </div>
 
-                <!-- Large Tile 2: TryHackMe -->
                 <div class="bento-card bento-large fade-in-up thm-cell">
                     <div class="bento-icon">
                         <img src="assets/tryhackme.jpg" alt="TryHackMe" class="cert-logo">
@@ -634,7 +642,6 @@
                     <a href="https://tryhackme.com/p/cicatrize.o" target="_blank" rel="noopener" class="bento-link">View THM Profile <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                 </div>
 
-                <!-- Large Tile 3: Advanced Diploma -->
                 <div class="bento-card bento-wide fade-in-up diploma-cell">
                     <div class="bento-icon-lg">
                         <i class="fa-solid fa-graduation-cap"></i>
@@ -646,7 +653,6 @@
                     </div>
                 </div>
 
-                <!-- Small Tiles: Support Skills -->
                 <div class="bento-card bento-small fade-in-up">
                     <div class="bento-icon-lg">
                         <img src="assets/arcx.jpg" alt="arcX" class="cert-logo-small">
@@ -654,7 +660,7 @@
                     <h3>Threat Intelligence</h3>
                     <p class="bento-authority">arcX Foundation Level</p>
                 </div>
-                
+
                 <div class="bento-card bento-small fade-in-up d1">
                     <div class="bento-icon-lg">
                         <i class="fa-solid fa-certificate"></i>
@@ -681,44 +687,40 @@
             </div>
         </section>
 
-        <!-- Contact UI -->
+        <!-- ══ CONTACT — dark ══ -->
         <section id="contact" class="contact">
             <div class="soc-section-title fade-in-up">
                 <span class="section-num">08 / Contact</span>
-                <h2>Get In Touch</h2>
+                <h2>Get <em class="d">In</em> Touch</h2>
             </div>
             <div class="contact-layout fade-in-up">
-                <!-- Left: Info & Socials -->
                 <div class="contact-info-col">
                     <p class="contact-desc">Operating from Dubai, UAE. Standing by for penetration testing engagements, security audits, and infrastructure consulting.</p>
-
                     <div class="contact-details">
-                    <div class="contact-item">
-                        <i class="fa-solid fa-envelope"></i>
-                        <span id="email-text">akbarmayakkat11@gmail.com</span>
-                        <button class="copy-btn" data-copy="akbarmayakkat11@gmail.com" title="Copy Email"><i class="fa-regular fa-copy"></i></button>
+                        <div class="contact-item">
+                            <i class="fa-solid fa-envelope"></i>
+                            <span id="email-text">akbarmayakkat11@gmail.com</span>
+                            <button class="copy-btn" data-copy="akbarmayakkat11@gmail.com" title="Copy Email"><i class="fa-regular fa-copy"></i></button>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fa-solid fa-phone"></i>
+                            <span id="phone-text">+971-506167230</span>
+                            <button class="copy-btn" data-copy="+971506167230" title="Copy Phone"><i class="fa-regular fa-copy"></i></button>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fa-solid fa-phone"></i>
+                            <span id="phone-text-in">+91-7356067042</span>
+                            <button class="copy-btn" data-copy="+917356067042" title="Copy Indian Phone"><i class="fa-regular fa-copy"></i></button>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span>Dubai, UAE</span>
+                        </div>
                     </div>
-                    <div class="contact-item">
-                        <i class="fa-solid fa-phone"></i>
-                        <span id="phone-text">+971-506167230</span>
-                        <button class="copy-btn" data-copy="+971506167230" title="Copy Phone"><i class="fa-regular fa-copy"></i></button>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fa-solid fa-phone"></i>
-                        <span id="phone-text-in">+91-7356067042</span>
-                        <button class="copy-btn" data-copy="+917356067042" title="Copy Indian Phone"><i class="fa-regular fa-copy"></i></button>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fa-solid fa-location-dot"></i>
-                        <span>Dubai, UAE</span>
-                    </div>
-                    </div>
-
                     <div class="contact-availability">
                         <span class="avail-dot"></span>
                         <span>Available for freelance &amp; full-time roles</span>
                     </div>
-
                     <div class="social-links">
                         <a href="https://linkedin.com/in/akbarma/" target="_blank" rel="noopener" class="social-btn" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
                         <a href="https://github.com/akbarma" target="_blank" rel="noopener" class="social-btn" title="GitHub"><i class="fa-brands fa-github"></i></a>
@@ -727,8 +729,6 @@
                         <a href="https://app.hackthebox.com/home" target="_blank" rel="noopener" class="social-btn" title="HackTheBox"><i class="fa-solid fa-cube"></i></a>
                     </div>
                 </div>
-
-                <!-- Right: Form -->
                 <div class="contact-form-col">
                     <h3 class="soc-mono-title">Send a Message</h3>
                     <form id="contact-form" class="contact-form" action="https://formspree.io/akbarmayakkat11@gmail.com" method="POST">
@@ -747,6 +747,7 @@
                 </div>
             </div>
         </section>
+
     </main>
 
     <footer class="soc-footer">
@@ -754,57 +755,7 @@
         <p class="footer-copy">&copy; 2026 Akbar M A &nbsp;&middot;&nbsp; Cybersecurity Professional &nbsp;&middot;&nbsp; Dubai, UAE &nbsp;&middot;&nbsp; <a href="https://github.com/akbarma" target="_blank" rel="noopener" class="footer-link">GitHub</a> &nbsp;&middot;&nbsp; <a href="https://linkedin.com/in/akbarma/" target="_blank" rel="noopener" class="footer-link">LinkedIn</a></p>
     </footer>
 
-    <!-- AEGIS SOC Bot Terminal Overlay -->
-    <div id="bot-terminal" class="bot-terminal fade-in minimized">
-        <div id="bot-header" class="bot-header">
-            <span class="bot-status-dot"></span>
-            <span class="bot-title">[ AEGIS // SOC_ASSISTANT ]</span>
-            <div class="bot-controls">
-                <span class="bot-min">+</span>
-            </div>
-        </div>
-        <div id="bot-body" class="bot-body">
-            <div id="bot-output" class="bot-output">
-                <div class="bot-line">[INFO] System initializing...</div>
-                <div class="bot-line">[INFO] AI_Assistant: ONLINE</div>
-            </div>
-            <div class="bot-input-line">
-                <span class="bot-prompt">></span>
-                <input type="text" id="bot-input" placeholder="Type command..." autocomplete="off" spellcheck="false">
-            </div>
-        </div>
-    </div>
-
-<button id="back-to-top" aria-label="Back to top"><i class="fa-solid fa-chevron-up"></i></button>
-    <div id="availability-badge" class="availability-badge" role="button" tabindex="0" aria-label="Available for hire — click to contact">
-        <span class="avail-pulse"></span>Available for Hire
-    </div>
-    <canvas id="cursor-trail" aria-hidden="true"></canvas>
-    <div id="cursor-ring" aria-hidden="true"></div>
-    <div id="cursor-dot" aria-hidden="true"></div>
-
-    <!-- Boot Loader -->
-    <div id="boot-loader" aria-hidden="true">
-        <div class="boot-content">
-            <div class="boot-logo">&gt;_ AKBAR.MA</div>
-            <div class="boot-log" id="boot-log"></div>
-            <div class="boot-bar-wrap"><div class="boot-bar" id="boot-bar"></div></div>
-            <div class="boot-status" id="boot-status">LOADING...</div>
-        </div>
-    </div>
-
-    <!-- Section Dot Navigation -->
-    <nav id="dot-nav" aria-label="Section navigation">
-        <div class="dot-nav-item active" data-target="home"><span class="dot-pip"></span><span class="dot-label">Home</span></div>
-        <div class="dot-nav-item" data-target="about"><span class="dot-pip"></span><span class="dot-label">About</span></div>
-        <div class="dot-nav-item" data-target="origin"><span class="dot-pip"></span><span class="dot-label">Career</span></div>
-        <div class="dot-nav-item" data-target="projects"><span class="dot-pip"></span><span class="dot-label">Projects</span></div>
-        <div class="dot-nav-item" data-target="tools"><span class="dot-pip"></span><span class="dot-label">Toolkit</span></div>
-        <div class="dot-nav-item" data-target="experience"><span class="dot-pip"></span><span class="dot-label">Experience</span></div>
-        <div class="dot-nav-item" data-target="freelance"><span class="dot-pip"></span><span class="dot-label">Services</span></div>
-        <div class="dot-nav-item" data-target="certifications"><span class="dot-pip"></span><span class="dot-label">Certs</span></div>
-        <div class="dot-nav-item" data-target="contact"><span class="dot-pip"></span><span class="dot-label">Contact</span></div>
-    </nav>
+    <button id="back-to-top" aria-label="Back to top"><i class="fa-solid fa-chevron-up"></i></button>
 
     <!-- Custom Context Menu -->
     <div id="ctx-menu" class="ctx-menu" role="menu">
@@ -832,31 +783,9 @@
                 <div class="shortcut-row"><kbd>G T</kbd><span>Go to Toolkit</span></div>
                 <div class="shortcut-row"><kbd>G S</kbd><span>Go to Services</span></div>
                 <div class="shortcut-row"><kbd>Esc</kbd><span>Close modals</span></div>
-                <div class="shortcut-row"><kbd>↑↑↓↓←→←→BA</kbd><span>???</span></div>
             </div>
         </div>
     </div>
-
-    <!-- Chapter Flash Overlay -->
-    <div id="chapter-overlay" aria-hidden="true">
-        <span class="chapter-num" id="chapter-num">CHAPTER 01</span>
-        <div class="chapter-title" id="chapter-title">ANALYST PROFILE</div>
-        <span class="chapter-sub" id="chapter-sub">// IDENTITY CONFIRMED</span>
-    </div>
-
-    <!-- Story Chapter Nav -->
-    <nav id="story-nav" aria-label="Story chapters">
-        <div class="snav-dot active" data-chapter="0" title="Home"></div>
-        <div class="snav-dot" data-chapter="1" title="About"></div>
-        <div class="snav-dot" data-chapter="2" title="Career"></div>
-        <div class="snav-dot" data-chapter="3" title="Projects"></div>
-        <div class="snav-dot" data-chapter="4" title="Toolkit"></div>
-        <div class="snav-dot" data-chapter="5" title="Experience"></div>
-        <div class="snav-dot" data-chapter="6" title="Services"></div>
-        <div class="snav-dot" data-chapter="7" title="Certs"></div>
-        <div class="snav-dot" data-chapter="8" title="Contact"></div>
-        <span class="snav-label" id="snav-label">HOME</span>
-    </nav>
 
     <script src="script.js"></script>
 </body>
