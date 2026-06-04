@@ -746,7 +746,7 @@
                         <span class="bento-badge">Cybersecurity</span>
                         <span class="bento-badge">Penetration Testing</span>
                     </div>
-                    <a href="https://aspen.eccouncil.org/Certificate/Certificate?a=eof6foV0K5/d/w5hmSyIRQ==" target="_blank" class="bento-link">Verify Credentials <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    <a href="https://aspen.eccouncil.org/Certificate/Certificate?a=eof6foV0K5/d/w5hmSyIRQ==" target="_blank" rel="noopener" class="bento-link">Verify Credentials <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                 </div>
 
                 <div class="bento-card bento-large fade-in-up thm-cell">
@@ -802,7 +802,7 @@
                         <img width="1015" height="401" loading="lazy" decoding="async" src="assets/hack the box.jpg" alt="HackTheBox" class="cert-logo-small">
                     </div>
                     <h3>HackTheBox</h3>
-                    <a href="https://app.hackthebox.com/home" target="_blank" class="bento-link">Active Profile <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    <a href="https://app.hackthebox.com/home" target="_blank" rel="noopener" class="bento-link">Active Profile <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                 </div>
             </div>
         </section>
@@ -913,17 +913,25 @@
                 </div>
                 <div class="contact-form-col">
                     <h3 class="soc-mono-title">Send a Message</h3>
+                    <!-- TODO: migrate to a Formspree project ID endpoint (https://formspree.io/f/{id}); legacy email endpoint still works -->
                     <form id="contact-form" class="contact-form" action="https://formspree.io/akbarmayakkat11@gmail.com" method="POST">
                         <div class="form-row">
-                            <input type="text" name="name" placeholder="Your Name" required autocomplete="name">
-                            <input type="email" name="email" placeholder="Your Email" required autocomplete="email">
+                            <div class="form-field">
+                                <label for="cf-name" class="sr-only">Your Name</label>
+                                <input id="cf-name" type="text" name="name" placeholder="Your Name" required autocomplete="name">
+                            </div>
+                            <div class="form-field">
+                                <label for="cf-email" class="sr-only">Your Email</label>
+                                <input id="cf-email" type="email" name="email" placeholder="Your Email" required autocomplete="email">
+                            </div>
                         </div>
-                        <textarea name="message" placeholder="Your message..." rows="5" required></textarea>
+                        <label for="cf-message" class="sr-only">Your Message</label>
+                        <textarea id="cf-message" name="message" placeholder="Your message..." rows="5" required></textarea>
                         <div class="form-submit-row">
                             <button type="submit" class="soc-btn primary-btn">
                                 <i class="fa-solid fa-paper-plane"></i> Send Message
                             </button>
-                            <span id="form-status"></span>
+                            <span id="form-status" role="status" aria-live="polite"></span>
                         </div>
                     </form>
                 </div>

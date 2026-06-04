@@ -407,24 +407,6 @@ document.querySelectorAll('.soc-badge[title]').forEach(badge => {
     }
 
     if (!reduced) {
-        // Experience timeline: alternating L/R entrance
-        ScrollTrigger.batch('.timeline-node', {
-            onEnter: batch => {
-                const allNodes = gsap.utils.toArray('.timeline-node');
-                batch.forEach((el, i) => {
-                    el.classList.add('visible');
-                    el.style.setProperty('transition', 'none', 'important');
-                    const idx = allNodes.indexOf(el);
-                    gsap.fromTo(el,
-                        { opacity: 0, x: idx % 2 === 0 ? -38 : 38, scale: 0.97 },
-                        { opacity: 1, x: 0, scale: 1, duration: 0.45, ease: 'power3.out', delay: i * 0.08,
-                          onComplete() { el.style.removeProperty('transition'); } }
-                    );
-                });
-            },
-            start: 'top 80%', once: true,
-        });
-
         // Tool cards cascade in accordion
         ScrollTrigger.batch('.tool-card', {
             onEnter: batch => gsap.fromTo(batch,
@@ -499,16 +481,6 @@ document.querySelectorAll('.soc-badge[title]').forEach(badge => {
             );
         });
 
-        // Timeline vertical line draw
-        (function() {
-            const lineEl = document.querySelector('.timeline-draw-line');
-            if (!lineEl) return;
-            gsap.fromTo(lineEl,
-                { scaleY: 0 },
-                { scaleY: 1, ease: 'none', scrollTrigger: { trigger: '.soc-timeline', start: 'top 65%', end: 'bottom 35%', scrub: 1 } }
-            );
-        })();
-
         // About cards: depth stagger
         ScrollTrigger.batch('#about .soc-card', {
             onEnter: batch => {
@@ -571,15 +543,6 @@ document.querySelectorAll('.soc-btn').forEach(btn => {
         wave.addEventListener('animationend', () => wave.remove());
     });
 });
-
-// ── Timeline line draw-in ─────────────────────────────────────────────────
-const socTimeline = document.querySelector('.soc-timeline');
-if (socTimeline) {
-    new IntersectionObserver(entries => {
-        if (!entries[0].isIntersecting) return;
-        socTimeline.classList.add('line-drawn');
-    }, { threshold: 0.1 }).observe(socTimeline);
-}
 
 // ── Accordion toolkit ─────────────────────────────────────────────────────
 (function() {
@@ -666,45 +629,6 @@ if (socTimeline) {
             const target = map[e.key.toLowerCase()];
             if (target) document.getElementById(target)?.scrollIntoView({ behavior: 'smooth' });
         }
-    });
-})();
-
-// ── Expandable experience bullet lists ────────────────────────────────────
-document.querySelectorAll('.experience-card .soc-list').forEach(list => {
-    const items = Array.from(list.querySelectorAll(':scope > li'));
-    if (items.length <= 2) return;
-    const group = document.createElement('div');
-    group.className = 'expand-group';
-    items.slice(2).forEach(li => group.appendChild(li));
-    list.appendChild(group);
-    const toggle = document.createElement('button');
-    toggle.className = 'expand-toggle';
-    toggle.innerHTML = '<i class="fa-solid fa-chevron-down"></i> Show more';
-    toggle.addEventListener('click', () => {
-        const isOpen = group.classList.toggle('expanded');
-        toggle.classList.toggle('open', isOpen);
-        toggle.innerHTML = isOpen
-            ? '<i class="fa-solid fa-chevron-up"></i> Show less'
-            : '<i class="fa-solid fa-chevron-down"></i> Show more';
-        if (isOpen && window.gsap) {
-            gsap.fromTo(Array.from(group.querySelectorAll('li')),
-                { opacity: 0, x: -12 },
-                { opacity: 1, x: 0, stagger: 0.08, duration: 0.4, ease: 'power2.out' }
-            );
-        }
-    });
-    list.appendChild(toggle);
-});
-
-// ── Profile image: scan-on-click ──────────────────────────────────────────
-(function() {
-    const pic = document.querySelector('#profile-pic .profile-img');
-    if (!pic || !window.gsap) return;
-    document.getElementById('profile-pic')?.addEventListener('click', () => {
-        gsap.fromTo(pic,
-            { filter: 'brightness(2) saturate(0)' },
-            { filter: 'brightness(1) saturate(1)', duration: 1.6, ease: 'power2.out' }
-        );
     });
 })();
 
