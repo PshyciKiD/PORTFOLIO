@@ -721,3 +721,126 @@ document.querySelectorAll('.experience-card .soc-list').forEach(list => {
         setTimeout(() => { overlay.style.transition = 'opacity 0.4s'; overlay.style.opacity = '0'; setTimeout(() => overlay.remove(), 420); }, 5000);
     });
 })();
+
+// ── Cinematic Avatar ──────────────────────────────────────────────────────────
+(function () {
+    const audio      = document.getElementById('cin-audio');
+    const playBtn    = document.getElementById('cin-play-btn');
+    const playIcon   = document.getElementById('cin-play-icon');
+    const audioBar   = document.getElementById('cin-audio-bar');
+    const pulseDot   = document.getElementById('cin-pulse-dot');
+    const statusTxt  = document.getElementById('cin-status-text');
+    const waveCanvas = document.getElementById('cin-waveform');
+    const frame      = document.getElementById('cin-frame');
+    const pCanvas    = document.getElementById('cin-particles');
+    if (!audio || !frame || !pCanvas) return;
+
+    // ── Web Audio waveform ────────────────────────────────────────────────────
+    let audioCtx, analyser, source, waveRaf;
+    let playing = false;
+
+    function initAudio() {
+        if (audioCtx) return;
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        analyser  = audioCtx.createAnalyser();
+        analyser.fftSize = 64;
+        source = audioCtx.createMediaElementSource(audio);
+        source.connect(analyser);
+        analyser.connect(audioCtx.destination);
+    }
+
+    function drawWaveform() {
+        const ctx  = waveCanvas.getContext('2d');
+        const dpr  = devicePixelRatio || 1;
+        const W    = waveCanvas.offsetWidth  * dpr;
+        const H    = waveCanvas.offsetHeight * dpr;
+        waveCanvas.width  = W;
+        waveCanvas.height = H;
+        const data = new Uint8Array(analyser.frequencyBinCount);
+
+        function tick() {
+            waveRaf = requestAnimationFrame(tick);
+            analyser.getByteFrequencyData(data);
+            ctx.clearRect(0, 0, W, H);
+            const bw = W / data.length * 1.6;
+            let x = 0;
+            for (let i = 0; i < data.length; i++) {
+                const v  = data[i] / 255;
+                const bh = v * H * 0.88;
+                ctx.fillStyle = `rgba(59,130,246,${0.35 + v * 0.65})`;
+                ctx.fillRect(x, H - bh, Math.max(bw - 1, 1), bh);
+                x += bw + 1;
+            }
+        }
+        tick();
+    }
+
+    function play() {
+        initAudio();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        audio.play();
+        playing = true;
+        frame.classList.add('cin-playing');
+        playIcon.className = 'fa-solid fa-pause';
+        audioBar.classList.add('active');
+        pulseDot.classList.add('active');
+        statusTxt.textContent = 'Playing intro...';
+        drawWaveform();
+    }
+
+    function pause() {
+        audio.pause();
+        playing = false;
+        frame.classList.remove('cin-playing');
+        playIcon.className = 'fa-solid fa-play';
+        audioBar.classList.remove('active');
+        pulseDot.classList.remove('active');
+        statusTxt.textContent = 'Tap to hear intro';
+        if (waveRaf) cancelAnimationFrame(waveRaf);
+    }
+
+    frame.addEventListener('click', () => { playing ? pause() : play(); });
+    playBtn.addEventListener('click', e => { e.stopPropagation(); playing ? pause() : play(); });
+    audio.addEventListener('ended', pause);
+
+    // ── Particle canvas ───────────────────────────────────────────────────────
+    const pCtx = pCanvas.getContext('2d');
+    const NUM  = 30;
+    const pts  = [];
+
+    function resize() {
+        pCanvas.width  = pCanvas.offsetWidth;
+        pCanvas.height = pCanvas.offsetHeight;
+    }
+
+    function newPt() {
+        return {
+            x:  Math.random() * pCanvas.width,
+            y:  pCanvas.height + 8,
+            r:  Math.random() * 1.4 + 0.4,
+            vy: Math.random() * 0.45 + 0.18,
+            vx: (Math.random() - 0.5) * 0.28,
+            a:  Math.random() * 0.45 + 0.1,
+        };
+    }
+
+    resize();
+    window.addEventListener('resize', resize);
+    for (let i = 0; i < NUM; i++) { const p = newPt(); p.y = Math.random() * pCanvas.height; pts.push(p); }
+
+    (function animPts() {
+        requestAnimationFrame(animPts);
+        if (!pCanvas.width) return;
+        pCtx.clearRect(0, 0, pCanvas.width, pCanvas.height);
+        pts.forEach((p, i) => {
+            p.y -= p.vy;
+            p.x += p.vx;
+            p.a -= 0.0013;
+            if (p.y < -8 || p.a <= 0) pts[i] = newPt();
+            pCtx.beginPath();
+            pCtx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            pCtx.fillStyle = `rgba(59,130,246,${p.a})`;
+            pCtx.fill();
+        });
+    })();
+})();

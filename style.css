@@ -3319,6 +3319,7 @@ kbd {
     padding: 7px 18px;
     -webkit-backdrop-filter: blur(14px);
     backdrop-filter: blur(14px);
+    will-change: transform, opacity;
     opacity: 0;
     transition: opacity 0.5s ease;
     pointer-events: none;
@@ -3820,4 +3821,258 @@ section { padding: 130px 0 100px; }
 /* 27 — Accessibility */
 @media (prefers-reduced-motion: reduce) {
     * { animation: none !important; transition: none !important; }
+}
+
+/* ════════════════════════════════════════════
+   28 — Cinematic Avatar Hero
+   ════════════════════════════════════════════ */
+
+.cinematic-avatar-wrap {
+    position: relative;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+}
+
+.cinematic-avatar-wrap::before {
+    content: '';
+    position: absolute;
+    inset: -40px;
+    border-radius: 40px;
+    background: radial-gradient(ellipse at center, rgba(59,130,246,0.13) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+    animation: cin-ambient 5s ease-in-out infinite alternate;
+}
+
+@keyframes cin-ambient {
+    from { opacity: 0.5; }
+    to   { opacity: 1; }
+}
+
+.cin-particles {
+    position: absolute;
+    inset: -50px;
+    width: calc(100% + 100px);
+    height: calc(100% + 100px);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.cin-frame {
+    position: relative;
+    width: 300px;
+    height: 390px;
+    border-radius: 22px;
+    overflow: hidden;
+    border: 1.5px solid rgba(59, 130, 246, 0.38);
+    box-shadow:
+        0 0 0 1px rgba(59,130,246,0.08),
+        0 0 40px rgba(59, 130, 246, 0.18),
+        0 0 90px rgba(59, 130, 246, 0.07),
+        inset 0 0 40px rgba(0,0,0,0.35);
+    z-index: 1;
+    cursor: pointer;
+    animation: cin-float 7s ease-in-out infinite;
+}
+
+@keyframes cin-float {
+    0%, 100% { transform: translateY(0px); }
+    50%       { transform: translateY(-10px); }
+}
+
+.cin-scanline {
+    position: absolute;
+    left: 0; right: 0;
+    height: 45%;
+    top: 0;
+    transform: translateY(-100%);
+    background: linear-gradient(to bottom,
+        transparent 0%,
+        rgba(59,130,246,0.035) 50%,
+        transparent 100%);
+    animation: cin-scan 5s linear infinite;
+    pointer-events: none;
+    z-index: 3;
+    will-change: transform;
+}
+
+@keyframes cin-scan {
+    0%   { transform: translateY(-100%); }
+    100% { transform: translateY(325%); }
+}
+
+.cin-avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    animation: cin-breathe 8s ease-in-out infinite;
+    transition: transform 0.6s ease;
+}
+
+@keyframes cin-breathe {
+    0%, 100% { transform: scale(1); }
+    50%       { transform: scale(1.018); }
+}
+
+.cin-frame:hover .cin-avatar-img { transform: scale(1.025); }
+
+/* Waveform overlay */
+.cin-audio-bar {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 60px;
+    background: linear-gradient(to top, rgba(7,9,15,0.95) 0%, rgba(7,9,15,0.5) 60%, transparent 100%);
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 10px;
+    z-index: 4;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.cin-audio-bar.active { opacity: 1; }
+
+.cin-waveform-canvas {
+    width: 100%;
+    height: 42px;
+    display: block;
+}
+
+/* Corner reticles */
+.cin-corner {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.cin-corner::before,
+.cin-corner::after {
+    content: '';
+    position: absolute;
+    background: rgba(59,130,246,0.75);
+    border-radius: 1px;
+}
+
+.cin-tl { top: 12px; left: 12px; }
+.cin-tr { top: 12px; right: 12px; }
+.cin-bl { bottom: 12px; left: 12px; }
+.cin-br { bottom: 12px; right: 12px; }
+
+.cin-tl::before, .cin-tr::before,
+.cin-bl::before, .cin-br::before { height: 2px; width: 100%; }
+.cin-tl::after,  .cin-tr::after,
+.cin-bl::after,  .cin-br::after  { width: 2px; height: 100%; }
+
+.cin-tl::before { top: 0; left: 0; }
+.cin-tl::after  { top: 0; left: 0; }
+.cin-tr::before { top: 0; right: 0; }
+.cin-tr::after  { top: 0; right: 0; }
+.cin-bl::before { bottom: 0; left: 0; }
+.cin-bl::after  { bottom: 0; left: 0; }
+.cin-br::before { bottom: 0; right: 0; }
+.cin-br::after  { bottom: 0; right: 0; }
+
+/* Play / pause button */
+.cin-play-btn {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 62px; height: 62px;
+    border-radius: 50%;
+    background: rgba(7,9,15,0.55);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    border: 1.5px solid rgba(59,130,246,0.55);
+    color: #fff;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 6;
+    transition: opacity 0.35s ease, background 0.3s ease, transform 0.3s ease;
+    padding-left: 3px;
+}
+
+.cin-play-btn:hover {
+    background: rgba(59,130,246,0.3);
+    border-color: rgba(59,130,246,0.85);
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+.cin-frame.cin-playing .cin-play-btn {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.cin-frame.cin-playing:hover .cin-play-btn {
+    opacity: 0.85;
+    pointer-events: all;
+    padding-left: 0;
+}
+
+.cin-play-ring {
+    position: absolute;
+    inset: -10px;
+    border-radius: 50%;
+    border: 1px solid rgba(59,130,246,0.3);
+    animation: cin-ring-pulse 2.2s ease-out infinite;
+}
+
+@keyframes cin-ring-pulse {
+    0%   { transform: scale(1);   opacity: 0.7; }
+    100% { transform: scale(1.4); opacity: 0; }
+}
+
+/* Status bar */
+.cin-status-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.45);
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.06em;
+    z-index: 1;
+}
+
+.cin-pulse-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: rgba(59,130,246,0.55);
+    flex-shrink: 0;
+    animation: cin-dot-idle 2.2s ease-in-out infinite;
+}
+
+.cin-pulse-dot.active {
+    background: #10B981;
+    animation: cin-dot-active 0.9s ease-in-out infinite;
+}
+
+@keyframes cin-dot-idle {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50%       { opacity: 1;   transform: scale(1.4); }
+}
+
+@keyframes cin-dot-active {
+    0%, 100% { transform: scale(1);   opacity: 1; }
+    50%       { transform: scale(1.6); opacity: 0.6; }
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .cin-frame { width: 270px; height: 350px; }
+    .cinematic-avatar-wrap { width: 270px; }
+}
+
+@media (max-width: 600px) {
+    .cin-frame { width: 240px; height: 310px; }
+    .cinematic-avatar-wrap { width: 240px; }
 }

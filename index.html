@@ -85,10 +85,28 @@
                     </div>
                 </div>
                 <div class="hero-image-wrapper fade-in-up d2">
-                    <div class="hero-profile-ring">
-                        <div id="profile-pic" class="profile-image" aria-label="Akbar M A">
-                            <img src="assets/profile.jpg" alt="Akbar M A" class="profile-img">
+                    <div class="cinematic-avatar-wrap">
+                        <canvas class="cin-particles" id="cin-particles"></canvas>
+                        <div class="cin-frame" id="cin-frame">
+                            <div class="cin-scanline"></div>
+                            <img src="assets/gemini-avatar.png" alt="Akbar M A" class="cin-avatar-img">
+                            <div class="cin-audio-bar" id="cin-audio-bar">
+                                <canvas class="cin-waveform-canvas" id="cin-waveform"></canvas>
+                            </div>
+                            <div class="cin-corner cin-tl"></div>
+                            <div class="cin-corner cin-tr"></div>
+                            <div class="cin-corner cin-bl"></div>
+                            <div class="cin-corner cin-br"></div>
+                            <button class="cin-play-btn" id="cin-play-btn" aria-label="Play intro">
+                                <div class="cin-play-ring"></div>
+                                <i class="fa-solid fa-play" id="cin-play-icon"></i>
+                            </button>
                         </div>
+                        <div class="cin-status-bar">
+                            <span class="cin-pulse-dot" id="cin-pulse-dot"></span>
+                            <span class="cin-status-text" id="cin-status-text">Tap to hear intro</span>
+                        </div>
+                        <audio id="cin-audio" src="assets/intro-audio.mp3" preload="auto"></audio>
                     </div>
                 </div>
             </div>
