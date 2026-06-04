@@ -2,7 +2,7 @@
 window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
 window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
 
-console.log("%c Welcome to Akbar MA's portfolio source code!", "color:#3B82F6;font-size:14px;font-weight:bold;background:#07090F;padding:10px;border:1px solid #3B82F6;");
+console.log("%c Cyronix Dev & Security — Built by Akbar M A", "color:#3B78F5;font-size:14px;font-weight:bold;background:#07090F;padding:10px;border:1px solid #3B78F5;");
 
 // Always start at top on load (for animation impact)
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
@@ -130,6 +130,7 @@ if (scrambleEl && !window.matchMedia('(prefers-reduced-motion: reduce)').matches
 const typewriterEl = document.getElementById('typewriter-text');
 if (typewriterEl) {
     const phrases = [
+        'Founder & CEO — Cyronix Dev & Security',
         'Cybersecurity Professional — Dubai, UAE',
         'Penetration Tester & Security Researcher',
         'CEH Certified · OWASP · Red Teamer',
@@ -178,7 +179,7 @@ if (downloadBtn) {
                 setTimeout(() => {
                     const a = document.createElement('a');
                     a.href = 'assets/resume.pdf';
-                    a.download = 'Akbar_M_A_Resume.pdf';
+                    a.download = 'Akbar_MA_Cyronix_Resume.pdf';
                     document.body.appendChild(a);
                     a.click();
                     document.body.removeChild(a);
