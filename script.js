@@ -243,10 +243,20 @@ document.querySelectorAll('.skill-bar-fill').forEach(bar => {
 document.querySelectorAll('.soc-badge-list').forEach(list => {
     list.classList.add('js-stagger');
     const badges = list.querySelectorAll('.soc-badge');
-    new IntersectionObserver(entries => {
-        if (!entries[0].isIntersecting) return;
+    let revealed = false;
+    const reveal = () => {
+        if (revealed) return;
+        revealed = true;
         badges.forEach((b, i) => setTimeout(() => b.classList.add('badge-visible'), i * 55));
-    }, { threshold: 0.2 }).observe(list);
+    };
+    const io = new IntersectionObserver(entries => {
+        if (!entries[0].isIntersecting) return;
+        reveal();
+        io.disconnect();
+    }, { threshold: 0.05, rootMargin: '0px 0px -10% 0px' });
+    io.observe(list);
+    // Safety fallback: if the observer never fires (layout quirks), reveal anyway.
+    setTimeout(reveal, 2500);
 });
 
 // ── 3D card tilt ──────────────────────────────────────────────────────────
