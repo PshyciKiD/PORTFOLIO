@@ -2,79 +2,7 @@
 window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
 window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
 
-// ── Intro Video ───────────────────────────────────────────────────────────────
-(function () {
-    const overlay  = document.getElementById('intro-overlay');
-    const video    = document.getElementById('intro-video');
-    const skipBtn  = document.getElementById('intro-skip');
-    const bar      = document.getElementById('intro-progress-bar');
-    if (!overlay || !video) return;
-
-    // Skip if already watched this session
-    if (sessionStorage.getItem('cyronix-intro-seen')) {
-        overlay.style.display = 'none';
-        return;
-    }
-
-    // Lock scroll while playing
-    document.body.style.overflow = 'hidden';
-
-    function dismiss() {
-        video.pause();
-        overlay.classList.add('fade-out');
-        document.body.style.overflow = '';
-        sessionStorage.setItem('cyronix-intro-seen', '1');
-        setTimeout(() => { overlay.style.display = 'none'; }, 950);
-    }
-
-    // Progress bar update
-    video.addEventListener('timeupdate', function () {
-        if (!video.duration) return;
-        bar.style.width = (video.currentTime / video.duration * 100) + '%';
-    });
-
-    // Auto-dismiss on video end
-    video.addEventListener('ended', dismiss);
-
-    // Skip button
-    skipBtn.addEventListener('click', dismiss);
-
-    // Keyboard: Escape or Space to skip
-    document.addEventListener('keydown', function skipKey(e) {
-        if (!overlay || overlay.style.display === 'none') return;
-        if (e.key === 'Escape' || e.key === ' ') {
-            e.preventDefault();
-            dismiss();
-            document.removeEventListener('keydown', skipKey);
-        }
-    });
-
-    // Attempt autoplay (unmuted if possible, muted as fallback)
-    video.muted = false;
-    const playPromise = video.play();
-    if (playPromise !== undefined) {
-        playPromise.catch(function () {
-            // Browser blocked unmuted autoplay — try muted
-            video.muted = true;
-            video.play().catch(function () {
-                // Fully blocked: show tap-to-play cue
-                overlay.classList.add('needs-click');
-                overlay.addEventListener('click', function startOnClick() {
-                    overlay.classList.remove('needs-click');
-                    video.muted = false;
-                    video.play().catch(function () {
-                        // Still blocked (strict policy), play muted
-                        video.muted = true;
-                        video.play();
-                    });
-                    overlay.removeEventListener('click', startOnClick);
-                });
-            });
-        });
-    }
-})();
-
-console.log("%c Cyronix Dev & Security — Built by Akbar M A", "color:#3B78F5;font-size:14px;font-weight:bold;background:#07090F;padding:10px;border:1px solid #3B78F5;");
+console.log("%c Cyronix Dev & Security — Built by Akbar M A", "color:#C9A84C;font-size:14px;font-weight:bold;background:#08090E;padding:10px;border:1px solid #C9A84C;");
 
 // Always start at top on load (for animation impact)
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
@@ -418,18 +346,18 @@ document.querySelectorAll('.theme-swatch').forEach(swatch => {
 
 // ── Hero mouse parallax ───────────────────────────────────────────────────
 (function() {
-    const hero    = document.getElementById('home');
-    const hCenter = hero?.querySelector('.hero-center');
-    if (!hero || !hCenter) return;
+    const hero  = document.getElementById('home');
+    const hText = hero?.querySelector('.hero-text-col');
+    if (!hero || !hText) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     hero.addEventListener('mousemove', e => {
         const { width, height, left, top } = hero.getBoundingClientRect();
         const nx = (e.clientX - left - width  / 2) / (width  / 2);
         const ny = (e.clientY - top  - height / 2) / (height / 2);
-        hCenter.style.transform = `translate(${nx * -5}px, ${ny * -3}px)`;
+        hText.style.transform = `translate(${nx * 5}px, ${ny * 3}px)`;
     }, { passive: true });
     hero.addEventListener('mouseleave', () => {
-        hCenter.style.transform = 'translate(0,0)';
+        hText.style.transform = 'translate(0,0)';
     });
 })();
 
@@ -449,19 +377,20 @@ document.querySelectorAll('.soc-badge[title]').forEach(badge => {
     gsap.registerPlugin(ScrollTrigger);
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // Hero entrance — fires directly on load
+    // Hero entrance — split layout: photo slides left, text fades right
     if (!reduced) {
-        const heroTL = gsap.timeline({ delay: 0.15 });
+        const heroTL = gsap.timeline({ delay: 0.1 });
         heroTL
-            .from('.hero-avatar-wrap',   { opacity: 0, scale: 0.88, duration: 0.8,  ease: 'back.out(1.4)' })
-            .from('.founder-badge',      { opacity: 0, y: 16, duration: 0.5,  ease: 'power2.out' }, '-=0.3')
-            .from('.soc-subtitle',       { opacity: 0, y: 16, duration: 0.55, ease: 'power2.out' }, '-=0.25')
-            .from('#scramble-text',      { opacity: 0, y: 28, duration: 0.7,  ease: 'power3.out' }, '-=0.2')
-            .from('.hero-desc',          { opacity: 0, y: 16, duration: 0.55, ease: 'power2.out' }, '-=0.25')
-            .from('.motto-row',          { opacity: 0, y: 14, duration: 0.45, ease: 'power2.out' }, '-=0.2')
-            .from('.soc-cta-group',      { opacity: 0, y: 14, duration: 0.45, ease: 'power2.out' }, '-=0.15')
-            .from('.hero-stats',         { opacity: 0, y: 14, duration: 0.45, ease: 'power2.out' }, '-=0.1')
-            .from('.hero-scroll-hint',   { opacity: 0, y: 8,  duration: 0.4,  ease: 'power2.out' }, '-=0.1');
+            .from('.hero-photo-col',    { opacity: 0, x: -80, duration: 1.1, ease: 'power3.out' })
+            .from('.hero-photo-badge',  { opacity: 0, y: 18,  duration: 0.5, ease: 'power2.out' }, '-=0.3')
+            .from('.founder-badge',     { opacity: 0, y: 20,  duration: 0.5, ease: 'power2.out' }, '-=0.65')
+            .from('.soc-subtitle',      { opacity: 0, y: 16,  duration: 0.5, ease: 'power2.out' }, '-=0.3')
+            .from('#scramble-text',     { opacity: 0, y: 30,  duration: 0.7, ease: 'power3.out' }, '-=0.25')
+            .from('.hero-desc',         { opacity: 0, y: 16,  duration: 0.5, ease: 'power2.out' }, '-=0.3')
+            .from('.motto-row',         { opacity: 0, y: 14,  duration: 0.4, ease: 'power2.out' }, '-=0.25')
+            .from('.soc-cta-group',     { opacity: 0, y: 14,  duration: 0.4, ease: 'power2.out' }, '-=0.2')
+            .from('.hero-stats',        { opacity: 0, y: 12,  duration: 0.4, ease: 'power2.out' }, '-=0.15')
+            .from('.hero-scroll-hint',  { opacity: 0, y: 8,   duration: 0.35, ease: 'power2.out' }, '-=0.1');
     }
 
     if (!reduced) {
@@ -837,125 +766,26 @@ document.querySelectorAll('.experience-card .soc-list').forEach(list => {
     })();
 })();
 
-// ── Cinematic Avatar ──────────────────────────────────────────────────────────
+// ── Cursor Spotlight ─────────────────────────────────────────────────────────
 (function () {
-    const audio      = document.getElementById('cin-audio');
-    const playBtn    = document.getElementById('cin-play-btn');
-    const playIcon   = document.getElementById('cin-play-icon');
-    const audioBar   = document.getElementById('cin-audio-bar');
-    const pulseDot   = document.getElementById('cin-pulse-dot');
-    const statusTxt  = document.getElementById('cin-status-text');
-    const waveCanvas = document.getElementById('cin-waveform');
-    const frame      = document.getElementById('cin-frame');
-    const pCanvas    = document.getElementById('cin-particles');
-    if (!audio || !frame || !pCanvas) return;
+    const el = document.getElementById('cursor-spotlight');
+    if (!el) return;
+    if (window.matchMedia('(pointer: coarse)').matches) { el.style.display = 'none'; return; }
 
-    // ── Web Audio waveform ────────────────────────────────────────────────────
-    let audioCtx, analyser, source, waveRaf;
-    let playing = false;
+    let mx = window.innerWidth / 2, my = window.innerHeight / 2;
+    let cx = mx, cy = my;
 
-    function initAudio() {
-        if (audioCtx) return;
-        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        analyser  = audioCtx.createAnalyser();
-        analyser.fftSize = 64;
-        source = audioCtx.createMediaElementSource(audio);
-        source.connect(analyser);
-        analyser.connect(audioCtx.destination);
-    }
+    document.addEventListener('mousemove', e => {
+        mx = e.clientX; my = e.clientY;
+        el.style.opacity = '1';
+    }, { passive: true });
+    document.addEventListener('mouseleave', () => { el.style.opacity = '0'; });
 
-    function drawWaveform() {
-        const ctx  = waveCanvas.getContext('2d');
-        const dpr  = devicePixelRatio || 1;
-        const W    = waveCanvas.offsetWidth  * dpr;
-        const H    = waveCanvas.offsetHeight * dpr;
-        waveCanvas.width  = W;
-        waveCanvas.height = H;
-        const data = new Uint8Array(analyser.frequencyBinCount);
-
-        function tick() {
-            waveRaf = requestAnimationFrame(tick);
-            analyser.getByteFrequencyData(data);
-            ctx.clearRect(0, 0, W, H);
-            const bw = W / data.length * 1.6;
-            let x = 0;
-            for (let i = 0; i < data.length; i++) {
-                const v  = data[i] / 255;
-                const bh = v * H * 0.88;
-                ctx.fillStyle = `rgba(59,130,246,${0.35 + v * 0.65})`;
-                ctx.fillRect(x, H - bh, Math.max(bw - 1, 1), bh);
-                x += bw + 1;
-            }
-        }
-        tick();
-    }
-
-    function play() {
-        initAudio();
-        if (audioCtx.state === 'suspended') audioCtx.resume();
-        audio.play();
-        playing = true;
-        frame.classList.add('cin-playing');
-        playIcon.className = 'fa-solid fa-pause';
-        audioBar.classList.add('active');
-        pulseDot.classList.add('active');
-        statusTxt.textContent = 'Playing intro...';
-        drawWaveform();
-    }
-
-    function pause() {
-        audio.pause();
-        playing = false;
-        frame.classList.remove('cin-playing');
-        playIcon.className = 'fa-solid fa-play';
-        audioBar.classList.remove('active');
-        pulseDot.classList.remove('active');
-        statusTxt.textContent = 'Tap to hear intro';
-        if (waveRaf) cancelAnimationFrame(waveRaf);
-    }
-
-    frame.addEventListener('click', () => { playing ? pause() : play(); });
-    playBtn.addEventListener('click', e => { e.stopPropagation(); playing ? pause() : play(); });
-    audio.addEventListener('ended', pause);
-
-    // ── Particle canvas ───────────────────────────────────────────────────────
-    const pCtx = pCanvas.getContext('2d');
-    const NUM  = 30;
-    const pts  = [];
-
-    function resize() {
-        pCanvas.width  = pCanvas.offsetWidth;
-        pCanvas.height = pCanvas.offsetHeight;
-    }
-
-    function newPt() {
-        return {
-            x:  Math.random() * pCanvas.width,
-            y:  pCanvas.height + 8,
-            r:  Math.random() * 1.4 + 0.4,
-            vy: Math.random() * 0.45 + 0.18,
-            vx: (Math.random() - 0.5) * 0.28,
-            a:  Math.random() * 0.45 + 0.1,
-        };
-    }
-
-    resize();
-    window.addEventListener('resize', resize);
-    for (let i = 0; i < NUM; i++) { const p = newPt(); p.y = Math.random() * pCanvas.height; pts.push(p); }
-
-    (function animPts() {
-        requestAnimationFrame(animPts);
-        if (!pCanvas.width) return;
-        pCtx.clearRect(0, 0, pCanvas.width, pCanvas.height);
-        pts.forEach((p, i) => {
-            p.y -= p.vy;
-            p.x += p.vx;
-            p.a -= 0.0013;
-            if (p.y < -8 || p.a <= 0) pts[i] = newPt();
-            pCtx.beginPath();
-            pCtx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-            pCtx.fillStyle = `rgba(59,130,246,${p.a})`;
-            pCtx.fill();
-        });
+    (function lerp() {
+        cx += (mx - cx) * 0.09;
+        cy += (my - cy) * 0.09;
+        el.style.left = cx + 'px';
+        el.style.top  = cy + 'px';
+        requestAnimationFrame(lerp);
     })();
 })();
