@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+# AI / answer engines — explicitly allowed
+User-agent: GPTBot
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://akbar.cyronixsecurity.com/sitemap.xml

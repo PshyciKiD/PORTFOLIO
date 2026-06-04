@@ -1,0 +1,17 @@
+{
+  "name": "Cyronix Dev & Security — Akbar M A",
+  "short_name": "Cyronix",
+  "description": "Akbar M A — Founder & CEO of Cyronix Dev & Security. Penetration testing, VAPT and security-first web development.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#08090E",
+  "theme_color": "#08090E",
+  "icons": [
+    {
+      "src": "assets/cyronix_logo.png",
+      "sizes": "320x316",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
