@@ -22,24 +22,8 @@
 </head>
 <body>
 
-    <!-- ══ INTRO VIDEO OVERLAY ══ -->
-    <div id="intro-overlay" class="intro-overlay" role="dialog" aria-label="Intro video">
-        <video id="intro-video" class="intro-video" preload="auto" playsinline muted>
-            <source src="assets/Intro.mp4" type="video/mp4">
-        </video>
-        <div class="intro-ui">
-            <div class="intro-logo">
-                <img src="assets/cyronix_logo.png" alt="Cyronix Dev & Security" class="intro-logo-img">
-            </div>
-            <button id="intro-skip" class="intro-skip" aria-label="Skip intro">
-                <span>Skip Intro</span>
-                <i class="fa-solid fa-forward-step"></i>
-            </button>
-        </div>
-        <div class="intro-progress-wrap">
-            <div class="intro-progress-bar" id="intro-progress-bar"></div>
-        </div>
-    </div>
+    <!-- Cursor spotlight -->
+    <div id="cursor-spotlight" aria-hidden="true"></div>
 
     <div id="scroll-progress" aria-hidden="true"></div>
 
@@ -66,44 +50,34 @@
 
     <main>
 
-        <!-- ══ HERO — centered, premium ══ -->
+        <!-- ══ HERO — split layout: photo left / text right ══ -->
         <section id="home" class="hero">
             <canvas class="hero-bg-canvas" id="hero-bg-particles"></canvas>
 
-            <div class="hero-center">
-                <!-- Circular avatar / audio player -->
-                <div class="hero-avatar-wrap">
-                    <canvas class="cin-particles" id="cin-particles"></canvas>
-                    <div class="cin-frame" id="cin-frame">
-                        <img src="assets/gemini-avatar.png" alt="Akbar M A" class="cin-avatar-img">
-                        <div class="cin-audio-bar" id="cin-audio-bar">
-                            <canvas class="cin-waveform-canvas" id="cin-waveform"></canvas>
-                        </div>
-                        <button class="cin-play-btn" id="cin-play-btn" aria-label="Play intro">
-                            <i class="fa-solid fa-play" id="cin-play-icon"></i>
-                        </button>
-                    </div>
-                    <div class="cin-status-bar">
-                        <span class="cin-pulse-dot" id="cin-pulse-dot"></span>
-                        <span class="cin-status-text" id="cin-status-text">Tap to hear intro</span>
-                    </div>
-                    <audio id="cin-audio" src="assets/intro-audio.mp3" preload="auto"></audio>
+            <!-- LEFT: full-height profile photo -->
+            <div class="hero-photo-col">
+                <img src="assets/profile-3.jpeg" alt="Akbar M A — Founder of Cyronix Dev &amp; Security" class="hero-photo-img">
+                <div class="hero-photo-overlay"></div>
+                <div class="hero-photo-badge">
+                    <img src="assets/cyronix_logo.png" alt="Cyronix" class="hero-badge-logo">
                 </div>
+            </div>
 
-                <!-- Centered text block -->
-                <div class="hero-content fade-in-up">
-                    <div class="founder-badge"><i class="fa-solid fa-building"></i> Founder &amp; CEO — Cyronix Dev &amp; Security</div>
-                    <span class="soc-subtitle"><span id="typewriter-text">Cybersecurity Professional — Dubai, UAE</span></span>
-                    <h1 id="scramble-text" data-value="Akbar M A">Akbar M A</h1>
-                    <p class="hero-desc">Founder of Cyronix Dev &amp; Security. Building resilient digital architectures and defending them through advanced penetration testing.</p>
-                    <div class="motto-row">
+            <!-- RIGHT: text content -->
+            <div class="hero-text-col">
+                <div class="hero-content">
+                    <div class="founder-badge fade-in-up"><i class="fa-solid fa-building"></i> Founder &amp; CEO — Cyronix Dev &amp; Security</div>
+                    <span class="soc-subtitle fade-in-up d1"><span id="typewriter-text">Cybersecurity Professional — Dubai, UAE</span></span>
+                    <h1 id="scramble-text" class="fade-in-up d2" data-value="Akbar M A">Akbar M A</h1>
+                    <p class="hero-desc fade-in-up d2">Founder of Cyronix Dev &amp; Security. Building resilient digital architectures and defending them through advanced penetration testing.</p>
+                    <div class="motto-row fade-in-up d3">
                         <i class="fa-solid fa-quote-left"></i> I build what I can defend, and I defend what others have built. <i class="fa-solid fa-quote-right"></i>
                     </div>
-                    <div class="soc-cta-group">
+                    <div class="soc-cta-group fade-in-up d3">
                         <a href="#" id="download-cv-btn" class="soc-btn primary-btn"><i class="fa-solid fa-file-pdf"></i> Download Resume</a>
-                        <a href="#certifications" class="soc-btn outline-btn"><i class="fa-solid fa-certificate"></i> View Certifications</a>
+                        <a href="#company" class="soc-btn outline-btn"><i class="fa-solid fa-building"></i> View Company</a>
                     </div>
-                    <div class="hero-stats fade-in-up d3">
+                    <div class="hero-stats fade-in-up d4">
                         <div class="stat-item">
                             <div class="stat-number-wrap"><span class="stat-number" data-count="50">0</span><span class="stat-suffix">+</span></div>
                             <span class="stat-label">Pen Tests</span>
