@@ -2,6 +2,78 @@
 window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
 window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
 
+// ── Intro Video ───────────────────────────────────────────────────────────────
+(function () {
+    const overlay  = document.getElementById('intro-overlay');
+    const video    = document.getElementById('intro-video');
+    const skipBtn  = document.getElementById('intro-skip');
+    const bar      = document.getElementById('intro-progress-bar');
+    if (!overlay || !video) return;
+
+    // Skip if already watched this session
+    if (sessionStorage.getItem('cyronix-intro-seen')) {
+        overlay.style.display = 'none';
+        return;
+    }
+
+    // Lock scroll while playing
+    document.body.style.overflow = 'hidden';
+
+    function dismiss() {
+        video.pause();
+        overlay.classList.add('fade-out');
+        document.body.style.overflow = '';
+        sessionStorage.setItem('cyronix-intro-seen', '1');
+        setTimeout(() => { overlay.style.display = 'none'; }, 950);
+    }
+
+    // Progress bar update
+    video.addEventListener('timeupdate', function () {
+        if (!video.duration) return;
+        bar.style.width = (video.currentTime / video.duration * 100) + '%';
+    });
+
+    // Auto-dismiss on video end
+    video.addEventListener('ended', dismiss);
+
+    // Skip button
+    skipBtn.addEventListener('click', dismiss);
+
+    // Keyboard: Escape or Space to skip
+    document.addEventListener('keydown', function skipKey(e) {
+        if (!overlay || overlay.style.display === 'none') return;
+        if (e.key === 'Escape' || e.key === ' ') {
+            e.preventDefault();
+            dismiss();
+            document.removeEventListener('keydown', skipKey);
+        }
+    });
+
+    // Attempt autoplay (unmuted if possible, muted as fallback)
+    video.muted = false;
+    const playPromise = video.play();
+    if (playPromise !== undefined) {
+        playPromise.catch(function () {
+            // Browser blocked unmuted autoplay — try muted
+            video.muted = true;
+            video.play().catch(function () {
+                // Fully blocked: show tap-to-play cue
+                overlay.classList.add('needs-click');
+                overlay.addEventListener('click', function startOnClick() {
+                    overlay.classList.remove('needs-click');
+                    video.muted = false;
+                    video.play().catch(function () {
+                        // Still blocked (strict policy), play muted
+                        video.muted = true;
+                        video.play();
+                    });
+                    overlay.removeEventListener('click', startOnClick);
+                });
+            });
+        });
+    }
+})();
+
 console.log("%c Cyronix Dev & Security — Built by Akbar M A", "color:#3B78F5;font-size:14px;font-weight:bold;background:#07090F;padding:10px;border:1px solid #3B78F5;");
 
 // Always start at top on load (for animation impact)

@@ -21,6 +21,26 @@
     <script defer src="/_vercel/speed-insights/script.js"></script>
 </head>
 <body>
+
+    <!-- ══ INTRO VIDEO OVERLAY ══ -->
+    <div id="intro-overlay" class="intro-overlay" role="dialog" aria-label="Intro video">
+        <video id="intro-video" class="intro-video" preload="auto" playsinline muted>
+            <source src="assets/Intro.mp4" type="video/mp4">
+        </video>
+        <div class="intro-ui">
+            <div class="intro-logo">
+                <img src="assets/cyronix_logo.png" alt="Cyronix Dev & Security" class="intro-logo-img">
+            </div>
+            <button id="intro-skip" class="intro-skip" aria-label="Skip intro">
+                <span>Skip Intro</span>
+                <i class="fa-solid fa-forward-step"></i>
+            </button>
+        </div>
+        <div class="intro-progress-wrap">
+            <div class="intro-progress-bar" id="intro-progress-bar"></div>
+        </div>
+    </div>
+
     <div id="scroll-progress" aria-hidden="true"></div>
 
     <nav class="soc-nav">
