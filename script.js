@@ -242,20 +242,7 @@ document.querySelectorAll('.skill-bar-fill').forEach(bar => {
 // ── Skill badges: entrance handled by pure CSS (bulletproof, always visible) ──
 // (No JS hiding — badges can never get stuck invisible.)
 
-// ── 3D card tilt ──────────────────────────────────────────────────────────
-document.querySelectorAll('.soc-card, .bento-card').forEach(card => {
-    card.addEventListener('mouseenter', () => { card.style.transition = 'transform 0.1s ease, box-shadow 0.1s ease'; });
-    card.addEventListener('mousemove', e => {
-        const r  = card.getBoundingClientRect();
-        const dx = (e.clientX - r.left - r.width  / 2) / (r.width  / 2);
-        const dy = (e.clientY - r.top  - r.height / 2) / (r.height / 2);
-        card.style.transform = `perspective(700px) rotateY(${dx * 5}deg) rotateX(${-dy * 5}deg) translateZ(4px)`;
-    });
-    card.addEventListener('mouseleave', () => {
-        card.style.transition = 'transform 0.5s ease, box-shadow 0.5s ease';
-        card.style.transform  = 'perspective(700px) rotateY(0deg) rotateX(0deg) translateZ(0)';
-    });
-});
+// ── 3D card tilt removed (cards now stay flat; hover uses CSS border/shadow only) ──
 
 // ── Magnetic CTA buttons ──────────────────────────────────────────────────
 document.querySelectorAll('.soc-btn').forEach(btn => {
