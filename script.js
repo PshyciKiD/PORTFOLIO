@@ -481,39 +481,9 @@ document.querySelectorAll('.soc-badge[title]').forEach(badge => {
             );
         });
 
-        // About cards: depth stagger
-        ScrollTrigger.batch('#about .soc-card', {
-            onEnter: batch => {
-                batch.forEach(el => { el.classList.add('visible'); el.style.setProperty('transition', 'none', 'important'); });
-                gsap.fromTo(batch,
-                    { opacity: 0, y: 40, rotateX: 12 },
-                    { opacity: 1, y: 0, rotateX: 0, stagger: 0.12, duration: 0.7, ease: 'power3.out',
-                      onComplete() { batch.forEach(el => el.style.removeProperty('transition')); } }
-                );
-            },
-            start: 'top 80%', once: true,
-        });
-
-        // Scroll velocity tilt
-        (function() {
-            const tiltTargets = gsap.utils.toArray('.soc-card, .bento-card, .tool-card');
-            if (!tiltTargets.length) return;
-            let lastTilt = 0;
-            ScrollTrigger.create({
-                trigger: document.body,
-                start: 'top top', end: 'bottom bottom',
-                onUpdate: self => {
-                    const vel  = self.getVelocity();
-                    const tilt = gsap.utils.clamp(-3.5, 3.5, vel * 0.0025);
-                    if (Math.abs(tilt - lastTilt) < 0.08) return;
-                    lastTilt = tilt;
-                    gsap.to(tiltTargets, { rotateX: -tilt * 0.45, duration: 0.4, ease: 'power2.out', overwrite: 'auto' });
-                }
-            });
-            ScrollTrigger.addEventListener('scrollEnd', () => {
-                gsap.to(tiltTargets, { rotateX: 0, duration: 0.7, ease: 'elastic.out(1, 0.5)' });
-            });
-        })();
+        // (About cards now animate via the reliable CSS .fade-in-up + IntersectionObserver.
+        //  The old GSAP depth-stagger + scroll-velocity tilt were removed: their
+        //  `overwrite: 'auto'` killed the opacity tween mid-scroll, leaving cards stuck faded.)
     }
 })();
 

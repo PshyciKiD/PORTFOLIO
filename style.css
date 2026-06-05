@@ -232,6 +232,12 @@ section { padding: 6rem 2rem; max-width: 1280px; margin: 0 auto; }
   color: var(--tx-3); margin-bottom: 1.25rem;
 }
 .light-section .soc-mono-title { color: var(--ltx-3); }
+/* Card body text inherits the dark-theme near-white --tx by default,
+   which is near-invisible on the white light-section cards. Force a
+   readable dark tone for prose inside light-section cards.          */
+.light-section .soc-card p,
+.light-section .soc-card li,
+.light-section .soc-card { color: var(--ltx-2); }
 
 /* ── 11 BUTTONS ───────────────────────────────────────────── */
 .soc-btn {
@@ -979,6 +985,23 @@ section { padding: 6rem 2rem; max-width: 1280px; margin: 0 auto; }
 .fade-in-up.d3 { transition-delay: 0.3s; }
 .fade-in-up.d4 { transition-delay: 0.4s; }
 .fade-in-up.visible { opacity: 1; transform: translateY(0); }
+
+/* ── About — refined "focus-in" reveal ────────────────────────
+   Pure CSS, driven solely by the IntersectionObserver .visible
+   toggle, so cards can never get stuck mid-fade. Cards rise,
+   settle to full scale, and sharpen from a soft blur.            */
+#about .soc-card.fade-in-up {
+  transform: translateY(42px) scale(0.98);
+  filter: blur(7px);
+  transition: opacity 0.85s var(--ease),
+              transform 0.85s var(--ease),
+              filter 0.7s var(--ease);
+}
+#about .soc-card.fade-in-up.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+}
 
 .slide-in-left  { opacity: 0; transform: translateX(-32px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
 .slide-in-right { opacity: 0; transform: translateX(32px);  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
