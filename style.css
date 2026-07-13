@@ -178,7 +178,8 @@ section { padding: 6rem 2rem; max-width: 1280px; margin: 0 auto; }
 .light-section > .soc-timeline,
 .light-section > .bento-grid,
 .light-section > .testimonials-grid,
-.light-section > .testimonials-note {
+.light-section > .testimonials-note,
+.light-section > .faq-list {
   max-width: 1280px; margin-left: auto; margin-right: auto;
   padding-left: 2rem; padding-right: 2rem;
 }
@@ -449,7 +450,7 @@ section { padding: 6rem 2rem; max-width: 1280px; margin: 0 auto; }
 
 /* Profile photo card */
 .profile-photo-card { padding: 0; overflow: hidden; border: 1px solid var(--bd-l); }
-.profile-photo-single { overflow: hidden; }
+.profile-photo-single { overflow: hidden; position: relative; }
 .profile-photo-main {
   width: 100%; aspect-ratio: 3 / 4; height: auto;
   object-fit: cover; object-position: center 20%;
@@ -463,6 +464,36 @@ section { padding: 6rem 2rem; max-width: 1280px; margin: 0 auto; }
 }
 .profile-name { font-size: 0.9rem; font-weight: 600; color: var(--ltx); }
 .profile-role { font-size: 0.75rem; color: var(--ltx-3); font-family: var(--f-mono); letter-spacing: 0.03em; }
+
+/* Watch My Story — play trigger over profile photo */
+.story-play-btn {
+  position: absolute; left: 50%; bottom: 1.25rem; transform: translateX(-50%);
+  display: flex; align-items: center; gap: 0.55rem;
+  padding: 0.55rem 1.1rem 0.55rem 0.6rem;
+  background: rgba(10,10,14,0.55); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.22); border-radius: 999px;
+  color: #fff; font-size: 0.8rem; font-weight: 600;
+  transition: background var(--dur), border-color var(--dur), transform var(--dur);
+}
+.story-play-btn:hover { background: rgba(10,10,14,0.75); border-color: var(--ac); transform: translateX(-50%) translateY(-2px); }
+.story-play-icon {
+  width: 26px; height: 26px; border-radius: 50%; background: var(--ac); color: #100c02;
+  display: flex; align-items: center; justify-content: center; font-size: 0.68rem; flex-shrink: 0;
+}
+
+/* Watch My Story — modal */
+.story-modal { position: fixed; inset: 0; z-index: 600; background: rgba(0,0,0,0.85); display: none; align-items: center; justify-content: center; padding: 1.25rem; }
+.story-modal.visible { display: flex; }
+.story-panel { position: relative; width: 100%; max-width: 380px; }
+.story-video { width: 100%; aspect-ratio: 9 / 16; max-height: 82vh; border-radius: var(--r-lg); background: #000; box-shadow: var(--sh); display: block; }
+.story-close {
+  position: absolute; top: -2.75rem; right: 0; color: var(--tx); font-size: 0.9rem;
+  width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--bd-h);
+  display: flex; align-items: center; justify-content: center; transition: color var(--dur), background var(--dur);
+}
+.story-close:hover { color: var(--ac); background: rgba(255,255,255,0.06); }
+.story-disclosure { margin-top: 0.75rem; text-align: center; font-size: 0.72rem; color: var(--tx-3); display: flex; align-items: center; justify-content: center; gap: 0.4rem; }
+.story-disclosure i { color: var(--ac); }
 
 /* Skill bars */
 .skill-bar-list { display: flex; flex-direction: column; gap: 1.125rem; }
@@ -659,6 +690,13 @@ section { padding: 6rem 2rem; max-width: 1280px; margin: 0 auto; }
 .project-image { height: 152px; overflow: hidden; }
 .project-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.45s var(--ease); }
 .project-card:hover .project-img { transform: scale(1.05); }
+.project-image-live {
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, var(--purple-bg), rgba(139,92,246,0.03));
+  color: var(--purple); font-size: 2.75rem; opacity: 0.85;
+  transition: transform 0.45s var(--ease);
+}
+.project-card:hover .project-image-live { transform: scale(1.05); }
 .project-icon-wrap { padding: 1.125rem 1.25rem 0; font-size: 1.375rem; color: var(--ac-3); }
 .project-title { padding: 0.45rem 1.25rem 0; font-size: 1rem; font-weight: 600; color: var(--ltx); }
 .project-desc { padding: 0.4rem 1.25rem 0; font-size: 0.835rem; color: var(--ltx-2); line-height: 1.65; flex: 1; }
@@ -670,6 +708,8 @@ section { padding: 6rem 2rem; max-width: 1280px; margin: 0 auto; }
 .badge-dev      { background: var(--blue-bg);   color: var(--blue); }
 .badge-recon    { background: var(--amber-bg);  color: var(--amber); }
 .badge-defensive{ background: var(--green-bg);  color: var(--green); }
+.badge-live     { background: var(--purple-bg); color: var(--purple); display: inline-flex; align-items: center; gap: 0.32rem; }
+.badge-live .live-pulse { background: var(--purple); }
 .project-year { font-family: var(--f-mono); font-size: 0.67rem; color: var(--ltx-3); }
 .project-btn {
   display: inline-flex; align-items: center; gap: 0.375rem;
@@ -906,6 +946,29 @@ section { padding: 6rem 2rem; max-width: 1280px; margin: 0 auto; }
 .t-info span { font-size: 0.75rem; color: var(--ltx-3); }
 .t-stars { font-size: 0.75rem; color: var(--ac); letter-spacing: 1px; flex-shrink: 0; }
 .testimonials-note { text-align: center; font-size: 0.75rem; color: var(--ltx-3); font-style: italic; margin-top: 0.5rem; }
+
+/* ── 21b FAQ ──────────────────────────────────────────────── */
+.faq-list { display: flex; flex-direction: column; gap: 0.75rem; max-width: 860px; }
+.faq-item {
+  background: rgba(255,255,255,0.9); border: 1px solid var(--bd-l);
+  border-radius: var(--r-lg); padding: 1.1rem 1.4rem;
+  transition: border-color var(--dur), box-shadow var(--dur);
+}
+.faq-item:hover { border-color: rgba(201,168,76,0.32); box-shadow: var(--sh-l); }
+.faq-item summary {
+  cursor: pointer; list-style: none; font-family: var(--f-display);
+  font-weight: 600; font-size: 0.98rem; color: var(--ltx);
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after {
+  content: '\002B'; font-family: var(--f-mono); font-size: 1.1rem; color: var(--ac);
+  flex-shrink: 0; transition: transform var(--dur);
+}
+.faq-item[open] summary::after { content: '\2212'; }
+.faq-item p { margin-top: 0.75rem; font-size: 0.875rem; color: var(--ltx-2); line-height: 1.7; }
+.faq-item p a { color: var(--ac-3); text-decoration: underline; text-underline-offset: 2px; }
+.faq-item p a:hover { color: var(--ac); }
 
 /* ── 22 CONTACT ───────────────────────────────────────────── */
 .contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; max-width: 1280px; margin: 0 auto; }

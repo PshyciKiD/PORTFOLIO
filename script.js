@@ -560,6 +560,32 @@ document.querySelectorAll('.soc-btn').forEach(btn => {
     document.getElementById('ctx-contact')?.addEventListener('click', () => { document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); hide(); });
 })();
 
+// ── Watch My Story modal ────────────────────────────────────────────────
+(function() {
+    const trigger = document.getElementById('story-play-btn');
+    const modal    = document.getElementById('story-modal');
+    const closeBtn = document.getElementById('close-story');
+    const video    = document.getElementById('story-video');
+    if (!trigger || !modal || !video) return;
+
+    const open = () => {
+        modal.classList.add('visible');
+        video.currentTime = 0;
+        video.play().catch(() => {});
+    };
+    const close = () => {
+        modal.classList.remove('visible');
+        video.pause();
+    };
+
+    trigger.addEventListener('click', open);
+    closeBtn?.addEventListener('click', close);
+    modal.addEventListener('click', e => { if (e.target === modal) close(); });
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && modal.classList.contains('visible')) close();
+    });
+})();
+
 // ── Keyboard shortcuts modal ──────────────────────────────────────────────
 (function() {
     const modal    = document.getElementById('shortcuts-modal');

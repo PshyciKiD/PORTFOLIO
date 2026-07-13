@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Akbar M A | Founder & CEO — Cyronix Dev & Security</title>
-    <meta name="description" content="Akbar M A — Founder & CEO of Cyronix Dev & Security. Penetration testing, VAPT, security audits and security-first web development from Dubai, UAE. CEH certified.">
+    <meta name="description" content="Akbar M A — Founder & CEO of Cyronix Dev & Security. Penetration testing, VAPT, security audits and security-first web development from Dubai, UAE. CEH certified. Try the free live Security Auditor and Threat Map.">
     <meta name="author" content="Akbar M A">
-    <meta name="keywords" content="Cyronix, Cyronix Dev & Security, Akbar M A, penetration testing, VAPT, cybersecurity Dubai, CEH, security audit, secure web development">
+    <meta name="keywords" content="Cyronix, Cyronix Dev & Security, Akbar M A, penetration testing, VAPT, cybersecurity Dubai, CEH, security audit, secure web development, security header checker, live threat map, free security scanner">
     <meta name="theme-color" content="#08090E">
     <link rel="canonical" href="https://akbar.cyronixsecurity.com/">
 
@@ -14,13 +14,13 @@
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Cyronix Dev & Security">
     <meta property="og:title" content="Akbar M A | Founder & CEO — Cyronix Dev & Security">
-    <meta property="og:description" content="Penetration testing, VAPT & security-first web development — Dubai, UAE. CEH certified.">
+    <meta property="og:description" content="Penetration testing, VAPT & security-first web development — Dubai, UAE. CEH certified. Free live Security Auditor & Threat Map.">
     <meta property="og:url" content="https://akbar.cyronixsecurity.com/">
     <meta property="og:image" content="https://akbar.cyronixsecurity.com/assets/profile-1.jpeg">
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Akbar M A | Founder & CEO — Cyronix Dev & Security">
-    <meta name="twitter:description" content="Penetration testing, VAPT & security-first web development — Dubai, UAE.">
+    <meta name="twitter:description" content="Penetration testing, VAPT & security-first web development — Dubai, UAE. Free live Security Auditor & Threat Map.">
     <meta name="twitter:image" content="https://akbar.cyronixsecurity.com/assets/profile-1.jpeg">
 
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230C0E18'/><text x='50%25' y='50%25' font-family='monospace' font-weight='800' font-size='52' fill='%233B78F5' dominant-baseline='central' text-anchor='middle'>C</text></svg>">
@@ -43,25 +43,99 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Akbar M A",
-      "jobTitle": "Founder & CEO",
-      "url": "https://akbar.cyronixsecurity.com/",
-      "image": "https://akbar.cyronixsecurity.com/assets/profile-1.jpeg",
-      "email": "mailto:connect@cyronixsecurity.com",
-      "worksFor": {
-        "@type": "Organization",
-        "name": "Cyronix Dev & Security",
-        "url": "https://www.cyronixsecurity.com",
-        "logo": "https://akbar.cyronixsecurity.com/assets/cyronix_logo.png"
-      },
-      "address": { "@type": "PostalAddress", "addressLocality": "Dubai", "addressCountry": "AE" },
-      "knowsAbout": ["Penetration Testing", "VAPT", "OSINT", "Network Security", "Secure Web Development"],
-      "sameAs": [
-        "https://www.cyronixsecurity.com",
-        "https://linkedin.com/in/akbarma/",
-        "https://github.com/akbarma",
-        "https://www.instagram.com/_akb_a_r/"
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://akbar.cyronixsecurity.com/#person",
+          "name": "Akbar M A",
+          "jobTitle": "Founder & CEO",
+          "url": "https://akbar.cyronixsecurity.com/",
+          "image": "https://akbar.cyronixsecurity.com/assets/profile-1.jpeg",
+          "email": "mailto:connect@cyronixsecurity.com",
+          "worksFor": { "@id": "https://www.cyronixsecurity.com/#organization" },
+          "address": { "@type": "PostalAddress", "addressLocality": "Dubai", "addressCountry": "AE" },
+          "knowsAbout": ["Penetration Testing", "VAPT", "OSINT", "Network Security", "Secure Web Development"],
+          "hasCredential": {
+            "@type": "EducationalOccupationalCredential",
+            "credentialCategory": "certification",
+            "name": "Certified Ethical Hacker (CEH v11)"
+          },
+          "sameAs": [
+            "https://www.cyronixsecurity.com",
+            "https://linkedin.com/in/akbarma/",
+            "https://github.com/akbarma",
+            "https://www.instagram.com/_akb_a_r/"
+          ]
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://www.cyronixsecurity.com/#organization",
+          "name": "Cyronix Dev & Security",
+          "url": "https://www.cyronixsecurity.com",
+          "logo": "https://akbar.cyronixsecurity.com/assets/cyronix_logo.png",
+          "founder": { "@id": "https://akbar.cyronixsecurity.com/#person" },
+          "address": { "@type": "PostalAddress", "addressLocality": "Dubai", "addressCountry": "AE" },
+          "sameAs": [
+            "https://threats.cyronixsecurity.com/",
+            "https://securityaudit.cyronixsecurity.com/",
+            "https://linkedin.com/in/akbarma/"
+          ]
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "Cyronix Security Auditor",
+          "url": "https://securityaudit.cyronixsecurity.com/",
+          "applicationCategory": "SecurityApplication",
+          "operatingSystem": "Any (Web)",
+          "description": "Free live tool that scans any domain's HTTP security headers and TLS configuration and grades it against OWASP best practice.",
+          "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+          "creator": { "@id": "https://www.cyronixsecurity.com/#organization" }
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "Cyronix Live Threat Map",
+          "url": "https://threats.cyronixsecurity.com/",
+          "applicationCategory": "SecurityApplication",
+          "operatingSystem": "Any (Web)",
+          "description": "Real-time global cyber-attack visualization tracking live threat activity across regions.",
+          "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+          "creator": { "@id": "https://www.cyronixsecurity.com/#organization" }
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Who is Akbar M A?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Akbar M A is a CEH-certified cybersecurity researcher based in Dubai, UAE, and the Founder & CEO of Cyronix Dev & Security. He specialises in penetration testing, vulnerability assessment (VAPT), OSINT, and security-first web development." }
+            },
+            {
+              "@type": "Question",
+              "name": "What does Cyronix Dev & Security do?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Cyronix Dev & Security is a Dubai-based cybersecurity and secure web development company offering penetration testing, VAPT, security audits, incident response support, and OWASP-hardened web application development." }
+            },
+            {
+              "@type": "Question",
+              "name": "Is there a free tool to check a website's security headers?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Yes — Cyronix's Security Auditor at https://securityaudit.cyronixsecurity.com/ is a free live tool that scans any domain's HTTP security headers and TLS configuration and grades it against OWASP best practice." }
+            },
+            {
+              "@type": "Question",
+              "name": "Where can I see live global cyber-threat activity?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Cyronix runs a Live Threat Map at https://threats.cyronixsecurity.com/ that visualises real-time global attack activity across regions." }
+            },
+            {
+              "@type": "Question",
+              "name": "Does Cyronix work with clients outside Dubai/UAE?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Yes. While Cyronix is based in Dubai and familiar with regional frameworks, engagements are delivered remotely for clients globally." }
+            },
+            {
+              "@type": "Question",
+              "name": "What certifications does Akbar M A hold?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Certified Ethical Hacker (CEH v11), with additional practical training including threat intelligence (arcX), GRC foundations, and hands-on offensive security work verified on TryHackMe and Hack The Box." }
+            }
+          ]
+        }
       ]
     }
     </script>
@@ -205,6 +279,10 @@
                     <div class="profile-photo-card soc-card fade-in-up d1">
                         <div class="profile-photo-single">
                             <img width="700" height="1050" loading="lazy" decoding="async" src="assets/profile-1.jpeg" alt="Akbar M A — Founder &amp; CEO of Cyronix Dev &amp; Security" class="profile-photo-main">
+                            <button type="button" class="story-play-btn" id="story-play-btn" aria-haspopup="dialog" aria-controls="story-modal">
+                                <span class="story-play-icon"><i class="fa-solid fa-play"></i></span>
+                                <span class="story-play-label">Watch My Story</span>
+                            </button>
                         </div>
                         <div class="profile-photo-caption">
                             <span class="profile-name">Akbar M A</span>
@@ -397,6 +475,40 @@
                     </div>
                     <div class="project-footer">
                         <span class="project-private"><i class="fa-solid fa-lock"></i> Private Repo</span>
+                    </div>
+                </div>
+
+                <div class="project-card fade-in-up">
+                    <div class="project-card-top">
+                        <span class="project-badge badge-live"><span class="live-pulse"></span> LIVE SYSTEM</span>
+                        <span class="project-year">2026</span>
+                    </div>
+                    <div class="project-image project-image-live"><i class="fa-solid fa-earth-europe"></i></div>
+                    <div class="project-icon-wrap"><i class="fa-solid fa-earth-europe"></i></div>
+                    <h3 class="project-title">Live Threat Map</h3>
+                    <p class="project-desc">Real-time global cyber-attack visualization built by Cyronix — tracks live threat activity across regions with an interactive geo-feed.</p>
+                    <div class="project-tags">
+                        <span class="ptag">Threat Intel</span><span class="ptag">Real-Time</span><span class="ptag">Visualization</span>
+                    </div>
+                    <div class="project-footer">
+                        <a href="https://threats.cyronixsecurity.com/" target="_blank" rel="noopener" class="project-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Launch Live</a>
+                    </div>
+                </div>
+
+                <div class="project-card fade-in-up">
+                    <div class="project-card-top">
+                        <span class="project-badge badge-live"><span class="live-pulse"></span> LIVE SYSTEM</span>
+                        <span class="project-year">2026</span>
+                    </div>
+                    <div class="project-image project-image-live"><i class="fa-solid fa-shield-halved"></i></div>
+                    <div class="project-icon-wrap"><i class="fa-solid fa-shield-halved"></i></div>
+                    <h3 class="project-title">Security Auditor</h3>
+                    <p class="project-desc">Free live tool by Cyronix — scans any domain's HTTP security headers, TLS configuration, and exposure risks, then grades it against OWASP best practice.</p>
+                    <div class="project-tags">
+                        <span class="ptag">Header Scanner</span><span class="ptag">TLS Grading</span><span class="ptag">Free Tool</span>
+                    </div>
+                    <div class="project-footer">
+                        <a href="https://securityaudit.cyronixsecurity.com/" target="_blank" rel="noopener" class="project-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Launch Live</a>
                     </div>
                 </div>
             </div>
@@ -810,7 +922,7 @@
         <!-- ══ TESTIMONIALS — light ══ -->
         <section id="testimonials" class="testimonials light-section">
             <div class="soc-section-title fade-in-up">
-                <span class="section-num">09 / Clients</span>
+                <span class="section-num">08 / Clients</span>
                 <h2>Client <em class="d">Trust</em></h2>
             </div>
             <div class="testimonials-grid">
@@ -854,10 +966,44 @@
             <p class="testimonials-note fade-in-up">* Testimonials represent genuine client feedback. Names may be anonymised on request.</p>
         </section>
 
+        <!-- ══ FAQ — light ══ -->
+        <section id="faq" class="faq light-section">
+            <div class="soc-section-title fade-in-up">
+                <span class="section-num">09 / FAQ</span>
+                <h2>Frequently <em class="d">Asked</em></h2>
+            </div>
+            <div class="faq-list fade-in-up">
+                <details class="faq-item" open>
+                    <summary>Who is Akbar M A?</summary>
+                    <p>Akbar M A is a CEH-certified cybersecurity researcher based in Dubai, UAE, and the Founder &amp; CEO of Cyronix Dev &amp; Security. He specialises in penetration testing, vulnerability assessment (VAPT), OSINT, and security-first web development.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>What does Cyronix Dev &amp; Security do?</summary>
+                    <p>Cyronix Dev &amp; Security is a Dubai-based cybersecurity and secure web development company. Services include penetration testing, VAPT, security audits, incident response support, and OWASP-hardened web application development.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Is there a free tool to check a website's security headers?</summary>
+                    <p>Yes — Cyronix's <a href="https://securityaudit.cyronixsecurity.com/" target="_blank" rel="noopener">Security Auditor</a> is a free live tool that scans any domain's HTTP security headers and TLS configuration and grades it against OWASP best practice.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Where can I see live global cyber-threat activity?</summary>
+                    <p>Cyronix runs a <a href="https://threats.cyronixsecurity.com/" target="_blank" rel="noopener">Live Threat Map</a> that visualises real-time global attack activity across regions.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Does Cyronix work with clients outside Dubai/UAE?</summary>
+                    <p>Yes. While Cyronix is based in Dubai and familiar with regional frameworks, engagements are delivered remotely for clients globally — penetration testing, VAPT, and secure development work is scoped and reported the same way regardless of location.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>What certifications does Akbar M A hold?</summary>
+                    <p>Certified Ethical Hacker (CEH v11), with additional practical training including threat intelligence (arcX), GRC foundations, and hands-on offensive security work verified on TryHackMe and Hack The Box.</p>
+                </details>
+            </div>
+        </section>
+
         <!-- ══ CONTACT — dark ══ -->
         <section id="contact" class="contact">
             <div class="soc-section-title fade-in-up">
-                <span class="section-num">08 / Contact</span>
+                <span class="section-num">10 / Contact</span>
                 <h2>Get <em class="d">In</em> Touch</h2>
             </div>
             <div class="contact-layout fade-in-up">
@@ -985,6 +1131,15 @@
                 <div class="shortcut-row"><kbd>G S</kbd><span>Go to Services</span></div>
                 <div class="shortcut-row"><kbd>Esc</kbd><span>Close modals</span></div>
             </div>
+        </div>
+    </div>
+
+    <!-- Watch My Story Modal -->
+    <div id="story-modal" class="story-modal" role="dialog" aria-modal="true" aria-label="Akbar M A — My Story">
+        <div class="story-panel">
+            <button id="close-story" class="story-close" aria-label="Close video">✕</button>
+            <video id="story-video" class="story-video" src="assets/intro-story.mp4" playsinline controls preload="none" poster="assets/profile-1.jpeg"></video>
+            <p class="story-disclosure"><i class="fa-solid fa-circle-info"></i> AI-produced intro — stylized, script &amp; likeness by Akbar M A.</p>
         </div>
     </div>
 </body>
